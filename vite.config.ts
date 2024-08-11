@@ -8,7 +8,8 @@ import react from '@vitejs/plugin-react-swc';
 export default defineConfig({
   plugins: [react(), libInjectCss()],
   build: {
-    copyPublicDir: false,
+    copyPublicDir: false, // <--- defaults to `true`
+    emptyOutDir: false, // <--- defaults to `true`
     lib: {
       entry: resolve(__dirname, 'lib/main.ts'),
       formats: ['es'],
