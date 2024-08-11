@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.0
+
+### Major Changes
+
+- 7197e1b: BarChart & LineChart components
+
 ## 0.0.1
 
 ### Patch Changes
