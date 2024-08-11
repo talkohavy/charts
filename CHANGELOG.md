@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.1
+
+### Patch Changes
+
+- 9353bd9: forgot to run vite build
+
 ## 1.0.0
 
 ### Major Changes
