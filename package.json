@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite",
     "lint": "eslint .",
+    "preview": "vite preview",
     "build": "tsc -p ./tsconfig.build.json && vite build",
-    "preview": "vite preview"
+    "prepublishOnly": "npm run build"
   },
+  "sideEffects": ["**/*.css"],
   "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

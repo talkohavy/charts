@@ -1,3 +1,5 @@
+import styles from './LineChart.module.scss';
+
 type LineChartProps = {
   name: string;
 };
@@ -5,5 +7,5 @@ type LineChartProps = {
 export default function LineChart(props: LineChartProps) {
   console.log('props is:', props);
 
-  return <div>LineChart</div>;
+  return <div className={styles.lineChart}>LineChart</div>;
 }

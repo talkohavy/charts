@@ -1,3 +1,5 @@
+import styles from './BarChart.module.scss';
+
 type BarChartProps = {
   name: string;
 };
@@ -5,5 +7,5 @@ type BarChartProps = {
 export default function BarChart(props: BarChartProps) {
   console.log('props is:', props);
 
-  return <div>BarChart</div>;
+  return <div className={styles.barChart}>BarChart</div>;
 }
