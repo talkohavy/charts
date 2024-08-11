@@ -9,7 +9,7 @@
     "build": "tsc -p ./tsconfig.build.json && vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -23,6 +23,8 @@
     "globals": "^15.9.0",
     "husky": "^9.1.4",
     "prettier": "^3.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "typescript": "^5.3.3",
     "vite": "^5.4.0"
   }
