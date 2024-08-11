@@ -20,7 +20,7 @@ buildPackageConfig();
 async function buildPackageConfig() {
   cleanDistDirectory();
 
-  buildWithTsc();
+  buildWithVite();
 
   copyReadmeFile();
 
@@ -38,9 +38,9 @@ function cleanDistDirectory() {
   execSync('rm -rf dist');
 }
 
-function buildWithTsc() {
+function buildWithVite() {
   console.log('- Step 2: build with vite');
-  execSync('tsc -p ./tsconfig.build.json');
+  execSync('tsc -p ./tsconfig.build.json && vite build');
 }
 
 function copyReadmeFile() {
