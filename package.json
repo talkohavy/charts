@@ -21,9 +21,11 @@
     "prepublishOnly": "npm run build",
     "preview": "vite preview"
   },
-  "sideEffects": [
-    "**/*.css"
-  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "restricted"
+  },
+  "sideEffects": ["**/*.css"],
   "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
