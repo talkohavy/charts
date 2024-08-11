@@ -3,7 +3,7 @@ import type { LabelProps } from 'recharts';
 
 type CustomizedAxisTickProps = LabelProps & {
   payload: any;
-  xTickFormatter: (value: any) => string;
+  xTickFormatter: (value: any, index?: number) => string;
 };
 
 export default function CustomizedAxisTick(props: CustomizedAxisTickProps) {

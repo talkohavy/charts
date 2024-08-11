@@ -74,7 +74,7 @@ function getMergedChartSettings(props: GetMergedChartSettingsProps) {
               dy: -getTextWidth({ text: settings.yAxis.label }) / 2,
             }
           : undefined,
-        tickFormatter: settings?.yAxis?.tickFormatter ?? formatLabel,
+        tickFormatter: (settings?.yAxis?.tickFormatter ?? formatLabel) as (value: any, index?: number) => string,
         type: 'number' as 'number' | 'category' | undefined, // <--- defaults to 'number'. 'category' or 'number'.
         stroke: '#666',
         yAxisId: 'left',

@@ -160,7 +160,7 @@ export default function BarChart(props: BarChartProps) {
           scale={xAxisType === 'category' ? 'auto' : 'time'}
           tick={(tickProps) => (
             // passes everything as an argument! x, y, width, height, everything! You'll even need to handle the tick's positioning, and format the entire tick.
-            <CustomizedAxisTick {...tickProps} xTickFormatter={chartSettings.xAxis.props.tickFormatter} />
+            <CustomizedAxisTick {...tickProps} xTickFormatter={chartSettings.xAxis.tickFormatter} />
           )}
         />
 
