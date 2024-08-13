@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.3
+
+### Patch Changes
+
+- 1ed8f57: different structure of files
+
 ## 1.0.2
 
 ### Patch Changes
