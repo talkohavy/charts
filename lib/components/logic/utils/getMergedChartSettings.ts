@@ -143,8 +143,8 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
       show: !!showGrid,
       props: {
         stroke: settings?.grid?.color ?? '#ddd',
-        horizontal: typeof showGrid === 'boolean' ? showGrid : showGrid.horizontal,
-        vertical: typeof showGrid === 'boolean' ? showGrid : showGrid.vertical,
+        horizontal: typeof showGrid === 'boolean' ? showGrid : !!showGrid.horizontal,
+        vertical: typeof showGrid === 'boolean' ? showGrid : !!showGrid.vertical,
         strokeDasharray: settings?.grid?.strokeDasharray ?? '5 5',
         syncWithTicks: true,
       },
