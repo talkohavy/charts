@@ -1,4 +1,4 @@
-import { formatLabel } from '../../utils/formatters';
+import { formatLabel } from '../logic/utils/formatters';
 import type { DotProps } from 'recharts';
 
 type ActiveDotProps = DotProps & {

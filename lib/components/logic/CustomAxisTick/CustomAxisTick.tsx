@@ -1,4 +1,4 @@
-import { getTextWidth } from '../../utils';
+import { getTextWidth } from '../utils/getTextWidth';
 import type { LabelProps } from 'recharts';
 
 type CustomizedAxisTickProps = LabelProps & {

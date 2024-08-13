@@ -13,7 +13,10 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { BRUSH_ITEMS_PER_PAGE } from '../../constants';
+import { BRUSH_ITEMS_PER_PAGE } from '../logic/constants';
+import CustomizedAxisTick from '../logic/CustomAxisTick';
+import CustomizedLabel from '../logic/CustomizedLabel';
+import CustomTooltip from '../logic/CustomTooltip';
 import {
   FORMATTERS,
   calculateYAxisWidth,
@@ -24,10 +27,7 @@ import {
   getTextWidth,
   getWidthOfLongestXLabel,
   runValidationsOnAllSeries,
-} from '../../utils';
-import CustomizedAxisTick from '../CustomAxisTick';
-import CustomizedLabel from '../CustomizedLabel';
-import CustomTooltip from '../CustomTooltip';
+} from '../logic/utils';
 import { ACTIVE_BAR_COLOR, BAR_LAYOUT_TO_CHART_LAYOUT, DEFAULT_BAR_COLOR } from './constants';
 import type { BarClickEventProps, BarSeries, BaseChartProps } from '../../types';
 import '../../recharts.css';

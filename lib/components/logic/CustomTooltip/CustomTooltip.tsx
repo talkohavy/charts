@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { formatLabel } from '../../utils/formatters';
+import { formatLabel } from '../utils/formatters';
 import styles from './CustomTooltip.module.scss';
 import type { TooltipProps } from 'recharts';
 

@@ -11,7 +11,9 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { BRUSH_ITEMS_PER_PAGE, DASHED_LINE } from '../../constants';
+import { BRUSH_ITEMS_PER_PAGE, DASHED_LINE } from '../logic/constants';
+import CustomizedAxisTick from '../logic/CustomAxisTick';
+import CustomTooltip from '../logic/CustomTooltip';
 import {
   FORMATTERS,
   calculateYAxisWidth,
@@ -22,9 +24,7 @@ import {
   getTextWidth,
   getWidthOfLongestXLabel,
   runValidationsOnAllSeries,
-} from '../../utils';
-import CustomizedAxisTick from '../CustomAxisTick';
-import CustomTooltip from '../CustomTooltip';
+} from '../logic/utils';
 import ActiveDot from './ActiveDot';
 import NonActiveDot from './NonActiveDot';
 import '../../recharts.css';

@@ -1,4 +1,4 @@
-import { BarSeries, LineSeries } from '../types';
+import { BarSeries, LineSeries } from '../../../types';
 
 /**
  * @throws An Error.
