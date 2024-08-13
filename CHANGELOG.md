@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.5
+
+### Patch Changes
+
+- 7f500b0: LineChart is fixed
+
 ## 1.0.4
 
 ### Patch Changes
