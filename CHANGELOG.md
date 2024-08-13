@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.4
+
+### Patch Changes
+
+- e8374e5: changed the imports for types
+
 ## 1.0.3
 
 ### Patch Changes
