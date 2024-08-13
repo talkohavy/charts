@@ -118,15 +118,7 @@ export type ChartSettings = {
     /**
      * @default true
      */
-    show?: boolean;
-    /**
-     * @default false
-     */
-    showHorizontalLines?: boolean;
-    /**
-     * @default false
-     */
-    showVerticalLines?: boolean;
+    show?: boolean | { horizontal?: boolean; vertical?: boolean };
     strokeDasharray?: string;
     color?: string;
   };
