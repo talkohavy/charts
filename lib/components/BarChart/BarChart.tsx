@@ -28,9 +28,9 @@ import {
 import CustomizedAxisTick from '../CustomAxisTick';
 import CustomizedLabel from '../CustomizedLabel';
 import CustomTooltip from '../CustomTooltip';
-import { ACTIVE_BAR_COLOR, DEFAULT_BAR_COLOR } from './constants';
-import '../../recharts.css';
+import { ACTIVE_BAR_COLOR, BAR_LAYOUT_TO_CHART_LAYOUT, DEFAULT_BAR_COLOR } from './constants';
 import type { BarClickEventProps, BarSeries, BaseChartProps } from '../../types';
+import '../../recharts.css';
 
 type BarChartProps = BaseChartProps & {
   bars: Array<BarSeries>;
@@ -42,11 +42,16 @@ type BarChartProps = BaseChartProps & {
    * // The barIds are: 'hello-Israel' & 'hello-France'
    */
   activeBarId?: string;
+  /**
+   * @default 'vertical'
+   */
+  layout?: 'horizontal' | 'vertical';
 };
 
 export default function BarChart(props: BarChartProps) {
   const {
     type: xAxisType = 'category',
+    layout: barsLayout = 'vertical',
     settings: settingsToMerge,
     bars,
     referenceLines,
@@ -146,7 +151,7 @@ export default function BarChart(props: BarChartProps) {
         className={className}
         style={style}
         {...chartSettings.barChartBase.props}
-        // layout='vertical' // <--- default is 'horizontal'
+        layout={BAR_LAYOUT_TO_CHART_LAYOUT[barsLayout]} // <--- chart layout is by default 'horizontal' (which means bars layout is vertical).
         // reverseStackOrder // <--- default is false. When true, stacked items will be rendered right to left. By default, stacked items are rendered left to right. Render direction affects SVG layering, not x position.
         // barCategoryGap='10%' // <--- gap between bars. Hard to make this generic. The default seems to do a pretty good job.
       >
@@ -155,16 +160,25 @@ export default function BarChart(props: BarChartProps) {
 
         <XAxis
           {...chartSettings.xAxis.props}
-          padding='gap' // <--- 'gap' is unique to BarChart. 'gap' gives the first and the last bar gap from the walls. 'no-gap' has both the first & last bars touch the walls.
-          type={xAxisType === 'category' ? 'category' : 'number'} // <--- 'category' v.s. 'number'. What is the difference? Isn't it the same eventually? Well no, because consider a case where gaps exist. For instance, 0 1 2 4 5. A 'category' would place an even distance between 2 & 4, when in fact it's a double gap!
-          scale={xAxisType === 'category' ? 'auto' : 'time'}
+          label={{
+            ...chartSettings.xAxis.label,
+            value: barsLayout === 'vertical' ? chartSettings.xAxis.label?.value : chartSettings.yAxis.label?.value,
+          }}
+          {...(barsLayout === 'vertical' ? chartSettings.xAxis.verticalProps : { type: 'number' as any })}
           tick={(tickProps) => (
             // passes everything as an argument! x, y, width, height, everything! You'll even need to handle the tick's positioning, and format the entire tick.
             <CustomizedAxisTick {...tickProps} xTickFormatter={chartSettings.xAxis.tickFormatter} />
           )}
         />
 
-        <YAxis {...chartSettings.yAxis.props} />
+        <YAxis
+          {...chartSettings.yAxis.props}
+          label={{
+            ...chartSettings.yAxis.label,
+            value: barsLayout === 'vertical' ? chartSettings.yAxis.label.value : chartSettings.xAxis.label.value,
+          }}
+          {...(barsLayout === 'vertical' ? {} : chartSettings.yAxis.horizontalProps)}
+        />
 
         <Tooltip
           content={(tooltipProps) => (
@@ -247,7 +261,7 @@ export default function BarChart(props: BarChartProps) {
           );
         })}
 
-        {bars.map(({ name, data, unit, color, barBorderColor, stackId }) => {
+        {bars.map(({ name, data, unit, color, barBorderColor, stackId }, index) => {
           const barColorInLegend = color ?? DEFAULT_BAR_COLOR;
 
           const barProps = {
@@ -260,7 +274,7 @@ export default function BarChart(props: BarChartProps) {
 
           return (
             <Bar
-              key={name}
+              key={`${name}-${index}`}
               {...chartSettings.bars.props}
               {...barProps}
               hide={!visibleBars[name]}

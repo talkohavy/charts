@@ -1,10 +1,10 @@
-import { BRUSH_HEIGHT, LEGEND_HEIGHT, X_AXIS_BOTTOM_ID, Y_AXIS_LEFT_ID } from '../constants';
+import { BRUSH_HEIGHT, LEGEND_HEIGHT } from '../constants';
 import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
 import { FORMATTERS, formatLabel } from './formatters';
 import { getTextWidth } from './getTextWidth';
 import type { ChartSettings } from '../types';
 import type { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent';
-import type { LayoutType, StackOffsetType } from 'recharts/types/util/types';
+import type { LayoutType, ScaleType, StackOffsetType } from 'recharts/types/util/types';
 
 type GetMergedChartSettingsProps = {
   chartType: 'LineChart' | 'BarChart';
@@ -28,25 +28,12 @@ function getMergedChartSettings(props: GetMergedChartSettingsProps) {
       props: {
         hide: settings?.xAxis?.show === undefined ? false : !settings?.xAxis?.show,
         color: settings?.xAxis?.color ?? 'black', // <--- this is the color of the tick's value!
-        label: {
-          value: settings?.xAxis?.label,
-          angle: 0,
-          position: 'bottom',
-          dy: calculateXAxisLabelPositioning({
-            showLegend,
-            showZoomSlider: settings?.zoomSlider?.show ?? false,
-            chartType,
-          }),
-          dx: -yAxisWidth / 2,
-        },
         domain: ['auto', 'auto'],
         allowDataOverflow: false,
-        dataKey: 'x',
         angle: settings?.xAxis?.tickAngle ? -Math.abs(settings?.xAxis?.tickAngle) : 0,
         height: xAxisHeight,
         textAnchor: 'end', // <--- CustomizedAxisTick assumes this will always be set to 'end'. We calculate x with it. It's easier to render angled xAxis ticks that way.
         stroke: '#666', // <--- this is the color of the xAxis line itself!
-        xAxisId: X_AXIS_BOTTOM_ID, // <--- recharts defaults this to 0
         padding: { right: 40 }, // <--- you can use this to remove padding between: A. The first bar and the Y axis; B. The last bar and the chart axis. I'm using 40 to have the last dot always visible in case the last data point is a large red dot - 40 would make it visible.
         // tickSize: 6, // <--- defaults to 6. The length of tick line.
         // tickCount: 5, // <-- defaults to 5
@@ -58,6 +45,23 @@ function getMergedChartSettings(props: GetMergedChartSettingsProps) {
         // fontWeight: 100,
         // dy: 5, // <--- doesn't even work anymore.
       },
+      label: {
+        value: settings?.xAxis?.label,
+        angle: 0,
+        position: 'bottom',
+        dy: calculateXAxisLabelPositioning({
+          showLegend,
+          showZoomSlider: settings?.zoomSlider?.show ?? false,
+          chartType,
+        }),
+        dx: -yAxisWidth / 2,
+      },
+      verticalProps: {
+        dataKey: 'x',
+        padding: 'gap' as 'gap' | 'no-gap', // <--- 'gap' is unique to BarChart. 'gap' gives the first and the last bar gap from the walls. 'no-gap' has both the first & last bars touch the walls.
+        type: (xAxisType === 'category' ? 'category' : 'number') as 'number' as 'number' | 'category' | undefined, // <--- 'category' v.s. 'number'. What is the difference? Isn't it the same eventually? Well no, because consider a case where gaps exist. For instance, 0 1 2 4 5. A 'category' would place an even distance between 2 & 4, when in fact it's a double gap!
+        scale: (xAxisType === 'category' ? 'auto' : 'time') as ScaleType,
+      },
       tickFormatter: settings?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType], // <--- only passes the string value as an argument.
     },
     yAxis: {
@@ -66,21 +70,25 @@ function getMergedChartSettings(props: GetMergedChartSettingsProps) {
         color: settings?.yAxis?.tickColor ?? '#666',
         unit: settings?.yAxis?.tickSuffix ?? '',
         width: yAxisWidth,
-        label: settings?.yAxis?.label
-          ? {
-              value: settings.yAxis.label,
-              angle: -90,
-              position: 'left',
-              dy: -getTextWidth({ text: settings.yAxis.label }) / 2,
-            }
-          : undefined,
-        tickFormatter: (settings?.yAxis?.tickFormatter ?? formatLabel) as (value: any, index?: number) => string,
-        type: 'number' as 'number' | 'category' | undefined, // <--- defaults to 'number'. 'category' or 'number'.
+        tickFormatter: (settings?.yAxis?.tickFormatter ?? ((value: any) => formatLabel(value))) as (
+          value: any,
+          index?: number,
+        ) => string,
         stroke: '#666',
-        yAxisId: 'left',
         padding: { top: 18 },
         includeHidden: true, // <--- when having multiple lines, and playing around clicking the legend items, animations look so much better with this as `true`.
         // dataKey: 'y'// <--- do NOT put dataKey on y axis of BarChart or LineChart! We are going to use the `name` of each Bars set.
+      },
+      label: {
+        value: settings?.yAxis?.label,
+        angle: -90,
+        position: 'left',
+        dy: settings?.yAxis?.label ? -getTextWidth({ text: settings.yAxis.label }) / 2 : 0,
+      },
+      horizontalProps: {
+        dataKey: 'x',
+        type: 'category' as 'number' | 'category', // <--- defaults to 'number'. Options are: 'category' or 'number'.
+        padding: 'gap' as any, // <--- 'gap' is unique to BarChart. 'gap' gives the first and the last bar gap from the walls. 'no-gap' has both the first & last bars touch the walls.
       },
     },
     grid: {
@@ -96,7 +104,7 @@ function getMergedChartSettings(props: GetMergedChartSettingsProps) {
       },
     },
     legend: {
-      show: settings?.legend?.show ?? false,
+      show: showLegend ?? false,
       props: {
         layout: 'horizontal' as LayoutType, // <--- how to align items of the legend.
         verticalAlign: 'bottom' as VerticalAlignmentType, // <--- pin legend to top, bottom or center.
@@ -125,24 +133,17 @@ function getMergedChartSettings(props: GetMergedChartSettingsProps) {
       props: {
         isAnimationActive: settings?.general?.isAnimationActive, // <--- rechart says it defaults to true in CSR and to false in SSR
         connectNulls: settings?.lines?.connectNulls,
-        xAxisId: X_AXIS_BOTTOM_ID,
-        yAxisId: Y_AXIS_LEFT_ID,
       },
     },
     bars: {
       props: {
-        xAxisId: X_AXIS_BOTTOM_ID,
-        yAxisId: Y_AXIS_LEFT_ID,
         // minPointSize: 5, // <--- give a min height to the lowest value, so that it would still be visible.
         // barSize: 40, // <--- it is best to leave this as automatically calculated
         // background: { fill: barBackgroundOverlayColor } // <--- DO NOT put a background! This is what interrupted my onClick event from getting the right BarChart name!
       },
     },
     referenceLines: {
-      props: {
-        xAxisId: X_AXIS_BOTTOM_ID,
-        yAxisId: Y_AXIS_LEFT_ID,
-      },
+      props: {},
     },
     lineChartBase: {
       props: {
