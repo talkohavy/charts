@@ -49,8 +49,7 @@ export default function LineChart(props: LineChartProps) {
 
   const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
 
-  /** @type {Array<{x: number | string}>} */
-  const transformedDataForRecharts = useMemo(() => {
+  const transformedDataForRecharts: Array<{ x: number | string }> = useMemo(() => {
     const transformedDataByKey: Record<string, any> = {};
 
     lines.forEach((currentLine) => {
