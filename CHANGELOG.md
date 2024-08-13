@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.2
+
+### Patch Changes
+
+- 77277e4: BarChart can now also be displayed horizontally
+
 ## 1.0.1
 
 ### Patch Changes
