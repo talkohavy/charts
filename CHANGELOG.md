@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.7
+
+### Patch Changes
+
+- 8248747: show grid new logic
+
 ## 1.0.6
 
 ### Patch Changes

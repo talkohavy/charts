@@ -27,6 +27,14 @@ export default function App() {
             yAxis: {
               label: 'Flying cars',
             },
+            grid: {
+              // show: true,
+              // showHorizontalLines: true,
+              // show: { horizontal: true },
+              // show: { vertical: true },
+              // show: true ,
+              show: false,
+            },
             legend: {
               show: true,
             },
