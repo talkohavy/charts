@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.9
+
+### Patch Changes
+
+- 3e97d1a: renamed color to tickColor in XAxis
+
 ## 1.0.8
 
 ### Patch Changes
