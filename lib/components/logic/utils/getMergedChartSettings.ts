@@ -14,7 +14,55 @@ type GetMergedChartSettingsProps = {
   xAxisType: 'category' | 'number' | 'datetime';
 };
 
-function getMergedChartSettings(props: GetMergedChartSettingsProps) {
+function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps) {
+  const sharedSettings = getSharedMergedChartSettings(props);
+
+  return {
+    ...sharedSettings,
+    barChartBase: {
+      props: {
+        margin: {
+          left: sharedSettings?.yAxis?.label ? 12 : 0,
+          bottom: sharedSettings?.xAxis?.label ? 20 : 0,
+        },
+        stackOffset: 'sign' as StackOffsetType, // <--- sign knows how to deal with negative values, while default stackOffset just hides them (doesn't show them).
+      },
+    },
+    bars: {
+      props: {
+        // minPointSize: 5, // <--- give a min height to the lowest value, so that it would still be visible.
+        // barSize: 40, // <--- it is best to leave this as automatically calculated
+        // background: { fill: barBackgroundOverlayColor } // <--- DO NOT put a background! This is what interrupted my onClick event from getting the right BarChart name!
+      },
+    },
+  };
+}
+
+function getLineChartMergedChartSettings(props: GetMergedChartSettingsProps) {
+  const { settings: settingToMerge } = props;
+
+  const sharedSettings = getSharedMergedChartSettings(props);
+
+  return {
+    ...sharedSettings,
+    lineChartBase: {
+      props: {
+        margin: {
+          left: sharedSettings?.yAxis?.label ? 12 : 0,
+          bottom: sharedSettings?.xAxis?.label ? 30 : 0,
+        },
+      },
+    },
+    lines: {
+      props: {
+        isAnimationActive: settingToMerge?.general?.isAnimationActive, // <--- rechart says it defaults to true in CSR and to false in SSR
+        connectNulls: settingToMerge?.lines?.connectNulls,
+      },
+    },
+  };
+}
+
+function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
   const { chartType, settings, xAxisHeight, yAxisWidth, xAxisType } = props;
 
   const showGrid = settings?.grid?.show ?? true;
@@ -129,40 +177,10 @@ function getMergedChartSettings(props: GetMergedChartSettingsProps) {
         // travellerWidth: 6
       },
     },
-    lines: {
-      props: {
-        isAnimationActive: settings?.general?.isAnimationActive, // <--- rechart says it defaults to true in CSR and to false in SSR
-        connectNulls: settings?.lines?.connectNulls,
-      },
-    },
-    bars: {
-      props: {
-        // minPointSize: 5, // <--- give a min height to the lowest value, so that it would still be visible.
-        // barSize: 40, // <--- it is best to leave this as automatically calculated
-        // background: { fill: barBackgroundOverlayColor } // <--- DO NOT put a background! This is what interrupted my onClick event from getting the right BarChart name!
-      },
-    },
     referenceLines: {
       props: {},
-    },
-    lineChartBase: {
-      props: {
-        margin: {
-          left: settings?.yAxis?.label ? 12 : 0,
-          bottom: settings?.xAxis?.label ? 30 : 0,
-        },
-      },
-    },
-    barChartBase: {
-      props: {
-        margin: {
-          left: settings?.yAxis?.label ? 12 : 0,
-          bottom: settings?.xAxis?.label ? 20 : 0,
-        },
-        stackOffset: 'sign' as StackOffsetType, // <--- sign knows how to deal with negative values, while default stackOffset just hides them (doesn't show them).
-      },
     },
   };
 }
 
-export { getMergedChartSettings };
+export { getBarChartMergedChartSettings, getLineChartMergedChartSettings, getSharedMergedChartSettings };

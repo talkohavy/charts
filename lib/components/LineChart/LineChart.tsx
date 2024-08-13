@@ -19,7 +19,7 @@ import {
   calculateYAxisWidth,
   getHeight,
   getLengthOfLongestData,
-  getMergedChartSettings,
+  getLineChartMergedChartSettings,
   getNamesObject,
   getTextWidth,
   getWidthOfLongestXLabel,
@@ -117,7 +117,13 @@ export default function LineChart(props: LineChartProps) {
 
   const chartSettings = useMemo(
     () =>
-      getMergedChartSettings({ settings: settingsToMerge, chartType: 'LineChart', xAxisType, xAxisHeight, yAxisWidth }),
+      getLineChartMergedChartSettings({
+        settings: settingsToMerge,
+        chartType: 'LineChart',
+        xAxisType,
+        xAxisHeight,
+        yAxisWidth,
+      }),
     [settingsToMerge, xAxisType, xAxisHeight, yAxisWidth],
   );
 
@@ -135,6 +141,7 @@ export default function LineChart(props: LineChartProps) {
 
         <XAxis
           {...chartSettings.xAxis.props}
+          label={chartSettings.xAxis.label}
           type={xAxisType === 'datetime' ? 'number' : xAxisType} // <--- 'category' v.s. 'number'. What is the difference? Isn't it the same eventually? Well no, because consider a case where gaps exist. For instance, 0 1 2 4 5. A 'category' would place an even distance between 2 & 4, when in fact it's a double gap!
           scale={xAxisType === 'datetime' ? 'time' : 'auto'}
           tick={(tickProps) => (
@@ -143,8 +150,7 @@ export default function LineChart(props: LineChartProps) {
           )}
         />
 
-        {/* @ts-ignore */}
-        <YAxis {...chartSettings.yAxis.props} />
+        <YAxis {...chartSettings.yAxis.props} label={chartSettings.yAxis.label} />
 
         <Tooltip
           content={(tooltipProps) => (

@@ -20,9 +20,9 @@ import CustomTooltip from '../logic/CustomTooltip';
 import {
   FORMATTERS,
   calculateYAxisWidth,
+  getBarChartMergedChartSettings,
   getHeight,
   getLengthOfLongestData,
-  getMergedChartSettings,
   getNamesObject,
   getTextWidth,
   getWidthOfLongestXLabel,
@@ -140,7 +140,13 @@ export default function BarChart(props: BarChartProps) {
 
   const chartSettings = useMemo(
     () =>
-      getMergedChartSettings({ settings: settingsToMerge, chartType: 'BarChart', xAxisType, xAxisHeight, yAxisWidth }),
+      getBarChartMergedChartSettings({
+        settings: settingsToMerge,
+        chartType: 'BarChart',
+        xAxisType,
+        xAxisHeight,
+        yAxisWidth,
+      }),
     [settingsToMerge, xAxisType, xAxisHeight, yAxisWidth],
   );
 
