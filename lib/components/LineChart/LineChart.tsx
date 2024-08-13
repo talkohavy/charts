@@ -28,7 +28,7 @@ import {
 import ActiveDot from './ActiveDot';
 import NonActiveDot from './NonActiveDot';
 import '../../recharts.css';
-import type { BaseChartProps, LineSeries } from '../../types';
+import type { BaseChartProps, LineSeries } from '../types';
 
 type LineChartProps = BaseChartProps & {
   lines: Array<LineSeries>;

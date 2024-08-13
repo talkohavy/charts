@@ -1,4 +1,4 @@
-import { BarSeries, LineSeries } from '../../../types';
+import { BarSeries, LineSeries } from '../../types';
 
 function getLengthOfLongestData(dataArr: Array<LineSeries | BarSeries>) {
   return dataArr.reduce((maxLength, { data }) => {

@@ -2,7 +2,7 @@ import { BRUSH_HEIGHT, LEGEND_HEIGHT } from '../constants';
 import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
 import { FORMATTERS, formatLabel } from './formatters';
 import { getTextWidth } from './getTextWidth';
-import type { ChartSettings } from '../../../types';
+import type { ChartSettings } from '../../types';
 import type { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent';
 import type { LayoutType, ScaleType, StackOffsetType } from 'recharts/types/util/types';
 

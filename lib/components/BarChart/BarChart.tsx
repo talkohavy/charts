@@ -29,7 +29,7 @@ import {
   runValidationsOnAllSeries,
 } from '../logic/utils';
 import { ACTIVE_BAR_COLOR, BAR_LAYOUT_TO_CHART_LAYOUT, DEFAULT_BAR_COLOR } from './constants';
-import type { BarClickEventProps, BarSeries, BaseChartProps } from '../../types';
+import type { BarClickEventProps, BarSeries, BaseChartProps } from '../types';
 import '../../recharts.css';
 
 type BarChartProps = BaseChartProps & {

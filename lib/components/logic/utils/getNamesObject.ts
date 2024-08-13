@@ -1,4 +1,4 @@
-import type { BarSeries, LineSeries } from '../../../types';
+import type { BarSeries, LineSeries } from '../../types';
 
 function getNamesObject(data: Array<BarSeries> | Array<LineSeries>, defaultValue: any = null) {
   const obj: Record<string, any> = {};
