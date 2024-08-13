@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.8
+
+### Patch Changes
+
+- 12712b3: horizontal & vertical need to be boolean - undefined is not acceptable
+
 ## 1.0.7
 
 ### Patch Changes
