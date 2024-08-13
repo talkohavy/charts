@@ -75,7 +75,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
     xAxis: {
       props: {
         hide: settings?.xAxis?.show === undefined ? false : !settings?.xAxis?.show,
-        color: settings?.xAxis?.color ?? 'black', // <--- this is the color of the tick's value!
+        color: settings?.xAxis?.tickColor ?? 'black', // <--- this is the color of the tick's value!
         domain: ['auto', 'auto'],
         allowDataOverflow: false,
         angle: settings?.xAxis?.tickAngle ? -Math.abs(settings?.xAxis?.tickAngle) : 0,

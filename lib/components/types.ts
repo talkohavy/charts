@@ -95,7 +95,7 @@ export type ChartSettings = {
      * The color of the tick's value.
      * @default '#666'
      */
-    color?: string;
+    tickColor?: string;
     /**
      * The angle of the tick's value.
      * @default 0
