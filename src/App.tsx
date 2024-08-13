@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BarChart } from '../lib/main';
+import { BarChart, LineChart } from '../lib/main';
 
 export default function App() {
   const [barsLayout, setBarsLayout] = useState<'vertical' | 'horizontal'>('vertical');
@@ -15,6 +15,49 @@ export default function App() {
       >
         Switch to {barsLayout === 'horizontal' ? 'vertical' : 'horizontal'}
       </button>
+
+      <div className='h-xl w-xl'>
+        <LineChart
+          type='datetime'
+          settings={{
+            xAxis: {
+              label: 'Apples',
+              tickAngle: 45,
+            },
+            yAxis: {
+              label: 'Flying cars',
+            },
+            legend: {
+              show: true,
+            },
+            general: {
+              showValues: true,
+            },
+            zoomSlider: {
+              show: true,
+            },
+          }}
+          lines={[
+            {
+              name: 'chart 1',
+              curveType: 'monotoneX',
+              // color: 'blue',
+              // lineWidth: 2,
+              // showValues: true,
+              // isDashed: true,
+              data: [
+                { x: '1100000000', y: 10 },
+                { x: '1200000000', y: 30 },
+                { x: '1300000000', y: 70 },
+                { x: '1400000000', y: 10, dot: { r: 12, fill: 'red', stroke: 'black' } },
+                { x: '1500000000', y: 90, showValue: true },
+                { x: '1600000000', y: 70 },
+                { x: '1700000000', y: 80 },
+              ],
+            },
+          ]}
+        />
+      </div>
 
       <div className='h-xl w-xl'>
         <BarChart
