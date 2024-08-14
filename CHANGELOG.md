@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.10
+
+### Patch Changes
+
+- 8e9cccf: updated xAxis height handling for ALL cases & scenarios
+
 ## 1.0.9
 
 ### Patch Changes

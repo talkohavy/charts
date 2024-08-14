@@ -45,7 +45,9 @@ function getXAxisHeight(props: GetHeightProps): number | undefined {
   if (isXLabelVisible && isLegendVisible && !isSliderVisible) return 20 + addRotationHeight;
   if (isXLabelVisible && !isLegendVisible && isSliderVisible) return 35 + addRotationHeight;
   if (!isXLabelVisible && isLegendVisible && isSliderVisible) return 35 + addRotationHeight;
-  if (isXLabelVisible && isLegendVisible && isSliderVisible) return 35 + addRotationHeight;
+
+  // Case: isXLabelVisible && isLegendVisible && isSliderVisible
+  return 35 + addRotationHeight;
 }
 
 export { getXAxisHeight };
