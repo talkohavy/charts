@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
+import clsx from 'clsx';
 import {
   Bar,
   BarChart as BarChartBase,
@@ -28,6 +29,7 @@ import {
   getXAxisHeight,
   runValidationsOnAllSeries,
 } from '../logic/utils';
+import styles from './BarChart.module.scss';
 import { ACTIVE_BAR_COLOR, BAR_LAYOUT_TO_CHART_LAYOUT, DEFAULT_BAR_COLOR } from './constants';
 import type { BarChartSettings, BarClickEventProps, BarSeries, BaseChartProps } from '../types';
 import '../../recharts.css';
@@ -174,7 +176,11 @@ export default function BarChart(props: BarChartProps) {
     <ResponsiveContainer width='100%' height='100%'>
       <BarChartBase
         data={transformedDataForRecharts}
-        className={className}
+        className={clsx(
+          styles.barChartDefaultStyle,
+          settingsToMerge?.xAxis?.label && styles.barChartLabelGap,
+          className,
+        )}
         style={style}
         {...chartSettings.barChartBase.props}
         layout={BAR_LAYOUT_TO_CHART_LAYOUT[barsLayout]} // <--- chart layout is by default 'horizontal' (which means bars layout is vertical).
