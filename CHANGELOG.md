@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.11
+
+### Patch Changes
+
+- 11cc290: now supporting yAxis Label font size
+
 ## 1.0.10
 
 ### Patch Changes
