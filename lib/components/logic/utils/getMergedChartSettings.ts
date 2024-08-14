@@ -2,13 +2,13 @@ import { BRUSH_HEIGHT, LEGEND_HEIGHT } from '../constants';
 import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
 import { FORMATTERS, formatLabel } from './formatters';
 import { getTextWidth } from './getTextWidth';
-import type { ChartSettings } from '../../types';
+import type { BarChartSettings, LineChartSettings } from '../../types';
 import type { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent';
 import type { LayoutType, ScaleType, StackOffsetType } from 'recharts/types/util/types';
 
 type GetMergedChartSettingsProps = {
   chartType: 'LineChart' | 'BarChart';
-  settings?: ChartSettings;
+  settings?: LineChartSettings | BarChartSettings;
   xAxisHeight?: number;
   yAxisWidth: number;
   xAxisType: 'category' | 'number' | 'datetime';
@@ -16,6 +16,8 @@ type GetMergedChartSettingsProps = {
 
 function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps) {
   const sharedSettings = getSharedMergedChartSettings(props);
+
+  const settings = props.settings as BarChartSettings;
 
   return {
     ...sharedSettings,
@@ -31,7 +33,7 @@ function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps) {
     bars: {
       props: {
         // minPointSize: 5, // <--- give a min height to the lowest value, so that it would still be visible.
-        // barSize: 40, // <--- it is best to leave this as automatically calculated
+        barSize: settings?.bars?.barSize, // <--- it is best to leave this as automatically calculated
         // background: { fill: barBackgroundOverlayColor } // <--- DO NOT put a background! This is what interrupted my onClick event from getting the right BarChart name!
       },
     },
@@ -39,9 +41,9 @@ function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps) {
 }
 
 function getLineChartMergedChartSettings(props: GetMergedChartSettingsProps) {
-  const { settings: settingToMerge } = props;
-
   const sharedSettings = getSharedMergedChartSettings(props);
+
+  const settingsToMerge = props.settings as LineChartSettings;
 
   return {
     ...sharedSettings,
@@ -55,8 +57,8 @@ function getLineChartMergedChartSettings(props: GetMergedChartSettingsProps) {
     },
     lines: {
       props: {
-        isAnimationActive: settingToMerge?.general?.isAnimationActive, // <--- rechart says it defaults to true in CSR and to false in SSR
-        connectNulls: settingToMerge?.lines?.connectNulls,
+        isAnimationActive: settingsToMerge?.general?.isAnimationActive, // <--- rechart says it defaults to true in CSR and to false in SSR
+        connectNulls: settingsToMerge?.lines?.connectNulls,
       },
     },
   };

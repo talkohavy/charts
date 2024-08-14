@@ -29,10 +29,11 @@ import {
   runValidationsOnAllSeries,
 } from '../logic/utils';
 import { ACTIVE_BAR_COLOR, BAR_LAYOUT_TO_CHART_LAYOUT, DEFAULT_BAR_COLOR } from './constants';
-import type { BarClickEventProps, BarSeries, BaseChartProps } from '../types';
+import type { BarChartSettings, BarClickEventProps, BarSeries, BaseChartProps } from '../types';
 import '../../recharts.css';
 
 type BarChartProps = BaseChartProps & {
+  settings?: BarChartSettings;
   bars: Array<BarSeries>;
   onClickBar?: (props: BarClickEventProps & { name: string; barTypeIndex: number }) => void;
   /**
@@ -117,7 +118,7 @@ export default function BarChart(props: BarChartProps) {
       getXAxisHeight({
         tickAngle: -positiveXTickRotateAngle,
         maxTextWidth: widthOfLongestXTickLabel,
-        isLegendVisible: !!settingsToMerge?.legend?.show,
+        isLegendVisible: !!(settingsToMerge?.legend?.show ?? true),
         isSliderVisible: !!settingsToMerge?.zoomSlider?.show,
         isXLabelVisible: !!settingsToMerge?.xAxis?.label,
       }),

@@ -29,10 +29,11 @@ import {
 import ActiveDot from './ActiveDot';
 import styles from './LineChart.module.scss';
 import NonActiveDot from './NonActiveDot';
-import type { BaseChartProps, LineSeries } from '../types';
+import type { BaseChartProps, LineChartSettings, LineSeries } from '../types';
 import '../../recharts.css';
 
 type LineChartProps = BaseChartProps & {
+  settings?: LineChartSettings;
   lines: Array<LineSeries>;
 };
 
