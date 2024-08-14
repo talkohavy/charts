@@ -38,6 +38,7 @@ type BaseChartSettings = {
      */
     show?: boolean;
     label?: string;
+    labelFontSize?: number;
     tickColor?: string;
     tickSuffix?: string;
     tickFontSize?: number;

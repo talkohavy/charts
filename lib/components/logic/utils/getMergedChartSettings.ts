@@ -135,7 +135,10 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         value: settings?.yAxis?.label,
         angle: -90,
         position: 'left',
-        dy: settings?.yAxis?.label ? -getTextWidth({ text: settings.yAxis.label }) / 2 : 0,
+        fontSize: settings?.yAxis?.labelFontSize,
+        dy: settings?.yAxis?.label
+          ? -getTextWidth({ text: settings.yAxis.label, fontSize: settings?.yAxis?.labelFontSize }) / 2
+          : 0,
       },
       horizontalProps: {
         dataKey: 'x',
