@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
+import clsx from 'clsx';
 import {
   Brush,
   CartesianGrid,
@@ -17,18 +18,19 @@ import CustomTooltip from '../logic/CustomTooltip';
 import {
   FORMATTERS,
   calculateYAxisWidth,
-  getHeight,
   getLengthOfLongestData,
   getLineChartMergedChartSettings,
   getNamesObject,
   getTextWidth,
   getWidthOfLongestXLabel,
+  getXAxisHeight,
   runValidationsOnAllSeries,
 } from '../logic/utils';
 import ActiveDot from './ActiveDot';
+import styles from './LineChart.module.scss';
 import NonActiveDot from './NonActiveDot';
-import '../../recharts.css';
 import type { BaseChartProps, LineSeries } from '../types';
+import '../../recharts.css';
 
 type LineChartProps = BaseChartProps & {
   lines: Array<LineSeries>;
@@ -78,13 +80,32 @@ export default function LineChart(props: LineChartProps) {
       getWidthOfLongestXLabel({
         transformedDataForRecharts,
         xTickFormatter: settingsToMerge?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType],
+        xFontSize: settingsToMerge?.xAxis?.tickFontSize,
       }),
-    [transformedDataForRecharts, xAxisType, settingsToMerge?.xAxis?.tickFormatter],
+    [
+      transformedDataForRecharts,
+      xAxisType,
+      settingsToMerge?.xAxis?.tickFormatter,
+      settingsToMerge?.xAxis?.tickFontSize,
+    ],
   );
 
   const xAxisHeight = useMemo(
-    () => getHeight({ angle: -positiveXTickRotateAngle, maxWidth: widthOfLongestXTickLabel }),
-    [positiveXTickRotateAngle, widthOfLongestXTickLabel],
+    () =>
+      getXAxisHeight({
+        tickAngle: -positiveXTickRotateAngle,
+        maxTextWidth: widthOfLongestXTickLabel,
+        isLegendVisible: !!settingsToMerge?.legend?.show,
+        isSliderVisible: !!settingsToMerge?.zoomSlider?.show,
+        isXLabelVisible: !!settingsToMerge?.xAxis?.label,
+      }),
+    [
+      positiveXTickRotateAngle,
+      widthOfLongestXTickLabel,
+      settingsToMerge?.legend?.show,
+      settingsToMerge?.zoomSlider?.show,
+      settingsToMerge?.xAxis?.label,
+    ],
   );
 
   const yAxisWidth = useMemo(() => {
@@ -92,6 +113,7 @@ export default function LineChart(props: LineChartProps) {
       maxYValue,
       yLabel: settingsToMerge?.yAxis?.label,
       yTickSuffix: settingsToMerge?.yAxis?.tickSuffix,
+      fontSize: settingsToMerge?.yAxis?.tickFontSize,
     });
 
     let widthOfLongestFirstXTickLabel = 0;
@@ -105,14 +127,13 @@ export default function LineChart(props: LineChartProps) {
     });
 
     return yAxisWidth;
-
-    // const maxFirstHorizontalWidth = getWidth({
-    //   angle: -positiveXTickRotateAngle,
-    //   maxWidth: widthOfLongestFirstXTickLabel,
-    // });
-
-    // return Math.max(yAxisWidth, maxFirstHorizontalWidth);
-  }, [lines, maxYValue, settingsToMerge?.yAxis?.label, settingsToMerge?.yAxis?.tickSuffix]);
+  }, [
+    lines,
+    maxYValue,
+    settingsToMerge?.yAxis?.label,
+    settingsToMerge?.yAxis?.tickSuffix,
+    settingsToMerge?.yAxis?.tickFontSize,
+  ]);
 
   const chartSettings = useMemo(
     () =>
@@ -131,7 +152,11 @@ export default function LineChart(props: LineChartProps) {
     <ResponsiveContainer width='100%' height='100%'>
       <LineChartBase
         data={transformedDataForRecharts}
-        className={className}
+        className={clsx(
+          styles.lineChartDefaultStyle,
+          settingsToMerge?.xAxis?.label && styles.lineChartLabelGap,
+          className,
+        )}
         style={style}
         {...chartSettings.lineChartBase.props}
       >

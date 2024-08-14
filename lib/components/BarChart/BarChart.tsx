@@ -21,11 +21,11 @@ import {
   FORMATTERS,
   calculateYAxisWidth,
   getBarChartMergedChartSettings,
-  getHeight,
   getLengthOfLongestData,
   getNamesObject,
   getTextWidth,
   getWidthOfLongestXLabel,
+  getXAxisHeight,
   runValidationsOnAllSeries,
 } from '../logic/utils';
 import { ACTIVE_BAR_COLOR, BAR_LAYOUT_TO_CHART_LAYOUT, DEFAULT_BAR_COLOR } from './constants';
@@ -102,13 +102,32 @@ export default function BarChart(props: BarChartProps) {
       getWidthOfLongestXLabel({
         transformedDataForRecharts,
         xTickFormatter: settingsToMerge?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType],
+        xFontSize: settingsToMerge?.xAxis?.tickFontSize,
       }),
-    [transformedDataForRecharts, xAxisType, settingsToMerge?.xAxis?.tickFormatter],
+    [
+      transformedDataForRecharts,
+      xAxisType,
+      settingsToMerge?.xAxis?.tickFormatter,
+      settingsToMerge?.xAxis?.tickFontSize,
+    ],
   );
 
   const xAxisHeight = useMemo(
-    () => getHeight({ angle: -positiveXTickRotateAngle, maxWidth: widthOfLongestXTickLabel }) ?? 40,
-    [positiveXTickRotateAngle, widthOfLongestXTickLabel],
+    () =>
+      getXAxisHeight({
+        tickAngle: -positiveXTickRotateAngle,
+        maxTextWidth: widthOfLongestXTickLabel,
+        isLegendVisible: !!settingsToMerge?.legend?.show,
+        isSliderVisible: !!settingsToMerge?.zoomSlider?.show,
+        isXLabelVisible: !!settingsToMerge?.xAxis?.label,
+      }),
+    [
+      positiveXTickRotateAngle,
+      widthOfLongestXTickLabel,
+      settingsToMerge?.legend?.show,
+      settingsToMerge?.zoomSlider?.show,
+      settingsToMerge?.xAxis?.label,
+    ],
   );
 
   const yAxisWidth = useMemo(() => {
@@ -116,6 +135,7 @@ export default function BarChart(props: BarChartProps) {
       maxYValue,
       yLabel: settingsToMerge?.yAxis?.label,
       yTickSuffix: settingsToMerge?.yAxis?.tickSuffix,
+      fontSize: settingsToMerge?.yAxis?.tickFontSize,
     });
 
     let widthOfLongestFirstXTickLabel = 0;
@@ -129,14 +149,13 @@ export default function BarChart(props: BarChartProps) {
     });
 
     return yAxisWidth;
-
-    // const maxFirstHorizontalWidth = getWidth({
-    //   angle: -positiveXTickRotateAngle,
-    //   maxWidth: widthOfLongestFirstXTickLabel,
-    // });
-
-    // return Math.max(yAxisWidth, maxFirstHorizontalWidth);
-  }, [bars, maxYValue, settingsToMerge?.yAxis?.label, settingsToMerge?.yAxis?.tickSuffix]);
+  }, [
+    bars,
+    maxYValue,
+    settingsToMerge?.yAxis?.label,
+    settingsToMerge?.yAxis?.tickSuffix,
+    settingsToMerge?.yAxis?.tickFontSize,
+  ]);
 
   const chartSettings = useMemo(
     () =>

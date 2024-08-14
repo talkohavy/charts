@@ -76,6 +76,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
       props: {
         hide: settings?.xAxis?.show === undefined ? false : !settings?.xAxis?.show,
         color: settings?.xAxis?.tickColor ?? 'black', // <--- this is the color of the tick's value!
+        fontSize: settings?.xAxis?.tickFontSize,
         domain: ['auto', 'auto'],
         allowDataOverflow: false,
         angle: settings?.xAxis?.tickAngle ? -Math.abs(settings?.xAxis?.tickAngle) : 0,
@@ -116,6 +117,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
       props: {
         hide: settings?.yAxis?.show === undefined ? false : !settings?.yAxis?.show,
         color: settings?.yAxis?.tickColor ?? '#666',
+        fontSize: settings?.yAxis?.tickFontSize,
         unit: settings?.yAxis?.tickSuffix ?? '',
         width: yAxisWidth,
         tickFormatter: (settings?.yAxis?.tickFormatter ?? ((value: any) => formatLabel(value))) as (
@@ -157,7 +159,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         align: 'left' as HorizontalAlignmentType, // <--- defaults to 'center'. Horizontal alignment.
         iconSize: 14, // <--- defaults to 14
         formatter: settings?.legend?.nameFormatter ?? ((value) => formatLabel(value, 14)),
-        height: LEGEND_HEIGHT,
+        height: settings?.xAxis?.label ? LEGEND_HEIGHT : 1,
         // iconType: 'circle' // <--- defaults to 'line'
       },
     },

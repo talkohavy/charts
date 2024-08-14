@@ -101,6 +101,7 @@ export type ChartSettings = {
      * @default 0
      */
     tickAngle?: number;
+    tickFontSize?: number;
     tickFormatter?: (value: any) => string;
     // tickSuffix: string;
   };
@@ -112,6 +113,7 @@ export type ChartSettings = {
     label?: string;
     tickColor?: string;
     tickSuffix?: string;
+    tickFontSize?: number;
     tickFormatter?: (value: any) => string;
   };
   grid?: {

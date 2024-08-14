@@ -5,4 +5,22 @@
 .recharts-legend-wrapper {
   padding-top: 6px;
   padding-left: 6px;
+  padding-right: 8px;
+}
+
+.recharts-default-legend {
+  display: flex;
+  overflow: auto;
+  gap: 10px;
+}
+
+.recharts-legend-item {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.recharts-legend-item span {
+  white-space: nowrap;
 }
