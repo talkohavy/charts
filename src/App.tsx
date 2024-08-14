@@ -4,8 +4,6 @@ import { BarChart, LineChart } from '../lib/main';
 export default function App() {
   const [barsLayout, setBarsLayout] = useState<'vertical' | 'horizontal'>('vertical');
 
-  console.log('current barsLayout is:', barsLayout);
-
   return (
     <div className='size-full overflow-auto p-6'>
       <button
@@ -16,17 +14,17 @@ export default function App() {
         Switch to {barsLayout === 'horizontal' ? 'vertical' : 'horizontal'}
       </button>
 
-      <div className='h-xl w-xl'>
+      <div className='h-[270px] w-xl'>
         <LineChart
           type='datetime'
           settings={{
-            xAxis: {
-              label: 'Apples',
-              tickAngle: 45,
-            },
-            yAxis: {
-              label: 'Flying cars',
-            },
+            // xAxis: {
+            //   label: 'Apples',
+            //   tickAngle: 45,
+            // },
+            // yAxis: {
+            //   label: 'Flying cars',
+            // },
             grid: {
               // show: true,
               // showHorizontalLines: true,
@@ -35,15 +33,15 @@ export default function App() {
               // show: true ,
               show: false,
             },
-            legend: {
-              show: true,
-            },
+            // legend: {
+            //   show: true,
+            // },
             general: {
               showValues: true,
             },
-            zoomSlider: {
-              show: true,
-            },
+            // zoomSlider: {
+            //   show: true,
+            // },
           }}
           lines={[
             {
@@ -64,6 +62,7 @@ export default function App() {
               ],
             },
           ]}
+          className='border border-red-500'
         />
       </div>
 
@@ -141,36 +140,6 @@ export default function App() {
             },
           ]}
         />
-      </div>
-
-      <div className='h-xs w-xl'>
-        {/* <LineChart
-          settings={{
-            xAxis: {
-              tickAngle: 45,
-            },
-          }}
-          type='datetime'
-          lines={[
-            {
-              name: 'Line 1',
-              curveType: 'monotoneX',
-              color: 'blue',
-              data: [
-                { x: 100000000000, y: 10 },
-                { x: 200000000000, y: 30 },
-                { x: 300000000000, y: 20 },
-                { x: 400000000000, y: 40 },
-                { x: 500000000000, y: 50 },
-                { x: 600000000000, y: 90 },
-                { x: 700000000000, y: 70 },
-                { x: 800000000000, y: 80 },
-                { x: 900000000000, y: 60 },
-                { x: 2000000000000, y: 27 },
-              ],
-            },
-          ]}
-        /> */}
       </div>
     </div>
   );
