@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.12
+
+### Patch Changes
+
+- 6ae30f1: BarChart style fixed - added padding to the right of the chart
+
 ## 1.0.11
 
 ### Patch Changes
