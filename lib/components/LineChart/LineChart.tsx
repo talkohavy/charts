@@ -298,6 +298,7 @@ export default function LineChart(props: LineChartProps) {
                 <NonActiveDot
                   key={key}
                   {...dotProps}
+                  hideDots={chartSettings.lines.hideDots}
                   data={data}
                   showChartValues={chartSettings.general.showValues}
                   showLineValues={showLineValues}

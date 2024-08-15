@@ -182,6 +182,10 @@ export type LineChartSettings = BaseChartSettings & {
      * @default false
      */
     connectNulls?: boolean;
+    /**
+     * @default false
+     */
+    hideDots?: boolean;
   };
 };
 

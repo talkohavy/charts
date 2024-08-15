@@ -7,15 +7,18 @@ type ActiveDotProps = DotProps & {
   data: Array<any>;
   showChartValues: boolean;
   showLineValues: boolean;
+  hideDots: boolean;
 };
 
 export default function NonActiveDot(props: ActiveDotProps) {
-  const { cx, cy, payload, dataKey, data, r, stroke, opacity, showChartValues, showLineValues } = props;
+  const { cx, cy, payload, dataKey, data, r, stroke, opacity, showChartValues, showLineValues, hideDots } = props;
 
   if (!payload[dataKey]) return;
 
   const { showValue: showDotValue, dot } =
     data.find((dotData) => dotData.x === payload.x && dotData.y === payload[dataKey]) ?? {};
+
+  if (!dot && hideDots) return;
 
   const dotProps = { r: dot?.r ?? r, fill: dot?.fill ?? stroke, stroke: dot?.stroke, opacity };
   const isValueVisible = showDotValue ?? showLineValues ?? showChartValues;

@@ -61,6 +61,7 @@ function getLineChartMergedChartSettings(props: GetMergedChartSettingsProps) {
         isAnimationActive: settingsToMerge?.general?.isAnimationActive, // <--- rechart says it defaults to true in CSR and to false in SSR
         connectNulls: settingsToMerge?.lines?.connectNulls,
       },
+      hideDots: settingsToMerge?.lines?.hideDots,
     },
   };
 }
