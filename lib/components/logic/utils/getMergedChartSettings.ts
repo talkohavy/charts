@@ -1,6 +1,7 @@
-import { BRUSH_HEIGHT, LEGEND_HEIGHT } from '../constants';
+import { BRUSH_HEIGHT } from '../constants';
 import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
 import { FORMATTERS, formatLabel } from './formatters';
+import { getLegendHeight } from './getLegendHeight';
 import { getTextWidth } from './getTextWidth';
 import type { BarChartSettings, LineChartSettings } from '../../types';
 import type { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent';
@@ -69,6 +70,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
 
   const showGrid = settings?.grid?.show ?? true;
   const showLegend = settings?.legend?.show ?? chartType === 'BarChart';
+  const legendHeight = getLegendHeight({ showLegend, xAxisLabel: settings?.xAxis?.label, chartType });
 
   return {
     general: {
@@ -103,7 +105,6 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         dy: calculateXAxisLabelPositioning({
           showLegend,
           showZoomSlider: settings?.zoomSlider?.show ?? false,
-          chartType,
         }),
         dx: -yAxisWidth / 2,
       },
@@ -164,7 +165,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         align: 'left' as HorizontalAlignmentType, // <--- defaults to 'center'. Horizontal alignment.
         iconSize: 14, // <--- defaults to 14
         formatter: settings?.legend?.nameFormatter ?? ((value) => formatLabel(value, 14)),
-        height: settings?.xAxis?.label ? LEGEND_HEIGHT : 1,
+        height: legendHeight,
         // iconType: 'circle' // <--- defaults to 'line'
       },
     },
