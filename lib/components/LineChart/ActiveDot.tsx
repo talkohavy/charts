@@ -1,6 +1,7 @@
 import type { DotProps } from 'recharts';
 
 export type ActiveDotProps = DotProps & {
+  value?: any;
   payload: any;
   dataKey: string;
   data: Array<any>;
