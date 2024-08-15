@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.14
+
+### Patch Changes
+
+- 4a13b91: allow user to hide dots
+
 ## 1.0.13
 
 ### Patch Changes
