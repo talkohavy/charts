@@ -18,10 +18,10 @@ export default function App() {
         <LineChart
           type='datetime'
           settings={{
-            // xAxis: {
-            //   label: 'Apples',
-            //   tickAngle: 45,
-            // },
+            xAxis: {
+              // label: 'Apples',
+              tickAngle: 35,
+            },
             // yAxis: {
             //   label: 'Flying cars',
             // },
@@ -33,15 +33,15 @@ export default function App() {
               // show: true ,
               show: false,
             },
-            // legend: {
-            //   show: true,
-            // },
+            legend: {
+              show: true,
+            },
             general: {
               showValues: true,
             },
-            // zoomSlider: {
-            //   show: true,
-            // },
+            zoomSlider: {
+              show: true,
+            },
           }}
           lines={[
             {
@@ -62,7 +62,7 @@ export default function App() {
               ],
             },
           ]}
-          className='border border-red-500'
+          className='border border-black'
         />
       </div>
 
@@ -75,19 +75,19 @@ export default function App() {
               showValues: true,
             },
             xAxis: {
-              label: 'comical',
-              tickAngle: 45,
+              // label: 'comical',
+              // tickAngle: 22,
             },
             yAxis: {
               label: 'Y Axis',
             },
-            zoomSlider: {
-              show: true,
-            },
+            // zoomSlider: {
+            //   show: true,
+            // },
           }}
           bars={[
             {
-              name: 'bar_1',
+              name: 'extremely_long_bar_1',
               stackId: 'aaa',
               data: [
                 // { x: 1, y: 10 },
@@ -113,7 +113,7 @@ export default function App() {
               ],
             },
             {
-              name: 'Bar 2',
+              name: 'extremely_long_bar_2',
               color: 'red',
               stackId: 'aaa',
               data: [
@@ -139,6 +139,7 @@ export default function App() {
               ],
             },
           ]}
+          className='border border-black'
         />
       </div>
     </div>

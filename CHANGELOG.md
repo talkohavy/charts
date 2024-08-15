@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.13
+
+### Patch Changes
+
+- 580388e: better height calculation for the legend of BarChart & LineChart
+
 ## 1.0.12
 
 ### Patch Changes
