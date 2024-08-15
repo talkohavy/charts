@@ -26,7 +26,7 @@ import {
   getXAxisHeight,
   runValidationsOnAllSeries,
 } from '../logic/utils';
-import ActiveDot from './ActiveDot';
+import ActiveDot, { ActiveDotProps } from './ActiveDot';
 import styles from './LineChart.module.scss';
 import NonActiveDot from './NonActiveDot';
 import type { BaseChartProps, LineChartSettings, LineSeries } from '../types';
@@ -35,10 +35,19 @@ import '../../recharts.css';
 type LineChartProps = BaseChartProps & {
   settings?: LineChartSettings;
   lines: Array<LineSeries>;
+  onDotClick?: (data: ActiveDotProps) => void;
 };
 
 export default function LineChart(props: LineChartProps) {
-  const { type: xAxisType = 'category', settings: settingsToMerge, lines, referenceLines, className, style } = props;
+  const {
+    type: xAxisType = 'category',
+    settings: settingsToMerge,
+    lines,
+    onDotClick,
+    referenceLines,
+    className,
+    style,
+  } = props;
 
   useMemo(() => runValidationsOnAllSeries(lines), [lines]);
 
@@ -310,6 +319,7 @@ export default function LineChart(props: LineChartProps) {
                   data={data}
                   showChartValues={chartSettings.general.showValues}
                   showLineValues={showLineValues}
+                  onClick={() => onDotClick?.(dotProps)}
                 />
               )}
             />
