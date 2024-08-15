@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.0.15
+
+### Patch Changes
+
+- a62a901: now supprting an onDotClick on LineChart
+
 ## 1.0.14
 
 ### Patch Changes
