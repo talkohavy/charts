@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.1.0
+
+### Minor Changes
+
+- f7d09ba: added an invisible circle to enlarge the clicking area
+
 ## 1.0.15
 
 ### Patch Changes
