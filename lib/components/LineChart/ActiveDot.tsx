@@ -22,6 +22,9 @@ export default function ActiveDot(props: ActiveDotProps) {
   return (
     <svg onClick={onClick}>
       <circle cx={cx} cy={cy} {...dotProps} />
+
+      {/* An invisible circle to enlarge the clicking area */}
+      <circle cx={cx} cy={cy} r={150} fill='transparent' />
     </svg>
   );
 }
