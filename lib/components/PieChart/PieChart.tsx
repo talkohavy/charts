@@ -23,8 +23,15 @@ export default function PieChart(props: PieChart) {
   const { data: pieChartData, radius } = useMemo(() => {
     const radius = showActiveShape ? PIE_CHART.radius.small : PIE_CHART.radius.large;
 
-    return { data: getPieChart({ data, radius }), radius };
-  }, [data, showActiveShape, showActiveShape]);
+    const sortedData = data.toSorted((a: any, b: any) => (a.value > b.value ? 1 : -1));
+
+    const sortedPiChartData = getPieChart({ data: sortedData, radius });
+
+    return {
+      data: sortedPiChartData,
+      radius,
+    };
+  }, [data, showActiveShape]);
 
   return (
     <div className={clsx('custom-pie-chart', styles.pieChart, className)}>
