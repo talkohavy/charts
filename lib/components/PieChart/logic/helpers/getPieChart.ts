@@ -2,7 +2,14 @@ import { COLORS } from '../../../logic/constants';
 import { PieChartDrawData, SinglePie } from '../../types';
 import { getSliceData } from './getSliceData';
 
-function getPieChart(data: Array<SinglePie>): Array<PieChartDrawData> {
+type GetPieChartProps = {
+  data: Array<SinglePie>;
+  radius: number;
+};
+
+function getPieChart(props: GetPieChartProps): Array<PieChartDrawData> {
+  const { data, radius } = props;
+
   const sum = data.reduce((acc, curItem) => acc + curItem.value, 0);
 
   const pieChartDrawData: Array<any> = data.map((curItem, index) => {
@@ -28,7 +35,7 @@ function getPieChart(data: Array<SinglePie>): Array<PieChartDrawData> {
   const piChartData = pieChartDrawData.map((item) => {
     const { startAngle, endAngle } = item;
 
-    const sliceData = getSliceData({ startAngle, endAngle });
+    const sliceData = getSliceData({ startAngle, endAngle, radius });
 
     return { ...item, ...sliceData };
   });

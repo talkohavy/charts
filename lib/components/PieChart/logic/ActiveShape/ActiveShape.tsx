@@ -2,10 +2,11 @@ import { getTextWidth } from '../../../logic/utils';
 import { formatLabel } from '../../../logic/utils/formatters';
 import { PIE_CHART } from '../constants';
 
-const FIRST_LINE_LENGTH = PIE_CHART.outerRadius * 1.16;
+const FIRST_LINE_LENGTH = 1.16;
 const SECOND_LINE_LENGTH = 26;
 
 type ActiveShapeProps = {
+  radius: number;
   isActive: boolean;
   showFullShape: boolean;
   value: number;
@@ -16,14 +17,14 @@ type ActiveShapeProps = {
 };
 
 export default function ActiveShape(props: ActiveShapeProps) {
-  const { isActive, showFullShape, value, color, externalArcPath, percent, middleDirection } = props;
+  const { radius, isActive, showFullShape, value, color, externalArcPath, percent, middleDirection } = props;
 
   const isRightMultiplier = middleDirection.xDirection >= 0 ? 1 : -1;
 
-  const xDot = PIE_CHART.centerPoint.x + PIE_CHART.outerRadius * 1.08 * middleDirection.xDirection;
-  const yDot = PIE_CHART.centerPoint.y + PIE_CHART.outerRadius * 1.08 * middleDirection.yDirection;
-  const xMiddleBreak = PIE_CHART.centerPoint.x + FIRST_LINE_LENGTH * middleDirection.xDirection;
-  const yMiddleBreak = PIE_CHART.centerPoint.y + FIRST_LINE_LENGTH * middleDirection.yDirection;
+  const xDot = PIE_CHART.centerPoint.x + radius * 1.08 * middleDirection.xDirection;
+  const yDot = PIE_CHART.centerPoint.y + radius * 1.08 * middleDirection.yDirection;
+  const xMiddleBreak = PIE_CHART.centerPoint.x + radius * FIRST_LINE_LENGTH * middleDirection.xDirection;
+  const yMiddleBreak = PIE_CHART.centerPoint.y + radius * FIRST_LINE_LENGTH * middleDirection.yDirection;
   const xFinal = xMiddleBreak + isRightMultiplier * SECOND_LINE_LENGTH;
   const yFinal = yMiddleBreak;
 

@@ -19,15 +19,11 @@ export default function PieChart(props: PieChart) {
 
   const [slicesOverrides, setSlicesOverrides] = useState(() => Array.from(Array(data.length)));
 
-  const pieChartData = useMemo(() => {
-    if (showActiveShape) {
-      PIE_CHART.outerRadius = 250;
-    } else {
-      PIE_CHART.outerRadius = 385;
-    }
+  const { data: pieChartData, radius } = useMemo(() => {
+    const radius = showActiveShape ? PIE_CHART.radius.small : PIE_CHART.radius.large;
 
-    return getPieChart(data);
-  }, [data, showActiveShape]);
+    return { data: getPieChart({ data, radius }), radius };
+  }, [data, showActiveShape, showActiveShape]);
 
   return (
     <div className={clsx('custom-pie-chart', styles.pieChart)}>
@@ -72,6 +68,7 @@ export default function PieChart(props: PieChart) {
               <PieSlice path={path} color={color} currentSliceOverride={currentSliceOverride} />
 
               <PercentLabelInSlice
+                radius={radius}
                 percentFormatted={percentFormatted}
                 middleDirection={middleDirection}
                 labelDistanceFromCenter={labelDistanceFromCenter}
@@ -79,6 +76,7 @@ export default function PieChart(props: PieChart) {
               />
 
               <ActiveShape
+                radius={radius}
                 isActive={currentSliceOverride.active}
                 showFullShape={showActiveShape}
                 value={value}

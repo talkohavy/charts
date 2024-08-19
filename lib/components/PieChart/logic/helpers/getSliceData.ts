@@ -6,12 +6,11 @@ import { getPointOnArc } from './getPointOnArc';
 type GetSliceDataProps = {
   startAngle: number;
   endAngle: number;
+  radius: number;
 };
 
 function getSliceData(props: GetSliceDataProps) {
-  const { startAngle, endAngle } = props;
-
-  const radius = PIE_CHART.outerRadius;
+  const { startAngle, endAngle, radius } = props;
 
   // Step 1: get the 2 points on the main arc
   const arcStartPoint = getPointOnArc({ radius, angleInRadians: Math.PI + startAngle });
@@ -32,8 +31,8 @@ function getSliceData(props: GetSliceDataProps) {
   const externalArcPath = drawArc({
     startAngle: startAngle + 0.04,
     endAngle: endAngle - 0.04,
-    innerRadius: PIE_CHART.outerRadius + 6,
-    outerRadius: PIE_CHART.outerRadius + 12,
+    innerRadius: radius + 6,
+    outerRadius: radius + 12,
   });
 
   return { path, externalArcPath, middleDirection, arcStartPoint, arcEndPoint };
