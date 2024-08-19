@@ -6,8 +6,9 @@ import { getFontSizeFrom, getPieChart } from './logic/helpers';
 import PieChartLegend from './logic/Legend/Legend';
 import PercentLabelInSlice from './logic/PercentLabelInSlice/PercentLabelInSlice';
 import PieSlice from './logic/PieSlice';
+import PieTooltip from './logic/PieTooltip';
 import styles from './PieChart.module.scss';
-import { SinglePie } from './types';
+import { PieChartDrawData, SinglePie } from './types';
 
 type PieChart = {
   data: Array<SinglePie>;
@@ -18,7 +19,7 @@ type PieChart = {
 export default function PieChart(props: PieChart) {
   const { data, showActiveShape = true, className } = props;
 
-  const [slicesOverrides, setSlicesOverrides] = useState(() => Array.from(Array(data.length)));
+  const [activeSlice, setActiveSlice] = useState({} as PieChartDrawData);
 
   const { data: pieChartData, radius } = useMemo(() => {
     const radius = showActiveShape ? PIE_CHART.radius.small : PIE_CHART.radius.large;
@@ -35,7 +36,7 @@ export default function PieChart(props: PieChart) {
 
   return (
     <div className={clsx('custom-pie-chart', styles.pieChart, className)}>
-      <PieChartLegend pieChartData={pieChartData} setSlicesOverrides={setSlicesOverrides} />
+      <PieChartLegend pieChartData={pieChartData} setActiveSlice={setActiveSlice} />
 
       <svg
         viewBox={`0 0 ${PIE_CHART.width} ${PIE_CHART.height}`}
@@ -43,37 +44,18 @@ export default function PieChart(props: PieChart) {
         style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif' }}
       >
         {pieChartData.map((pieSlice, index) => {
-          const { value, path, externalArcPath, middleDirection, percentFormatted, percent, color } = pieSlice;
+          const { name, value, percent, percentFormatted, color, middleDirection, path, externalArcPath } = pieSlice;
 
-          const currentSliceOverride = slicesOverrides?.at(index) ?? {};
           const labelDistanceFromCenter = 0.9 - 0.65 * percent; // <--- range of values goes between 25% - 90% of R from the center.
           const fontSize = getFontSizeFrom({ percent, showActiveShape });
 
           return (
             <g
               key={index}
-              onMouseEnter={() =>
-                setSlicesOverrides((prevArr) =>
-                  prevArr.with(index, {
-                    ...prevArr[index],
-                    active: true,
-                    fill: '#333',
-                    // transform: `translate(${middleDirection.xDirection * 20},${middleDirection.yDirection * 20})`,
-                  }),
-                )
-              }
-              onMouseLeave={() =>
-                setSlicesOverrides((prevArr) =>
-                  prevArr.with(index, {
-                    ...prevArr[index],
-                    active: false,
-                    fill: color,
-                    // transform: 'translate(0)'
-                  }),
-                )
-              }
+              onMouseEnter={() => setActiveSlice(pieSlice)}
+              onMouseLeave={() => setActiveSlice({} as PieChartDrawData)}
             >
-              <PieSlice path={path} color={color} currentSliceOverride={currentSliceOverride} />
+              <PieSlice path={path} color={color} isActive={name === activeSlice.name} />
 
               {percent > 0.01 && (
                 <PercentLabelInSlice
@@ -85,19 +67,32 @@ export default function PieChart(props: PieChart) {
                 />
               )}
 
-              <ActiveShape
-                radius={radius}
-                isActive={currentSliceOverride.active}
-                showFullShape={showActiveShape}
-                value={value}
-                color={color}
-                externalArcPath={externalArcPath}
-                percent={percent}
-                middleDirection={middleDirection}
-              />
+              {activeSlice.name === name && (
+                <ActiveShape
+                  radius={radius}
+                  showFullShape={showActiveShape}
+                  value={value}
+                  color={color}
+                  externalArcPath={externalArcPath}
+                  percent={percent}
+                  middleDirection={middleDirection}
+                />
+              )}
             </g>
           );
         })}
+
+        {activeSlice.name && (
+          <PieTooltip
+            name={activeSlice.name}
+            pieChartCenter={PIE_CHART.centerPoint}
+            radius={radius}
+            value={activeSlice.value}
+            color={activeSlice.color}
+            percentFormatted={activeSlice.percentFormatted}
+            middleDirection={activeSlice.middleDirection}
+          />
+        )}
       </svg>
     </div>
   );

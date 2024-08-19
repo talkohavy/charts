@@ -1,15 +1,22 @@
+import clsx from 'clsx';
+import styles from './PieSlice.module.scss';
+
 type PieSliceProps = {
-  currentSliceOverride: any;
   path: string;
   color: string;
+  isActive: boolean;
 };
 
 export default function PieSlice(props: PieSliceProps) {
-  const { currentSliceOverride, path, color } = props;
-  // eslint-disable-next-line
-  const { active, ...restOfOverrideProps } = currentSliceOverride;
+  const { path, color, isActive } = props;
 
   return (
-    <path fill={color} d={path} strokeWidth='4' stroke='white' className='duration-200' {...restOfOverrideProps} />
+    <path
+      fill={color}
+      d={path}
+      strokeWidth='4'
+      stroke='white'
+      className={clsx(styles.pieSlice, isActive && 'pie-chart-active-slice')}
+    />
   );
 }
