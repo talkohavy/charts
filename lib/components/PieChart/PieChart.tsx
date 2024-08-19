@@ -67,13 +67,15 @@ export default function PieChart(props: PieChart) {
             >
               <PieSlice path={path} color={color} currentSliceOverride={currentSliceOverride} />
 
-              <PercentLabelInSlice
-                radius={radius}
-                percentFormatted={percentFormatted}
-                middleDirection={middleDirection}
-                labelDistanceFromCenter={labelDistanceFromCenter}
-                fontSize={fontSize}
-              />
+              {percent > 0.01 && (
+                <PercentLabelInSlice
+                  radius={radius}
+                  percentFormatted={percentFormatted}
+                  middleDirection={middleDirection}
+                  labelDistanceFromCenter={labelDistanceFromCenter}
+                  fontSize={fontSize}
+                />
+              )}
 
               <ActiveShape
                 radius={radius}
