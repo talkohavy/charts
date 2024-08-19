@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import clsx from 'clsx';
-import ActiveShape from './logic/ActiveShape/ActiveShape';
 import { PIE_CHART } from './logic/constants';
 import { getFontSizeFrom, getPieChart } from './logic/helpers';
 import PieChartLegend from './logic/Legend';
@@ -17,7 +16,7 @@ type PieChart = {
 };
 
 export default function PieChart(props: PieChart) {
-  const { data, showActiveShape = true, className } = props;
+  const { data, showActiveShape = false, className } = props;
 
   const [activeSlice, setActiveSlice] = useState({} as PieChartDrawData);
 
@@ -44,7 +43,7 @@ export default function PieChart(props: PieChart) {
         style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif' }}
       >
         {pieChartData.map((pieSlice, index) => {
-          const { name, value, percent, percentFormatted, color, middleDirection, path, externalArcPath } = pieSlice;
+          const { name, percent, percentFormatted, color, middleDirection, path } = pieSlice;
 
           const labelDistanceFromCenter = 0.9 - 0.65 * percent; // <--- range of values goes between 25% - 90% of R from the center.
           const fontSize = getFontSizeFrom({ percent, showActiveShape });
@@ -67,7 +66,7 @@ export default function PieChart(props: PieChart) {
                 />
               )}
 
-              {activeSlice.name === name && (
+              {/* {activeSlice.name === name && (
                 <ActiveShape
                   radius={radius}
                   showFullShape={showActiveShape}
@@ -77,7 +76,7 @@ export default function PieChart(props: PieChart) {
                   percent={percent}
                   middleDirection={middleDirection}
                 />
-              )}
+              )} */}
             </g>
           );
         })}

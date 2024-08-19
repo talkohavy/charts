@@ -1,6 +1,6 @@
 type GetFontSizeFromProps = {
   percent: number;
-  showActiveShape: boolean;
+  showActiveShape?: boolean;
 };
 
 /**
