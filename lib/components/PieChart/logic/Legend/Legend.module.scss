@@ -12,16 +12,6 @@
   max-height: 176px;
   overflow: auto;
   padding: 0 20px;
-  /* IE and Edge */
-  -ms-overflow-style: none;
-
-  /* Firefox */
-  scrollbar-width: none;
-}
-
-/* Chrome Safari and Opera */
-.legendScrollbar::-webkit-scrollbar {
-  display: none;
 }
 
 .legendContent {
