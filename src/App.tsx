@@ -8,10 +8,17 @@ export default function App() {
     <div className='size-full overflow-auto p-6'>
       <PieChart
         data={[
-          { name: 'A', value: 10, color: 'red' },
-          { name: 'B', value: 30, color: 'green' },
-          { name: 'C', value: 60, color: 'blue' },
+          { name: 'A', value: 10 },
+          { name: 'B', value: 30 },
+          { name: 'C', value: 60 },
+          { name: 'D', value: 60 },
+          { name: 'E', value: 2 },
+          // { name: 'F', value: 2 },
+          // { name: 'G', value: 1 },
+          // { name: 'H', value: 1 },
         ]}
+        className='border border-black'
+        showActiveShape={false}
       />
 
       <button
