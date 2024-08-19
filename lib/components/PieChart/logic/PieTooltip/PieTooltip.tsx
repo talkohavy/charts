@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { PIE_CHART } from '../constants';
 import styles from './PieTooltip.module.scss';
 
 const tooltipWidth = 300;
@@ -14,17 +15,13 @@ type TooltipProps = {
     xDirection: number;
     yDirection: number;
   };
-  pieChartCenter: {
-    x: number;
-    y: number;
-  };
 };
 
 export default function PieTooltip(props: TooltipProps) {
-  const { name, value, color, percentFormatted, radius, middleDirection, pieChartCenter } = props;
+  const { name, value, color, percentFormatted, radius, middleDirection } = props;
 
-  const xPosition = pieChartCenter.x + middleDirection.xDirection * radius + 10; // Position to the right of the slice
-  const yPosition = pieChartCenter.y + middleDirection.yDirection * radius - tooltipHeight / 2; // Centered vertically
+  const xPosition = PIE_CHART.centerPoint.x + radius * 0.5 * middleDirection.xDirection;
+  const yPosition = PIE_CHART.centerPoint.y + radius * 0.5 * middleDirection.yDirection;
 
   return (
     <>

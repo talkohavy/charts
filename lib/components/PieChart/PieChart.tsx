@@ -85,7 +85,6 @@ export default function PieChart(props: PieChart) {
         {activeSlice.name && (
           <PieTooltip
             name={activeSlice.name}
-            pieChartCenter={PIE_CHART.centerPoint}
             radius={radius}
             value={activeSlice.value}
             color={activeSlice.color}
