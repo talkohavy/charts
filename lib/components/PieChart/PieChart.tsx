@@ -12,10 +12,11 @@ import { SinglePie } from './types';
 type PieChart = {
   data: Array<SinglePie>;
   showActiveShape?: boolean;
+  className?: string;
 };
 
 export default function PieChart(props: PieChart) {
-  const { data, showActiveShape = true } = props;
+  const { data, showActiveShape = true, className } = props;
 
   const [slicesOverrides, setSlicesOverrides] = useState(() => Array.from(Array(data.length)));
 
@@ -26,7 +27,7 @@ export default function PieChart(props: PieChart) {
   }, [data, showActiveShape, showActiveShape]);
 
   return (
-    <div className={clsx('custom-pie-chart', styles.pieChart)}>
+    <div className={clsx('custom-pie-chart', styles.pieChart, className)}>
       <PieChartLegend pieChartData={pieChartData} setSlicesOverrides={setSlicesOverrides} />
 
       <svg
