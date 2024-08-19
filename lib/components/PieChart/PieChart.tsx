@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import ActiveShape from './logic/ActiveShape/ActiveShape';
 import { PIE_CHART } from './logic/constants';
 import { getFontSizeFrom, getPieChart } from './logic/helpers';
-import PieChartLegend from './logic/Legend/Legend';
+import PieChartLegend from './logic/Legend';
 import PercentLabelInSlice from './logic/PercentLabelInSlice/PercentLabelInSlice';
 import PieSlice from './logic/PieSlice';
 import PieTooltip from './logic/PieTooltip';
