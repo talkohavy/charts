@@ -1,9 +1,9 @@
 import { COLORS } from '../../../logic/constants';
-import { PieChartDrawData, SinglePie } from '../../types';
+import { PieChartDrawData, PieSliceData } from '../../types';
 import { getSliceData } from './getSliceData';
 
 type GetPieChartProps = {
-  data: Array<SinglePie>;
+  data: Array<PieSliceData>;
   radius: number;
 };
 

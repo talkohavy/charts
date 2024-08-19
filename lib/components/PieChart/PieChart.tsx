@@ -7,10 +7,10 @@ import PercentLabelInSlice from './logic/PercentLabelInSlice/PercentLabelInSlice
 import PieSlice from './logic/PieSlice';
 import PieTooltip from './logic/PieTooltip';
 import styles from './PieChart.module.scss';
-import { PieChartDrawData, SinglePie } from './types';
+import { PieChartDrawData, PieSliceData } from './types';
 
 type PieChart = {
-  data: Array<SinglePie>;
+  data: Array<PieSliceData>;
   showActiveShape?: boolean;
   className?: string;
 };

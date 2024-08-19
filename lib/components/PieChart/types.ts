@@ -14,7 +14,7 @@ export type PieChartDrawData = {
   arcEndPoint: { x: number; y: number };
 };
 
-export type SinglePie = {
+export type PieSliceData = {
   name: string;
   value: number;
   color?: string;
