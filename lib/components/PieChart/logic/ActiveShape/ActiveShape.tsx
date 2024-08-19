@@ -1,6 +1,6 @@
 import { getTextWidth } from '../../../logic/utils';
 import { formatLabel } from '../../../logic/utils/formatters';
-import { PIE_CHART } from '../constants.js';
+import { PIE_CHART } from '../constants';
 
 const FIRST_LINE_LENGTH = PIE_CHART.outerRadius * 1.16;
 const SECOND_LINE_LENGTH = 26;
