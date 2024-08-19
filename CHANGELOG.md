@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.2.0
+
+### Minor Changes
+
+- 99fd521: added a PieChart
+
 ## 1.1.0
 
 ### Minor Changes
