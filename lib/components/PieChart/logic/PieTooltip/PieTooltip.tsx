@@ -56,6 +56,7 @@ export default function PieTooltip(props: TooltipProps) {
         fontSize={24}
         fontWeight='thin'
         style={{ pointerEvents: 'none' }}
+        className='pie-chart-tooltip-value'
       >
         Value: {value}
       </text>
@@ -67,6 +68,7 @@ export default function PieTooltip(props: TooltipProps) {
         fontSize={24}
         fontWeight='thin'
         style={{ pointerEvents: 'none' }}
+        className='pie-chart-tooltip-percent'
       >
         Percent: {percentFormatted}%
       </text>
