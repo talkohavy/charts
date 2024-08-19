@@ -1,11 +1,19 @@
 import { useState } from 'react';
-import { BarChart, LineChart } from '../lib/main';
+import { BarChart, LineChart, PieChart } from '../lib/main';
 
 export default function App() {
   const [barsLayout, setBarsLayout] = useState<'vertical' | 'horizontal'>('vertical');
 
   return (
     <div className='size-full overflow-auto p-6'>
+      <PieChart
+        data={[
+          { name: 'A', value: 10, color: 'red' },
+          { name: 'B', value: 30, color: 'green' },
+          { name: 'C', value: 60, color: 'blue' },
+        ]}
+      />
+
       <button
         type='button'
         className='h-10 w-40 rounded-md bg-blue-500 text-white'
@@ -180,6 +188,42 @@ export default function App() {
                 { x: 'Haa', y: 30 },
                 { x: 'Iaa', y: 20 },
                 { x: 'Jaa', y: 10 },
+              ],
+            },
+          ]}
+          className='border border-black'
+        />
+      </div>
+
+      <div className='h-xl w-xl'>
+        <BarChart
+          layout={barsLayout}
+          type='category'
+          settings={{
+            general: {
+              showValues: true,
+            },
+            xAxis: {
+              // label: 'comical',
+              // tickAngle: 22,
+            },
+            yAxis: {
+              label: 'Y Axis',
+            },
+            // zoomSlider: {
+            //   show: true,
+            // },
+          }}
+          bars={[
+            {
+              name: 'Countries',
+              data: [
+                { x: 'Israel', y: 10 },
+                { x: 'France', y: 20 },
+                { x: 'Italy', y: 30 },
+                { x: 'England', y: 40 },
+                { x: 'Russia', y: 50 },
+                { x: 'Bulgaria', y: 60 },
               ],
             },
           ]}
