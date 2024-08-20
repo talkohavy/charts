@@ -26,7 +26,7 @@ export default function Legend(props: LegendProps) {
               >
                 <div className={styles.legendContentItemIcon} style={{ backgroundColor: color }} />
 
-                <div className={styles.legendContentItemLabel} style={{ color }}>
+                <div className={styles.legendContentItemLabel} title={name} style={{ color }}>
                   {formatLabel(name)}
                 </div>
               </div>
