@@ -4,11 +4,11 @@ const PIE_CHART = {
     large: 385,
   },
   centerPoint: {
-    x: 575,
+    x: 500,
     y: 400,
   },
   height: 800,
-  width: 1150,
+  width: 1000,
 };
 
 export { PIE_CHART };
