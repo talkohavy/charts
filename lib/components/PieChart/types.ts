@@ -14,6 +14,21 @@ export type PieChartDrawData = {
   arcEndPoint: { x: number; y: number };
 };
 
+export type PieChartSettings = {
+  legend?: {
+    /**
+     * @default true
+     */
+    show?: boolean;
+    xValueFormatter?: (value: string) => string;
+  };
+  tooltip?: {
+    xValueFormatter?: (value: string) => string;
+    yValueFormatter?: (value: number) => string;
+    unit: string;
+  };
+};
+
 export type PieSliceData = {
   name: string;
   value: number;

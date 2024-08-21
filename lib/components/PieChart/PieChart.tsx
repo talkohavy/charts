@@ -1,22 +1,23 @@
 import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { PIE_CHART } from './logic/constants';
-import { getFontSizeFrom, getPieChart } from './logic/helpers';
 import PieChartLegend from './logic/Legend';
 import PercentLabelInSlice from './logic/PercentLabelInSlice/PercentLabelInSlice';
 import PieSlice from './logic/PieSlice';
 import PieTooltip from './logic/PieTooltip';
+import { getFontSizeFrom, getMergedPieChartSettings, getPieChart } from './logic/utils';
 import styles from './PieChart.module.scss';
-import { PieChartDrawData, PieSliceData } from './types';
+import { PieChartDrawData, PieChartSettings, PieSliceData } from './types';
 
 type PieChart = {
   data: Array<PieSliceData>;
+  settings?: PieChartSettings;
   showActiveShape?: boolean;
   className?: string;
 };
 
 export default function PieChart(props: PieChart) {
-  const { data, showActiveShape = false, className } = props;
+  const { data, settings: settingsToMerge, showActiveShape = false, className } = props;
 
   const [activeSlice, setActiveSlice] = useState({} as PieChartDrawData);
 
@@ -33,9 +34,13 @@ export default function PieChart(props: PieChart) {
     };
   }, [data, showActiveShape]);
 
+  const chartSettings = useMemo(() => getMergedPieChartSettings({ settings: settingsToMerge }), [settingsToMerge]);
+
   return (
     <div className={clsx('custom-pie-chart', styles.pieChart, className)}>
-      <PieChartLegend pieChartData={pieChartData} setActiveSlice={setActiveSlice} />
+      {chartSettings.legend.show && (
+        <PieChartLegend pieChartData={pieChartData} setActiveSlice={setActiveSlice} {...chartSettings.legend.props} />
+      )}
 
       <svg
         viewBox={`0 0 ${PIE_CHART.width} ${PIE_CHART.height}`}
@@ -89,6 +94,7 @@ export default function PieChart(props: PieChart) {
             color={activeSlice.color}
             percentFormatted={activeSlice.percentFormatted}
             middleDirection={activeSlice.middleDirection}
+            {...chartSettings.tooltip.props}
           />
         )}
       </svg>

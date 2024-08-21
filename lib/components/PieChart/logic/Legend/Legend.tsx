@@ -1,14 +1,14 @@
-import { formatLabel } from '../../../logic/utils';
 import { PieChartDrawData } from '../../types';
 import styles from './Legend.module.scss';
 
 type LegendProps = {
   pieChartData: Array<PieChartDrawData>;
   setActiveSlice: (value: PieChartDrawData) => void;
+  xValueFormatter: (value: string) => string;
 };
 
 export default function Legend(props: LegendProps) {
-  const { pieChartData, setActiveSlice } = props;
+  const { pieChartData, setActiveSlice, xValueFormatter } = props;
 
   return (
     <div className={styles.legend}>
@@ -27,7 +27,7 @@ export default function Legend(props: LegendProps) {
                 <div className={styles.legendContentItemIcon} style={{ backgroundColor: color }} />
 
                 <div className={styles.legendContentItemLabel} title={name} style={{ color }}>
-                  {formatLabel(name)}
+                  {xValueFormatter(name)}
                 </div>
               </div>
             );

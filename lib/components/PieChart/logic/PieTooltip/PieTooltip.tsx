@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import { formatLabel } from '../../../logic/utils';
 import { PIE_CHART } from '../constants';
 import styles from './PieTooltip.module.scss';
 
@@ -16,12 +15,26 @@ type TooltipProps = {
     xDirection: number;
     yDirection: number;
   };
+  yValueSuffix: string;
+  xValueFormatter: (value: string) => string;
+  yValueFormatter: (value: number) => string;
 };
 
 export default function PieTooltip(props: TooltipProps) {
-  const { name, value, color, percentFormatted, radius, middleDirection } = props;
+  const {
+    name,
+    value,
+    color,
+    percentFormatted,
+    radius,
+    middleDirection,
+    xValueFormatter,
+    yValueFormatter,
+    yValueSuffix,
+  } = props;
 
-  const formattedName = formatLabel(name, 9);
+  const formattedName = xValueFormatter(name);
+  const formattedValue = yValueFormatter(value as number);
   const xPosition = PIE_CHART.centerPoint.x + radius * 0.5 * middleDirection.xDirection;
   const yPosition = PIE_CHART.centerPoint.y + radius * 0.5 * middleDirection.yDirection;
 
@@ -60,7 +73,8 @@ export default function PieTooltip(props: TooltipProps) {
         style={{ pointerEvents: 'none' }}
         className='pie-chart-tooltip-value'
       >
-        Value: {value}
+        Value: {formattedValue}
+        {yValueSuffix ?? ''}
       </text>
 
       <text
