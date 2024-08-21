@@ -240,6 +240,7 @@ export default function LineChart(props: LineChartProps) {
               startIndex.current = brushProps.startIndex as number;
               endIndex.current = brushProps.endIndex as number;
             }}
+            className='recharts-custom-brush'
           >
             {chartSettings.zoomSlider.showPreviewInSlider ? (
               <LineChartBase data={transformedDataForRecharts}>

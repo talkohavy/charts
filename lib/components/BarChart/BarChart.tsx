@@ -261,6 +261,7 @@ export default function BarChart(props: BarChartProps) {
               startIndex.current = brushProps.startIndex as number;
               endIndex.current = brushProps.endIndex as number;
             }}
+            className='recharts-custom-brush'
           >
             {chartSettings.zoomSlider.showPreviewInSlider ? (
               <BarChartBase data={transformedDataForRecharts}>
