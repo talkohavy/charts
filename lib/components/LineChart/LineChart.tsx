@@ -191,15 +191,17 @@ export default function LineChart(props: LineChartProps) {
           label={chartSettings.yAxis.label}
         />
 
-        <Tooltip
-          content={(tooltipProps) => (
-            <CustomTooltip
-              {...tooltipProps}
-              xValueFormatter={chartSettings.tooltip.xValueFormatter}
-              ySuffix={chartSettings.tooltip.yTickSuffix}
-            />
-          )}
-        />
+        {chartSettings.tooltip.show && (
+          <Tooltip
+            content={(tooltipProps) => (
+              <CustomTooltip
+                {...tooltipProps}
+                xValueFormatter={chartSettings.tooltip.xValueFormatter}
+                ySuffix={chartSettings.tooltip.yTickSuffix}
+              />
+            )}
+          />
+        )}
 
         {chartSettings.legend.show && (
           <Legend
