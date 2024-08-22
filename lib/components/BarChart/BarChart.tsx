@@ -212,15 +212,17 @@ export default function BarChart(props: BarChartProps) {
           {...(barsLayout === 'vertical' ? {} : chartSettings.yAxis.horizontalProps)}
         />
 
-        <Tooltip
-          content={(tooltipProps) => (
-            <CustomTooltip
-              {...tooltipProps}
-              xValueFormatter={chartSettings.tooltip.xValueFormatter}
-              ySuffix={chartSettings.tooltip.yTickSuffix}
-            />
-          )}
-        />
+        {chartSettings.tooltip.show && (
+          <Tooltip
+            content={(tooltipProps) => (
+              <CustomTooltip
+                {...tooltipProps}
+                xValueFormatter={chartSettings.tooltip.xValueFormatter}
+                ySuffix={chartSettings.tooltip.yTickSuffix}
+              />
+            )}
+          />
+        )}
 
         {chartSettings.legend.show && (
           <Legend

@@ -71,6 +71,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
 
   const showGrid = settings?.grid?.show ?? true;
   const showLegend = settings?.legend?.show ?? chartType === 'BarChart';
+  const showTooltip = settings?.tooltip?.show ?? true;
   const legendHeight = getLegendHeight({ showLegend, xAxisLabel: settings?.xAxis?.label, chartType });
 
   return {
@@ -171,6 +172,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
       },
     },
     tooltip: {
+      show: showTooltip,
       yTickSuffix: settings?.yAxis?.tickSuffix ?? '', // <--- Notice that I copy whatever the yAxis has.
       xValueFormatter: settings?.xAxis?.tickFormatter ?? settings?.tooltip?.xValueFormatter ?? FORMATTERS[xAxisType],
     },
