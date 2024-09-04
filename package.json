@@ -14,11 +14,6 @@
     "format": "prettier . --write --log-level silent --config .prettierrc.json --ignore-path .prettierignore",
     "test": "node --test",
     "build": "node build.config.js",
-    "cs-add": "pnpm changeset add",
-    "cs-bump": "npm run test && pnpm changeset version && npm run cs-bump-reset-format-commit",
-    "cs-bump-reset-format-commit": "git reset head~1 && npm run format && git add . && git commit -m 'RELEASING: Releasing 1 package(s)'",
-    "cs-status": "pnpm changeset status --verbose",
-    "cs-pub": "pnpm run build && cd dist && pnpm changeset publish",
     "prepublishOnly": "npm run build",
     "preview": "vite preview"
   },
@@ -32,7 +27,6 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.7",
     "@types/node": "^22.2.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
