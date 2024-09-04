@@ -24,8 +24,6 @@ async function buildPackageConfig() {
 
   copyReadmeFile();
 
-  copyChangesetDirectory();
-
   copyNpmIgnore();
 
   copyAndManipulatePackageJsonFile();
@@ -73,11 +71,6 @@ function copyAndManipulatePackageJsonFile() {
   // Step 5: create new package.json file in the output folder
   fs.writeFileSync(`./${outDirName}/package.json`, JSON.stringify(packageJson));
   console.log('-- package.json file written successfully!');
-}
-
-function copyChangesetDirectory() {
-  console.log('- Step 5: copy the .changeset directory');
-  cpSync('.changeset', `${outDirName}/.changeset`, { recursive: true });
 }
 
 function copyNpmIgnore() {
