@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.4.1
+
+### Patch Changes
+
+- added tickFormatter to XAxis. this fixed the issue of ticks overlapping, because it didn't know what their true widths were
+
 ## 1.4.0
 
 ### Minor Changes
