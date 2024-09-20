@@ -15,7 +15,7 @@
     "test": "node --test",
     "build": "node build.config.js",
     "prepublishOnly": "npm run build",
-    "preview": "vite preview"
+    "preview": "vite preview --config vite.config.package.ts"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
