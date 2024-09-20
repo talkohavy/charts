@@ -14,6 +14,7 @@
     "format": "prettier . --write --log-level silent --config .prettierrc.json --ignore-path .prettierignore",
     "test": "node --test",
     "build": "node build.config.js",
+    "build-webapp": "vite build --config vite.config.webapp.ts",
     "prepublishOnly": "npm run build",
     "preview": "vite preview --config vite.config.package.ts"
   },
@@ -52,5 +53,6 @@
     "@types/recharts-scale": "^1.0.3",
     "recharts": "2.13.0-alpha.4",
     "recharts-scale": "^0.4.5"
-  }
+  },
+  "homepage": "https://talkohavy.github.io/charts/"
 }
