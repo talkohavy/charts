@@ -6,7 +6,7 @@
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config vite.config.webapp.ts",
     "clean": "rm -rf node_modules",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "typecheck": "tsc -p tsconfig.build.json",
