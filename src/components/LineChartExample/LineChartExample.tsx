@@ -1,8 +1,11 @@
 import { LineChart } from '../../../lib/main';
+import Title from '../Title';
 
 export default function LineChartExample() {
   return (
     <div className='h-[270px] w-xl'>
+      <Title title='Line Chart Example' />
+
       <LineChart
         // type='datetime'
         settings={{

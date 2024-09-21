@@ -1,9 +1,10 @@
 import { PieChart } from '../../../lib/main';
+import Title from '../Title';
 
 export default function PieChartExample() {
   return (
     <div>
-      <h2 className='font-bold text-2xl'>Pie Chart Example</h2>
+      <Title title='Pie Chart Example' />
 
       <PieChart
         data={[
