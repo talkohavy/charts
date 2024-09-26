@@ -31,6 +31,7 @@ import {
 } from '../logic/utils';
 import styles from './BarChart.module.scss';
 import { ACTIVE_BAR_COLOR, BAR_LAYOUT_TO_CHART_LAYOUT, DEFAULT_BAR_COLOR } from './constants';
+import { CLASSES } from './logic/constants';
 import type { BarChartSettings, BarClickEventProps, BarSeries, BaseChartProps } from '../types';
 import '../../recharts.css';
 
@@ -181,6 +182,7 @@ export default function BarChart(props: BarChartProps) {
       <BarChartBase
         data={transformedDataForRecharts}
         className={clsx(
+          CLASSES.barChart,
           styles.barChartDefaultStyle,
           settingsToMerge?.xAxis?.label && styles.barChartLabelGap,
           className,
