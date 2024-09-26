@@ -26,8 +26,9 @@ import {
   getXAxisHeight,
   runValidationsOnAllSeries,
 } from '../logic/utils';
-import ActiveDot, { ActiveDotProps } from './ActiveDot';
 import styles from './LineChart.module.scss';
+import ActiveDot, { ActiveDotProps } from './logic/ActiveDot';
+import { CLASSES } from './logic/constants';
 import NonActiveDot from './NonActiveDot';
 import type { BaseChartProps, LineChartSettings, LineSeries } from '../types';
 import '../../recharts.css';
@@ -167,6 +168,7 @@ export default function LineChart(props: LineChartProps) {
       <LineChartBase
         data={transformedDataForRecharts}
         className={clsx(
+          CLASSES.lineChart,
           styles.lineChartDefaultStyle,
           settingsToMerge?.xAxis?.label && styles.lineChartLabelGap,
           className,
