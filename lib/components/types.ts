@@ -209,7 +209,7 @@ export type LineSeries = {
 
 export type LineSeriesData = Array<{
   x: number | string;
-  y: number;
+  y: number | null;
   showValue?: boolean;
   dot?: { r?: number; fill?: string; stroke?: string };
 }>;

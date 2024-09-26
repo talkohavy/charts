@@ -78,7 +78,7 @@ export default function LineChart(props: LineChartProps) {
     let maxYValue = Number.NEGATIVE_INFINITY;
     lines.forEach((currentLine) => {
       currentLine.data.forEach(({ y }) => {
-        if (maxYValue < y) maxYValue = y;
+        if (y !== null && maxYValue < y) maxYValue = y;
       });
     });
 
