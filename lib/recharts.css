@@ -2,25 +2,29 @@
 /* .recharts-tooltip-cursor { fill: transparent } */
 
 /* Rechart's legend wrapper */
-.recharts-legend-wrapper {
+.custom-line-chart .recharts-legend-wrapper,
+.custom-bar-chart .recharts-legend-wrapper {
   padding-top: 6px;
   padding-left: 6px;
   padding-right: 8px;
 }
 
-.recharts-default-legend {
+.custom-line-chart .recharts-default-legend,
+.custom-bar-chart .recharts-default-legend {
   display: flex;
   overflow: auto;
   gap: 10px;
 }
 
-.recharts-legend-item {
+.custom-line-chart .recharts-legend-item,
+.custom-bar-chart .recharts-legend-item {
   display: flex !important;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 
-.recharts-legend-item span {
+.custom-line-chart .recharts-legend-item span,
+.custom-bar-chart .recharts-legend-item span {
   white-space: nowrap;
 }
