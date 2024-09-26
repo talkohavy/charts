@@ -5,7 +5,7 @@ import { getLegendHeight } from './getLegendHeight';
 import { getTextWidth } from './getTextWidth';
 import type { BarChartSettings, LineChartSettings } from '../../types';
 import type { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent';
-import type { LayoutType, ScaleType, StackOffsetType } from 'recharts/types/util/types';
+import type { AxisDomain, LayoutType, ScaleType, StackOffsetType } from 'recharts/types/util/types';
 
 type GetMergedChartSettingsProps = {
   chartType: 'LineChart' | 'BarChart';
@@ -83,7 +83,9 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         hide: settings?.xAxis?.show === undefined ? false : !settings?.xAxis?.show,
         color: settings?.xAxis?.tickColor ?? 'black', // <--- this is the color of the tick's value!
         fontSize: settings?.xAxis?.tickFontSize,
-        domain: ['auto', 'auto'],
+        tickLine: settings?.xAxis?.showTickLine ?? true,
+        axisLine: settings?.xAxis?.showAxisLine ?? true,
+        domain: (settings?.xAxis?.domain ?? ['auto', 'auto']) as AxisDomain,
         allowDataOverflow: false,
         angle: settings?.xAxis?.tickAngle ? -Math.abs(settings?.xAxis?.tickAngle) : 0,
         height: xAxisHeight,

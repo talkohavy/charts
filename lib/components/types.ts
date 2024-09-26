@@ -1,3 +1,5 @@
+import { AxisDomain } from 'recharts/types/util/types';
+
 type BaseChartSettings = {
   general?: {
     /**
@@ -17,6 +19,18 @@ type BaseChartSettings = {
      * @default true
      */
     show?: boolean;
+    /**
+     * @default true
+     */
+    showTickLine?: boolean;
+    /**
+     * @default true
+     */
+    showAxisLine?: boolean;
+    /**
+     * @default ['auto','auto']
+     */
+    domain?: AxisDomain;
     label?: string;
     /**
      * The color of the tick's value.
@@ -37,6 +51,19 @@ type BaseChartSettings = {
      * @default true
      */
     show?: boolean;
+    /**
+     * @default true
+     */
+    showAxisLine?: boolean;
+    /**
+     * @default ['auto','auto']
+     */
+    domain?: AxisDomain;
+    customTicks?: Array<any>;
+    /**
+     * @default 5
+     */
+    tickCount?: number;
     label?: string;
     labelFontSize?: number;
     tickColor?: string;
