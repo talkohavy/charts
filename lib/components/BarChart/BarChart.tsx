@@ -139,6 +139,8 @@ export default function BarChart(props: BarChartProps) {
       yLabel: settingsToMerge?.yAxis?.label,
       yTickSuffix: settingsToMerge?.yAxis?.tickSuffix,
       fontSize: settingsToMerge?.yAxis?.tickFontSize,
+      tickCount: settingsToMerge?.yAxis?.tickCount,
+      customTicks: settingsToMerge?.yAxis?.customTicks,
     });
 
     let widthOfLongestFirstXTickLabel = 0;
@@ -158,6 +160,8 @@ export default function BarChart(props: BarChartProps) {
     settingsToMerge?.yAxis?.label,
     settingsToMerge?.yAxis?.tickSuffix,
     settingsToMerge?.yAxis?.tickFontSize,
+    settingsToMerge?.yAxis?.tickCount,
+    settingsToMerge?.yAxis?.customTicks,
   ]);
 
   const chartSettings = useMemo(

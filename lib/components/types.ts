@@ -59,7 +59,7 @@ type BaseChartSettings = {
      * @default ['auto','auto']
      */
     domain?: AxisDomain;
-    customTicks?: Array<any>;
+    customTicks?: Array<number>;
     /**
      * @default 5
      */
