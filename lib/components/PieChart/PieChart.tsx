@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import clsx from 'clsx';
-import { PIE_CHART } from './logic/constants';
+import { CLASSES, PIE_CHART } from './logic/constants';
 import PieChartLegend from './logic/Legend';
 import PercentLabelInSlice from './logic/PercentLabelInSlice/PercentLabelInSlice';
 import PieSlice from './logic/PieSlice';
@@ -28,16 +28,13 @@ export default function PieChart(props: PieChart) {
 
     const sortedPiChartData = getPieChart({ data: sortedData, radius });
 
-    return {
-      data: sortedPiChartData,
-      radius,
-    };
+    return { data: sortedPiChartData, radius };
   }, [data, showActiveShape]);
 
   const chartSettings = useMemo(() => getMergedPieChartSettings({ settings: settingsToMerge }), [settingsToMerge]);
 
   return (
-    <div className={clsx('custom-pie-chart', styles.pieChart, className)}>
+    <div className={clsx(CLASSES.pieChart, styles.pieChart, className)}>
       {chartSettings.legend.show && (
         <PieChartLegend pieChartData={pieChartData} setActiveSlice={setActiveSlice} {...chartSettings.legend.props} />
       )}

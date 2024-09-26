@@ -1,3 +1,7 @@
+const CLASSES = {
+  pieChart: 'custom-pie-chart',
+};
+
 const PIE_CHART = {
   radius: {
     small: 250,
@@ -11,4 +15,4 @@ const PIE_CHART = {
   width: 1000,
 };
 
-export { PIE_CHART };
+export { CLASSES, PIE_CHART };
