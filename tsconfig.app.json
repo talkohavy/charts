@@ -20,7 +20,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": false
+    "noImplicitReturns": false,
+
+    "paths": {
+      "@src/*": ["./src/*"]
+    }
   },
   "include": ["src"]
 }

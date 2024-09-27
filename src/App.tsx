@@ -1,15 +1,21 @@
-import BarChartExample from './components/BarChartExample';
-import LineChartExample from './components/LineChartExample';
-import PieChartExample from './components/PieChartExample';
+import { Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout/index';
+import PageNotFound from './pages/PageNotFound';
+import { routes } from './routes';
 
 export default function App() {
   return (
-    <div className='size-full overflow-auto p-6'>
-      <PieChartExample />
+    <Layout>
+      <Suspense>
+        <Routes>
+          {routes.map(({ to: path, Component }, index) => (
+            <Route key={index} path={path} element={<Component />} />
+          ))}
 
-      <LineChartExample />
-
-      <BarChartExample />
-    </div>
+          <Route path='*' element={<PageNotFound />} />
+        </Routes>
+      </Suspense>
+    </Layout>
   );
 }
