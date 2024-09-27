@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { CLASSES } from '../constants';
 import { formatLabel } from '../utils/formatters';
 import styles from './CustomTooltip.module.scss';
 import type { TooltipProps } from 'recharts';
@@ -15,7 +16,7 @@ export default function CustomTooltip(props: CustomTooltipProps) {
     const formattedXLabel = xValueFormatter(label);
 
     return (
-      <div className={clsx('chart-custom-tooltip', styles.customTooltip)}>
+      <div className={clsx(CLASSES.tooltip, styles.customTooltip)}>
         <p className={styles.customTooltipHeader}>{formattedXLabel}</p>
 
         <ul className={styles.customTooltipItemsList}>

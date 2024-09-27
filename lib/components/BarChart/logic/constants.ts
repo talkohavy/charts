@@ -1,5 +1,5 @@
 const CLASSES = {
-  barChart: 'custom-bar-chart',
+  barChart: 'tk-custom-bar-chart',
 };
 
 export { CLASSES };

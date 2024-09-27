@@ -1,3 +1,3 @@
 export const CLASSES = {
-  lineChart: 'custom-line-chart',
+  lineChart: 'tk-custom-line-chart',
 };

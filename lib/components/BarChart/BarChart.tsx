@@ -14,7 +14,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { BRUSH_ITEMS_PER_PAGE } from '../logic/constants';
+import { BRUSH_ITEMS_PER_PAGE, CLASSES as GLOBAL_CLASSES } from '../logic/constants';
 import CustomizedAxisTick from '../logic/CustomAxisTick';
 import CustomizedLabel from '../logic/CustomizedLabel';
 import CustomTooltip from '../logic/CustomTooltip';
@@ -269,7 +269,7 @@ export default function BarChart(props: BarChartProps) {
               startIndex.current = brushProps.startIndex as number;
               endIndex.current = brushProps.endIndex as number;
             }}
-            className='recharts-custom-brush'
+            className={GLOBAL_CLASSES.brush}
           >
             {chartSettings.zoomSlider.showPreviewInSlider ? (
               <BarChartBase data={transformedDataForRecharts}>

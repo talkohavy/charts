@@ -6,6 +6,11 @@ const TICK_DASH_WIDTH = 10;
 const DASHED_LINE = '20 20'; // or '5 5'
 const DEFAULT_Y_TICK_COUNT = 5; // <--- recharts defaults to 5 anyways
 
+const CLASSES = {
+  tooltip: 'tk-custom-tooltip',
+  brush: 'tk-custom-brush', // 'recharts-custom-brush'
+};
+
 const COLORS = [
   '#0088FE',
   '#00C49F',
@@ -32,6 +37,7 @@ const COLORS = [
 export {
   BRUSH_HEIGHT,
   BRUSH_ITEMS_PER_PAGE,
+  CLASSES,
   COLORS,
   DASHED_LINE,
   DEFAULT_Y_TICK_COUNT,

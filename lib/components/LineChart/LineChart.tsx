@@ -12,7 +12,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { BRUSH_ITEMS_PER_PAGE, DASHED_LINE } from '../logic/constants';
+import { BRUSH_ITEMS_PER_PAGE, DASHED_LINE, CLASSES as GLOBAL_CLASSES } from '../logic/constants';
 import CustomizedAxisTick from '../logic/CustomAxisTick';
 import CustomTooltip from '../logic/CustomTooltip';
 import {
@@ -249,7 +249,7 @@ export default function LineChart(props: LineChartProps) {
               startIndex.current = brushProps.startIndex as number;
               endIndex.current = brushProps.endIndex as number;
             }}
-            className='recharts-custom-brush'
+            className={GLOBAL_CLASSES.tooltip}
           >
             {chartSettings.zoomSlider.showPreviewInSlider ? (
               <LineChartBase data={transformedDataForRecharts}>

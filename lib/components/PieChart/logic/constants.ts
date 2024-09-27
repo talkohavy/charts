@@ -1,5 +1,5 @@
 const CLASSES = {
-  pieChart: 'custom-pie-chart',
+  pieChart: 'tk-custom-pie-chart',
 };
 
 const PIE_CHART = {
