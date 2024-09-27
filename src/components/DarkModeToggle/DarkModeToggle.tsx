@@ -1,4 +1,4 @@
-import { useDarkTheme } from '../providers/DarkThemeProvider/DarkThemeContext';
+import { useDarkTheme } from '../../providers/DarkThemeProvider/DarkThemeContext';
 import ToggleButton from '../ToggleButton';
 
 type DarkModeToggleProps = {
