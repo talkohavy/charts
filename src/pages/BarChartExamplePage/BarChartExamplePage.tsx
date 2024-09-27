@@ -1,5 +1,5 @@
 import BarChartExample from '../../components/BarChartExample';
-import LineChartExample from '../../components/LineChartExample';
+import LineChartExample from '../../components/LineChartExamples';
 import PieChartExample from '../../components/PieChartExample';
 
 export default function BarChartExamplePage() {

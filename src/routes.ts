@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-const LineChartExamplePage = lazy(() => import('./pages/LineChartExamplePage'));
+const LineChartExamplesPage = lazy(() => import('./pages/LineChartExamplesPage'));
 const BarChartExamplePage = lazy(() => import('./pages/BarChartExamplePage'));
 
 export const routes = [
@@ -9,7 +9,7 @@ export const routes = [
     to: '/line-chart',
     text: 'Line Chart',
     activeNames: ['/line-chart', '/'],
-    Component: LineChartExamplePage,
+    Component: LineChartExamplesPage,
   },
   {
     to: '/bar-chart',
