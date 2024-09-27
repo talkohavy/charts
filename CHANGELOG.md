@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.4.2
+
+### Patch Changes
+
+- i can't remember, but believe it's good stuff
+
 ## 1.4.1
 
 ### Patch Changes
