@@ -1,7 +1,9 @@
+import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 
-// https://vitejs.dev/config/
+const rootDir = path.join(__dirname, '../../');
+
 export default defineConfig({
   root: `${process.cwd()}/src`, // <--- defaults to process.cwd(). where the index.html is located.
   plugins: [react()],
@@ -30,4 +32,11 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    alias: {
+      '@src': path.resolve(__dirname, 'src'),
+    },
+  },
+  envDir: path.resolve(rootDir, 'envs'),
+  clearScreen: false, // <--- default is true. false prevents Vite from clearing the terminal screen when logging certain messages
 });
