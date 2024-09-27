@@ -28,9 +28,11 @@ function getSliceData(props: GetSliceDataProps) {
                   A ${radius},${radius} 0 ${largeArcFlag} 1 ${arcEndPoint.x},${arcEndPoint.y} 
                   Z`;
 
+  const emptyGapDiff = 0.005;
+
   const activeOuterArcPath = drawArc({
-    startAngle: startAngle + 0.04,
-    endAngle: endAngle - 0.04,
+    startAngle: startAngle + emptyGapDiff,
+    endAngle: endAngle - emptyGapDiff,
     innerRadius: radius + 6,
     outerRadius: radius + 12,
   });
