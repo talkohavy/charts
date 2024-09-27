@@ -8,7 +8,7 @@ export type PieChartDrawData = {
   startAngle: number;
   endAngle: number;
   path: string;
-  externalArcPath: string;
+  activeOuterArcPath: string;
   middleDirection: { xDirection: number; yDirection: number };
   arcStartPoint: { x: number; y: number };
   arcEndPoint: { x: number; y: number };
@@ -29,7 +29,7 @@ export type PieChartSettings = {
   };
 };
 
-export type PieSliceData = {
+export type PieSlice = {
   name: string;
   value: number;
   color?: string;

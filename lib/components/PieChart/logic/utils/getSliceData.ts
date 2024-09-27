@@ -28,14 +28,14 @@ function getSliceData(props: GetSliceDataProps) {
                   A ${radius},${radius} 0 ${largeArcFlag} 1 ${arcEndPoint.x},${arcEndPoint.y} 
                   Z`;
 
-  const externalArcPath = drawArc({
+  const activeOuterArcPath = drawArc({
     startAngle: startAngle + 0.04,
     endAngle: endAngle - 0.04,
     innerRadius: radius + 6,
     outerRadius: radius + 12,
   });
 
-  return { path, externalArcPath, middleDirection, arcStartPoint, arcEndPoint };
+  return { path, activeOuterArcPath, middleDirection, arcStartPoint, arcEndPoint };
 }
 
 export { getSliceData };
