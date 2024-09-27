@@ -8,7 +8,7 @@ const data: Array<PieSlice> = [
   { name: 'Group D', value: 1 },
   { name: 'Group E', value: 1 },
   { name: 'Group F', value: 0.3 },
-  { name: 'Group F', value: 0.1 },
+  { name: 'Group G', value: 0.1 },
 ];
 
 export default function PieChartExample2() {
