@@ -25,7 +25,8 @@ export default function NonActiveDot(props: ActiveDotProps) {
   const dataItem = (data.find((dotData) => dotData.x === payload.x && dotData.y === payload[dataKey]) ??
     {}) as LineSeriesDataItem;
 
-  const { showValue: showDotValue, dot, displayValue } = dataItem;
+  const { dot, value } = dataItem;
+  const { show: showDotValue, color, customValue } = value ?? {};
 
   const isValueVisible = showDotValue ?? showLineValues ?? showChartValues;
   const isDotVisible = !hideDots || dot;
@@ -33,15 +34,15 @@ export default function NonActiveDot(props: ActiveDotProps) {
   const dotProps = { r: (dot?.r ?? r)!, fill: dot?.fill ?? stroke, stroke: dot?.stroke, opacity };
   const getDyOfText = VALUE_POSITION[dot?.position as ValuePositions] ?? VALUE_POSITION.above;
   const dyOfText = getDyOfText(dotProps.r);
-  const value = displayValue ?? formatLabel(payload[dataKey]);
+  const displayValue = customValue ?? formatLabel(payload[dataKey]);
 
   return (
     <svg>
       {isDotVisible && <circle cx={cx} cy={cy} {...dotProps} />}
 
       {isValueVisible && (
-        <text x={cx} y={cy} dy={dyOfText} textAnchor='middle' fontSize={9}>
-          {value}
+        <text x={cx} y={cy} dy={dyOfText} textAnchor='middle' fill={color} fontSize={9}>
+          {displayValue}
         </text>
       )}
     </svg>

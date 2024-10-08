@@ -18,10 +18,11 @@ export default function ActiveDot(props: ActiveDotProps) {
 
   if (!payload[dataKey]) return;
 
-  const { showValue: showDotValue, dot } =
-    data.find((dotData) => dotData.x === payload.x && dotData.y === payload[dataKey]) ?? {};
+  const { dot, value } = data.find((dotData) => dotData.x === payload.x && dotData.y === payload[dataKey]) ?? {};
+  const { show: showDotValue, color, customValue } = value ?? {};
 
   const isValueVisible = showDotValue && dot?.position === ValuePositions.Center;
+  const displayValue = customValue ?? formatLabel(payload[dataKey]);
 
   const dotProps = { r: (dot?.r ?? r)! * 1.1 + 2, fill: dot?.fill ?? fill, stroke: dot?.stroke, opacity };
 
@@ -33,8 +34,8 @@ export default function ActiveDot(props: ActiveDotProps) {
       <circle cx={cx} cy={cy} r={150} fill='transparent' />
 
       {isValueVisible && (
-        <text x={cx} y={cy} dy={DOT_CENTER} textAnchor='middle' fontSize={9}>
-          {formatLabel(payload[dataKey])}
+        <text x={cx} y={cy} dy={DOT_CENTER} textAnchor='middle' fill={color} fontSize={9}>
+          {displayValue}
         </text>
       )}
     </svg>

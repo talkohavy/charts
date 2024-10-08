@@ -247,8 +247,18 @@ export type LineSeries = {
 export type LineSeriesDataItem = {
   x: number | string;
   y: number | null;
-  showValue?: boolean;
-  displayValue?: number | string;
+  value?: {
+    show?: boolean;
+    /**
+     * By default, the displayed value is the Y axis value.
+     * You can use `customValue` as a way to override that.
+     */
+    customValue?: number | string;
+    /**
+     * @default 'black'
+     */
+    color?: string;
+  };
   dot?: {
     r?: number;
     fill?: string;
