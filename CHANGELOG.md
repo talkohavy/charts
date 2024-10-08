@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.4.3
+
+### Patch Changes
+
+- LineChart dot can now have a custom value & color
+
 ## 1.4.2
 
 ### Patch Changes
