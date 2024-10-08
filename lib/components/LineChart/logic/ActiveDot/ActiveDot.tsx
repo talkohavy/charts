@@ -1,30 +1,39 @@
+import { formatLabel } from '../../../logic/utils/formatters';
+import { LineSeriesDataItem, ValuePositions } from '../../../types';
 import type { DotProps } from 'recharts';
 
-export type ActiveDotProps = DotProps & {
-  value?: any;
+const DOT_CENTER = 3;
+
+type ActiveDotProps = DotProps & {
   payload: any;
   dataKey: string;
-  data: Array<any>;
+  data: Array<LineSeriesDataItem>;
   showChartValues: boolean;
   showLineValues: boolean;
   onClick?: (data: any) => void;
 };
 
 export default function ActiveDot(props: ActiveDotProps) {
-  const { cx, cy, payload, dataKey, data, r, fill, onClick } = props;
+  const { cx, cy, payload, dataKey, data, r, fill, opacity } = props;
 
   if (!payload[dataKey]) return;
 
-  const { dot } = data.find((dotData) => dotData.x === payload.x && dotData.y === payload[dataKey]) ?? {};
+  const { showValue: showDotValue, dot } =
+    data.find((dotData) => dotData.x === payload.x && dotData.y === payload[dataKey]) ?? {};
 
-  const dotProps = { r: (dot?.r ?? r) * 1.1 + 2, fill: dot?.fill ?? fill, stroke: dot?.stroke ?? 'white' };
+  const isValueVisible = showDotValue && dot?.position === ValuePositions.Center;
+
+  const dotProps = { r: (dot?.r ?? r)! * 1.1 + 2, fill: dot?.fill ?? fill, stroke: dot?.stroke, opacity };
 
   return (
-    <svg onClick={onClick}>
+    <svg>
       <circle cx={cx} cy={cy} {...dotProps} />
 
-      {/* An invisible circle to enlarge the clicking area */}
-      <circle cx={cx} cy={cy} r={150} fill='transparent' />
+      {isValueVisible && (
+        <text x={cx} y={cy} dy={DOT_CENTER} textAnchor='middle' fontSize={9}>
+          {formatLabel(payload[dataKey])}
+        </text>
+      )}
     </svg>
   );
 }

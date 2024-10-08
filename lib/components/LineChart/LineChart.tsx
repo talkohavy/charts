@@ -29,7 +29,7 @@ import {
 import styles from './LineChart.module.scss';
 import ActiveDot, { ActiveDotProps } from './logic/ActiveDot';
 import { CLASSES } from './logic/constants';
-import NonActiveDot from './NonActiveDot';
+import NonActiveDot from './logic/NonActiveDot';
 import type { BaseChartProps, CustomTickFormatterFunc, LineChartSettings, LineSeries } from '../types';
 import '../../recharts.css';
 

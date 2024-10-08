@@ -106,6 +106,12 @@ type BaseChartSettings = {
   };
 };
 
+export enum ValuePositions {
+  Above = 'above',
+  Center = 'center',
+  Below = 'below',
+}
+
 export type AxisLabelPosition =
   | 'insideLeft'
   | 'insideRight'
@@ -246,6 +252,7 @@ export type LineSeriesDataItem = {
     r?: number;
     fill?: string;
     stroke?: string;
+    position?: ValuePositions;
   };
 };
 
