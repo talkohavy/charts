@@ -163,8 +163,13 @@ export type BarSeries = {
   stackId?: string;
 };
 
-export type BarSeriesData = Array<{ x: number | string; y: number; color?: string }>;
+export type BarSeriesDataItem = {
+  x: number | string;
+  y: number;
+  color?: string;
+};
 
+export type BarSeriesData = Array<BarSeriesDataItem>;
 /**
  * @description
  * The below props are shared props between a LineChart & a BarChart.
@@ -234,12 +239,18 @@ export type LineSeries = {
   hide?: boolean;
 };
 
-export type LineSeriesData = Array<{
+export type LineSeriesDataItem = {
   x: number | string;
   y: number | null;
   showValue?: boolean;
-  dot?: { r?: number; fill?: string; stroke?: string };
-}>;
+  dot?: {
+    r?: number;
+    fill?: string;
+    stroke?: string;
+  };
+};
+
+export type LineSeriesData = Array<LineSeriesDataItem>;
 
 export type ReferenceLine = {
   x?: number | string;
