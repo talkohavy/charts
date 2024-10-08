@@ -248,6 +248,7 @@ export type LineSeriesDataItem = {
   x: number | string;
   y: number | null;
   showValue?: boolean;
+  displayValue?: number | string;
   dot?: {
     r?: number;
     fill?: string;
