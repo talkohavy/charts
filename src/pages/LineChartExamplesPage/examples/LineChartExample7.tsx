@@ -11,7 +11,7 @@ const lines: Array<LineSeries> = [
     data: [
       { x: 'Page A', y: 100 },
       { x: 'Page B', y: 300 },
-      { x: 'Page C', y: 151, showValue: true, dot: { r: 12, fill: 'red', stroke: 'black' } },
+      { x: 'Page C', y: 151, value: { show: true }, dot: { r: 12, fill: 'red', stroke: 'black' } },
       { x: 'Page D', y: 200 },
       { x: 'Page E', y: 80 },
       { x: 'Page F', y: 180 },

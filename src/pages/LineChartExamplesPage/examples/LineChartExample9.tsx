@@ -1,5 +1,5 @@
 import { COLORS } from '../../../../lib/components/logic/constants';
-import { LineSeries } from '../../../../lib/components/types';
+import { LineSeries, ValuePositions } from '../../../../lib/components/types';
 import { LineChart } from '../../../../lib/main';
 
 const lines: Array<LineSeries> = [
@@ -12,7 +12,12 @@ const lines: Array<LineSeries> = [
     data: [
       { x: 'Page A', y: 100 },
       { x: 'Page B', y: 300 },
-      { x: 'Page C', y: 150, showValue: false },
+      {
+        x: 'Page C',
+        y: 150,
+        value: { show: false, customValue: 'a2', color: 'white' },
+        dot: { r: 8, position: ValuePositions.Center },
+      },
       { x: 'Page D', y: 200 },
       { x: 'Page E', y: 80 },
       { x: 'Page F', y: 180 },
