@@ -1,5 +1,5 @@
 import { formatLabel } from '../../../logic/utils/formatters';
-import { ValuePositions } from '../../../types';
+import { LineSeriesDataItem, ValuePositions } from '../../../types';
 import type { DotProps } from 'recharts';
 
 const VALUE_POSITION: Record<ValuePositions, (radius: number) => number> = {
@@ -11,7 +11,7 @@ const VALUE_POSITION: Record<ValuePositions, (radius: number) => number> = {
 type ActiveDotProps = DotProps & {
   payload: any;
   dataKey: string;
-  data: Array<any>;
+  data: Array<LineSeriesDataItem>;
   showChartValues: boolean;
   showLineValues: boolean;
   hideDots: boolean;
@@ -28,7 +28,7 @@ export default function NonActiveDot(props: ActiveDotProps) {
   const isValueVisible = showDotValue ?? showLineValues ?? showChartValues;
   const isDotVisible = !hideDots || dot;
 
-  const dotProps = { r: dot?.r ?? r, fill: dot?.fill ?? stroke, stroke: dot?.stroke, opacity };
+  const dotProps = { r: (dot?.r ?? r)!, fill: dot?.fill ?? stroke, stroke: dot?.stroke, opacity };
   const getDyOfText = VALUE_POSITION[dot?.position as ValuePositions] ?? VALUE_POSITION.above;
   const dyOfText = getDyOfText(dotProps.r);
 
