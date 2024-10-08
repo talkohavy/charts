@@ -1,8 +1,9 @@
+import { CustomTickFormatterFunc } from '../../types';
 import { getTextWidth } from './getTextWidth';
 
 type GetWidthOfLongestXLabeProps = {
   transformedDataForRecharts: Array<any>;
-  xTickFormatter: (value: string | number, maxStringLength?: number) => string | undefined;
+  xTickFormatter: CustomTickFormatterFunc;
   xFontSize?: number;
 };
 

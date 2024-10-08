@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { CustomTickFormatterFunc } from '../../types';
 import { CLASSES } from '../constants';
 import { formatLabel } from '../utils/formatters';
 import styles from './CustomTooltip.module.scss';
@@ -6,7 +7,7 @@ import type { TooltipProps } from 'recharts';
 
 type CustomTooltipProps = TooltipProps<number | string | Array<number | string>, number | string> & {
   ySuffix: string;
-  xValueFormatter: (value: string | number, maxStringLength?: number) => string | undefined;
+  xValueFormatter: CustomTickFormatterFunc;
 };
 
 export default function CustomTooltip(props: CustomTooltipProps) {
@@ -21,7 +22,7 @@ export default function CustomTooltip(props: CustomTooltipProps) {
 
         <ul className={styles.customTooltipItemsList}>
           {payload.map(({ name, value, color, unit }, index) => {
-            const formattedValue = formatLabel(value as string | number | undefined);
+            const formattedValue = formatLabel(value);
 
             return (
               <li key={index} style={{ color }}>

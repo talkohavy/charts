@@ -30,7 +30,7 @@ import styles from './LineChart.module.scss';
 import ActiveDot, { ActiveDotProps } from './logic/ActiveDot';
 import { CLASSES } from './logic/constants';
 import NonActiveDot from './NonActiveDot';
-import type { BaseChartProps, LineChartSettings, LineSeries } from '../types';
+import type { BaseChartProps, CustomTickFormatterFunc, LineChartSettings, LineSeries } from '../types';
 import '../../recharts.css';
 
 type LineChartProps = BaseChartProps & {
@@ -90,7 +90,7 @@ export default function LineChart(props: LineChartProps) {
     () =>
       getWidthOfLongestXLabel({
         transformedDataForRecharts,
-        xTickFormatter: settingsToMerge?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType],
+        xTickFormatter: (settingsToMerge?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType]) as CustomTickFormatterFunc,
         xFontSize: settingsToMerge?.xAxis?.tickFontSize,
       }),
     [
@@ -203,7 +203,7 @@ export default function LineChart(props: LineChartProps) {
             content={(tooltipProps) => (
               <CustomTooltip
                 {...tooltipProps}
-                xValueFormatter={chartSettings.tooltip.xValueFormatter}
+                xValueFormatter={chartSettings.tooltip.xValueFormatter as CustomTickFormatterFunc}
                 ySuffix={chartSettings.tooltip.yTickSuffix}
               />
             )}

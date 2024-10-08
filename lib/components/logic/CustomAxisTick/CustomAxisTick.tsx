@@ -1,9 +1,10 @@
+import { CustomTickFormatterFunc } from '../../types';
 import { getTextWidth } from '../utils/getTextWidth';
 import type { LabelProps } from 'recharts';
 
 type CustomizedAxisTickProps = LabelProps & {
   payload: any;
-  xTickFormatter: (value: any, index?: number) => string;
+  xTickFormatter: CustomTickFormatterFunc;
 };
 
 export default function CustomizedAxisTick(props: CustomizedAxisTickProps) {

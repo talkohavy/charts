@@ -43,7 +43,7 @@ type BaseChartSettings = {
      */
     tickAngle?: number;
     tickFontSize?: number;
-    tickFormatter?: (value: any) => string;
+    tickFormatter?: CustomTickFormatterFunc;
     // tickSuffix: string;
   };
   yAxis?: {
@@ -257,3 +257,6 @@ export type ReferenceLine = {
   lineColor?: string;
   isDashed?: boolean;
 };
+
+export type CustomTickFormatterFunc = (value: any, index?: number, maxStringLength?: number) => string;
+export type RechartsTickFormatterFunc = (value: any, index: number) => string;

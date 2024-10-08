@@ -24,7 +24,8 @@ function formatNumber(props: FormatNumberProps): string {
   return num.toString();
 }
 
-function formatLabel(value?: string | number, maxStringLength: number = 9): string | undefined {
+// Note: do not remove `index`! formatLabel props MUST be same as in CustomTickFormatterFunc type
+function formatLabel(value: any, _index?: number, maxStringLength: number = 9): string | undefined {
   if (value == null) return undefined;
 
   if (typeof value === 'string') return ellipsisString({ str: value, maxStringLength });

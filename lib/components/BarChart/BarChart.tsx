@@ -32,7 +32,13 @@ import {
 import styles from './BarChart.module.scss';
 import { ACTIVE_BAR_COLOR, BAR_LAYOUT_TO_CHART_LAYOUT, DEFAULT_BAR_COLOR } from './constants';
 import { CLASSES } from './logic/constants';
-import type { BarChartSettings, BarClickEventProps, BarSeries, BaseChartProps } from '../types';
+import type {
+  BarChartSettings,
+  BarClickEventProps,
+  BarSeries,
+  BaseChartProps,
+  CustomTickFormatterFunc,
+} from '../types';
 import '../../recharts.css';
 
 type BarChartProps = BaseChartProps & {
@@ -105,7 +111,7 @@ export default function BarChart(props: BarChartProps) {
     () =>
       getWidthOfLongestXLabel({
         transformedDataForRecharts,
-        xTickFormatter: settingsToMerge?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType],
+        xTickFormatter: (settingsToMerge?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType]) as CustomTickFormatterFunc,
         xFontSize: settingsToMerge?.xAxis?.tickFontSize,
       }),
     [
@@ -223,7 +229,7 @@ export default function BarChart(props: BarChartProps) {
             content={(tooltipProps) => (
               <CustomTooltip
                 {...tooltipProps}
-                xValueFormatter={chartSettings.tooltip.xValueFormatter}
+                xValueFormatter={chartSettings.tooltip.xValueFormatter as CustomTickFormatterFunc}
                 ySuffix={chartSettings.tooltip.yTickSuffix}
               />
             )}
