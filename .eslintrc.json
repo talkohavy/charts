@@ -4,6 +4,7 @@
   "ignorePatterns": ["dist"],
   "rules": {
     "sort-exports/sort-exports": "off",
+    "@stylistic/operator-linebreak": "off",
     "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
     "import/extensions": "off",
     "import/no-unresolved": [
