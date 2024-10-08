@@ -130,6 +130,8 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         hide: settings?.yAxis?.show === undefined ? false : !settings?.yAxis?.show,
         color: settings?.yAxis?.tickColor ?? '#666',
         fontSize: settings?.yAxis?.tickFontSize,
+        domain: settings?.yAxis?.domain,
+        ticks: settings?.yAxis?.customTicks,
         unit: settings?.yAxis?.tickSuffix ?? '',
         width: yAxisWidth,
         tickFormatter: (settings?.yAxis?.tickFormatter ?? formatLabel) as CustomTickFormatterFunc,
@@ -157,6 +159,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
       show: !!showGrid,
       props: {
         stroke: settings?.grid?.color ?? '#ddd',
+        strokeWidth: 0.5,
         horizontal: typeof showGrid === 'boolean' ? showGrid : !!showGrid.horizontal,
         vertical: typeof showGrid === 'boolean' ? showGrid : !!showGrid.vertical,
         strokeDasharray: settings?.grid?.strokeDasharray ?? '5 5',
