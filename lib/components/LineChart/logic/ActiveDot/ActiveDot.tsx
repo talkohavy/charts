@@ -4,7 +4,7 @@ import type { DotProps } from 'recharts';
 
 const DOT_CENTER = 3;
 
-type ActiveDotProps = DotProps & {
+export type ActiveDotProps = DotProps & {
   payload: any;
   dataKey: string;
   data: Array<LineSeriesDataItem>;
@@ -14,7 +14,7 @@ type ActiveDotProps = DotProps & {
 };
 
 export default function ActiveDot(props: ActiveDotProps) {
-  const { cx, cy, payload, dataKey, data, r, fill, opacity } = props;
+  const { cx, cy, payload, dataKey, data, r, fill, onClick, opacity } = props;
 
   if (!payload[dataKey]) return;
 
@@ -26,8 +26,11 @@ export default function ActiveDot(props: ActiveDotProps) {
   const dotProps = { r: (dot?.r ?? r)! * 1.1 + 2, fill: dot?.fill ?? fill, stroke: dot?.stroke, opacity };
 
   return (
-    <svg>
+    <svg onClick={onClick}>
       <circle cx={cx} cy={cy} {...dotProps} />
+
+      {/* An invisible circle to enlarge the clicking area */}
+      <circle cx={cx} cy={cy} r={150} fill='transparent' />
 
       {isValueVisible && (
         <text x={cx} y={cy} dy={DOT_CENTER} textAnchor='middle' fontSize={9}>
