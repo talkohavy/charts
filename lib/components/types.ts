@@ -150,7 +150,7 @@ export type BarSeries = {
    * _name_ must be unique! Do not leave as an empty string.
    */
   name: string;
-  data: BarSeriesData;
+  data: Array<BarSeriesDataItem>;
   color?: string;
   barBorderColor?: string;
   /**
@@ -169,7 +169,6 @@ export type BarSeriesDataItem = {
   color?: string;
 };
 
-export type BarSeriesData = Array<BarSeriesDataItem>;
 /**
  * @description
  * The below props are shared props between a LineChart & a BarChart.
@@ -226,7 +225,7 @@ export type LineSeries = {
   color?: string;
   lineWidth?: number;
   curveType?: CurveType;
-  data: LineSeriesData;
+  data: Array<LineSeriesDataItem>;
   isDashed?: boolean;
   showValues?: boolean;
   dots?: {
@@ -249,8 +248,6 @@ export type LineSeriesDataItem = {
     stroke?: string;
   };
 };
-
-export type LineSeriesData = Array<LineSeriesDataItem>;
 
 export type ReferenceLine = {
   x?: number | string;
