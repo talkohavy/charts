@@ -166,15 +166,10 @@ export default function LineChart(props: LineChartProps) {
     // minHeight={300}
     <ResponsiveContainer width='100%' height='100%'>
       <LineChartBase
-        data={transformedDataForRecharts}
-        className={clsx(
-          CLASSES.lineChart,
-          styles.lineChartDefaultStyle,
-          settingsToMerge?.xAxis?.label && styles.lineChartLabelGap,
-          className,
-        )}
-        style={style}
         {...chartSettings.lineChartBase.props}
+        data={transformedDataForRecharts}
+        className={clsx(CLASSES.lineChart, settingsToMerge?.xAxis?.label && styles.lineChartLabelGap, className)}
+        style={style}
       >
         {/* MUST come before XAxis & YAxis */}
         {chartSettings.grid.show && <CartesianGrid {...chartSettings.grid.props} />}

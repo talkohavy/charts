@@ -191,6 +191,10 @@ export type BaseChartProps = {
    */
   type?: 'category' | 'number' | 'datetime';
   referenceLines?: Array<ReferenceLine>;
+  /**
+   * IMPORTANT! This `className` cannot contain paddings of any kind!
+   * recharts has a bug where if you have padding, the cursor will offset when trying to hover over data points.
+   */
   className?: string;
   style?: any;
 };
