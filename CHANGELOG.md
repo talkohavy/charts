@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.4.4
+
+### Patch Changes
+
+- removed padding from LineChart base component. bug was a mouse cursor offset on data points
+
 ## 1.4.3
 
 ### Patch Changes
