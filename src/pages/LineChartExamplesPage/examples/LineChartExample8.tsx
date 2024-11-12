@@ -28,7 +28,7 @@ export default function LineChartExample8() {
 
       <div className='size-full max-h-md max-w-lg'>
         <LineChart
-          lines={lines}
+          data={lines}
           settings={{ grid: { show: true } }}
           className='rounded-lg border p-4 font-thin'
           style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif' }}

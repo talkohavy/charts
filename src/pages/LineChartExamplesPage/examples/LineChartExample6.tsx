@@ -44,7 +44,7 @@ export default function LineChartExample6() {
 
       <div className='size-full max-h-md max-w-lg'>
         <LineChart
-          lines={lines}
+          data={lines}
           referenceLines={referenceLines}
           settings={{ grid: { show: true } }}
           style={{

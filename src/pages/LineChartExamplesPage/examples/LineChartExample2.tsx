@@ -28,7 +28,7 @@ export default function LineChartExample2() {
 
       <div className='size-full max-h-md max-w-lg'>
         <LineChart
-          lines={lines}
+          data={lines}
           settings={{
             yAxis: { label: 'Amount in Liters' },
             xAxis: { label: 'List of Alligators' },

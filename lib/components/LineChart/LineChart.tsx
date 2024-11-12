@@ -34,7 +34,7 @@ import '../../recharts.css';
 
 type LineChartProps = BaseChartProps & {
   settings?: LineChartSettings;
-  lines: Array<LineSeries>;
+  data: Array<LineSeries>;
   onDotClick?: (data: ActiveDotProps) => void;
 };
 
@@ -42,29 +42,34 @@ export default function LineChart(props: LineChartProps) {
   const {
     type: xAxisType = 'category',
     settings: settingsToMerge,
-    lines,
+    /**
+     * **IMPORTANT!!!*
+     *
+     * Each series data must be sorted!
+     */
+    data,
     onDotClick,
     referenceLines,
     className,
     style,
   } = props;
 
-  useMemo(() => runValidationsOnAllSeries(lines), [lines]);
+  useMemo(() => runValidationsOnAllSeries(data), [data]);
 
-  const lengthOfLongestData = useMemo(() => getLengthOfLongestData(lines), [lines]);
+  const lengthOfLongestData = useMemo(() => getLengthOfLongestData(data), [data]);
 
   const startIndex = useRef(0);
   const endIndex = useRef(Math.min(BRUSH_ITEMS_PER_PAGE, lengthOfLongestData - 1));
   const [isLegendHovered, setIsLegendHovered] = useState(false);
-  const [isLineHovered, setIsLineHovered] = useState(() => getNamesObject(lines));
-  const [visibleLines, setVisibleLines] = useState(() => getNamesObject(lines, true));
+  const [isLineHovered, setIsLineHovered] = useState(() => getNamesObject(data));
+  const [visibleLines, setVisibleLines] = useState(() => getNamesObject(data, true));
 
   const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
 
   const transformedDataForRecharts: Array<{ x: number | string }> = useMemo(() => {
     const transformedDataByKey: Record<string, any> = {};
 
-    lines.forEach((currentLine) => {
+    data.forEach((currentLine) => {
       currentLine.data.forEach(({ x, y }) => {
         transformedDataByKey[x] ??= { x };
         transformedDataByKey[x][currentLine.name] = y;
@@ -72,18 +77,18 @@ export default function LineChart(props: LineChartProps) {
     });
 
     return Object.values(transformedDataByKey);
-  }, [lines]);
+  }, [data]);
 
   const maxYValue = useMemo(() => {
     let maxYValue = Number.NEGATIVE_INFINITY;
-    lines.forEach((currentLine) => {
+    data.forEach((currentLine) => {
       currentLine.data.forEach(({ y }) => {
         if (y !== null && maxYValue < y) maxYValue = y;
       });
     });
 
     return maxYValue;
-  }, [lines]);
+  }, [data]);
 
   const widthOfLongestXTickLabel = useMemo(
     () =>
@@ -130,7 +135,7 @@ export default function LineChart(props: LineChartProps) {
 
     return yAxisWidth;
   }, [
-    lines,
+    data,
     maxYValue,
     settingsToMerge?.yAxis?.label,
     settingsToMerge?.yAxis?.tickSuffix,
@@ -237,7 +242,7 @@ export default function LineChart(props: LineChartProps) {
           >
             {chartSettings.zoomSlider.showPreviewInSlider ? (
               <LineChartBase data={transformedDataForRecharts}>
-                {lines.map(({ name, curveType, isDashed }) => (
+                {data.map(({ name, curveType, isDashed }) => (
                   <Line
                     key={name}
                     dataKey={name}
@@ -269,12 +274,12 @@ export default function LineChart(props: LineChartProps) {
               key={index}
               {...chartSettings.referenceLines.props}
               {...referenceLineProps}
-              // isFront // <--- defaults to false. true will display it on top of bars in BarCharts, or lines in LineCharts.
+              // isFront // <--- defaults to false. true will display it on top of bars in BarCharts, or data in LineCharts.
             />
           );
         })}
 
-        {lines.map((line) => {
+        {data.map((line) => {
           const { name, color, data, lineWidth, curveType, isDashed, dots, showValues: showLineValues, hide } = line;
 
           const lineProps: any = {

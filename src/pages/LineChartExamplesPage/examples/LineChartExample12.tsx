@@ -64,7 +64,7 @@ export default function LineChartExample12() {
 
       <div className='size-full max-h-md max-w-lg'>
         <LineChart
-          lines={lines}
+          data={lines}
           settings={{
             xAxis: { label: 'Flying Cars', tickAngle: 45 },
             yAxis: { label: 'Amount in Liters' },

@@ -34,7 +34,7 @@ export default function LineChartExample9() {
 
       <div className='size-full max-h-md max-w-lg'>
         <LineChart
-          lines={lines}
+          data={lines}
           settings={{ grid: { show: true } }}
           style={{
             fontFamily: 'Hiragino Sans GB,Arial,sans-serif',

@@ -28,7 +28,7 @@ export default function LineChartExample3() {
 
       <div className='size-full max-h-lg max-w-lg'>
         <LineChart
-          lines={lines}
+          data={lines}
           settings={{
             xAxis: { tickAngle: 46 },
             grid: { show: true },
