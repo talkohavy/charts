@@ -286,3 +286,6 @@ export type ReferenceLine = {
 
 export type CustomTickFormatterFunc = (value: any, index?: number, maxStringLength?: number) => string;
 export type RechartsTickFormatterFunc = (value: any, index: number) => string;
+
+export type XAsNumber = { x: number };
+export type XAsString = { x: string };

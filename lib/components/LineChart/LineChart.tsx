@@ -29,7 +29,14 @@ import styles from './LineChart.module.scss';
 import ActiveDot, { ActiveDotProps } from './logic/ActiveDot';
 import { CLASSES } from './logic/constants';
 import NonActiveDot from './logic/NonActiveDot';
-import type { BaseChartProps, CustomTickFormatterFunc, LineChartSettings, LineSeries } from '../types';
+import type {
+  BaseChartProps,
+  CustomTickFormatterFunc,
+  LineChartSettings,
+  LineSeries,
+  XAsNumber,
+  XAsString,
+} from '../types';
 import '../../recharts.css';
 
 type LineChartProps = BaseChartProps & {
@@ -76,7 +83,15 @@ export default function LineChart(props: LineChartProps) {
       });
     });
 
-    return Object.values(transformedDataByKey);
+    const transformedData = Object.values(transformedDataByKey);
+
+    const sortNumbers = (a: XAsNumber, b: XAsNumber) => a.x - b.x;
+    const sortStrings = (a: XAsString, b: XAsString) => a.x.localeCompare(b.x);
+    const sorter = typeof transformedData[0].x === 'number' ? sortNumbers : sortStrings;
+
+    transformedData.sort(sorter);
+
+    return transformedData;
   }, [data]);
 
   const maxYValue = useMemo(() => {
