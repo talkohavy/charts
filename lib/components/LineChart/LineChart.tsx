@@ -176,7 +176,7 @@ export default function LineChart(props: LineChartProps) {
 
         <XAxis
           {...chartSettings.xAxis.props}
-          tickFormatter={chartSettings.xAxis.tickFormatter as any}
+          tickFormatter={chartSettings.xAxis.tickFormatter}
           dataKey='x'
           label={chartSettings.xAxis.label}
           type={xAxisType === 'datetime' ? 'number' : xAxisType} // <--- 'category' v.s. 'number'. What is the difference? Isn't it the same eventually? Well no, because consider a case where gaps exist. For instance, 0 1 2 4 5. A 'category' would place an even distance between 2 & 4, when in fact it's a double gap!
