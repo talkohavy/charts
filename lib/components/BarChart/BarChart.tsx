@@ -37,6 +37,8 @@ import type {
   BarSeries,
   BaseChartProps,
   CustomTickFormatterFunc,
+  XAsNumber,
+  XAsString,
 } from '../types';
 import '../../recharts.css';
 
@@ -92,7 +94,15 @@ export default function BarChart(props: BarChartProps) {
       });
     });
 
-    return Object.values(transformedDataByKey);
+    const transformedData = Object.values(transformedDataByKey);
+
+    const sortNumbers = (a: XAsNumber, b: XAsNumber) => a.x - b.x;
+    const sortStrings = (a: XAsString, b: XAsString) => a.x.localeCompare(b.x);
+    const sorter = typeof transformedData[0].x === 'number' ? sortNumbers : sortStrings;
+
+    transformedData.sort(sorter);
+
+    return transformedData;
   }, [data]);
 
   const maxYValue = useMemo(() => {
