@@ -24,7 +24,7 @@ export default function BarChartExample8() {
 
       <div className='size-full max-h-md max-w-lg'>
         <BarChart
-          bars={bars}
+          data={bars}
           settings={{
             yAxis: { tickSuffix: 'cm' },
             legend: { show: true },

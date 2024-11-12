@@ -35,7 +35,7 @@ export default function BarChartExample12() {
 
       <div className='size-full max-h-md max-w-lg'>
         <BarChart
-          bars={bars}
+          data={bars}
           settings={{
             xAxis: { label: 'Countries', tickAngle: 46 },
             yAxis: { label: 'Amount in cm' },

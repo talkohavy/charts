@@ -45,7 +45,7 @@ export default function BarChartExample13() {
 
       <div className='size-full max-h-md max-w-lg'>
         <BarChart
-          bars={bars}
+          data={bars}
           settings={{
             xAxis: { tickAngle: 45 },
           }}

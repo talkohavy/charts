@@ -25,7 +25,7 @@ export default function BarChartExample1() {
 
       <div className='size-full max-h-md max-w-lg'>
         <BarChart
-          bars={bars}
+          data={bars}
           settings={{
             yAxis: { label: 'Amount in Liters' },
             xAxis: { label: 'Countries' },

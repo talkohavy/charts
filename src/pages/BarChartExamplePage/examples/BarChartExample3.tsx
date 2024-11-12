@@ -47,7 +47,7 @@ export default function BarChartExample3() {
 
       <div className='size-full max-h-md max-w-lg'>
         <BarChart
-          bars={bars}
+          data={bars}
           settings={{ legend: { show: true } }}
           style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif', border: '1px solid black' }}
         />

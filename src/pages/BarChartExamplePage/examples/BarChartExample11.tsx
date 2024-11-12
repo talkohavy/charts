@@ -38,7 +38,7 @@ export default function BarChartExample11() {
 
       <div className='size-full max-h-md max-w-lg'>
         <BarChart
-          bars={bars}
+          data={bars}
           settings={{
             general: { showValues: true },
             legend: { show: true },

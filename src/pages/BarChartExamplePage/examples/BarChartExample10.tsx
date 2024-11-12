@@ -28,7 +28,7 @@ export default function BarChartExample10() {
 
       <div className='size-full max-h-md max-w-lg'>
         <BarChart
-          bars={bars}
+          data={bars}
           settings={{
             xAxis: { show: !showXAxis },
             yAxis: { show: !showYAxis },

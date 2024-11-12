@@ -42,12 +42,12 @@ import '../../recharts.css';
 
 type BarChartProps = BaseChartProps & {
   settings?: BarChartSettings;
-  bars: Array<BarSeries>;
+  data: Array<BarSeries>;
   onClickBar?: (props: BarClickEventProps & { name: string; barTypeIndex: number }) => void;
   /**
    * Every Bar within the BarChart has an ID which is a string comprised of '[bar name]-[x value]'.
    * @example
-   * const bars = [{ name: 'hello', data: [{x: 'Israel', y: 140}, x: 'France', y: 120]}];
+   * const data = [{ name: 'hello', data: [{x: 'Israel', y: 140}, x: 'France', y: 120]}];
    * // The barIds are: 'hello-Israel' & 'hello-France'
    */
   activeBarId?: string;
@@ -62,7 +62,7 @@ export default function BarChart(props: BarChartProps) {
     type: xAxisType = 'category',
     layout: barsLayout = 'vertical',
     settings: settingsToMerge,
-    bars,
+    data,
     referenceLines,
     className,
     style,
@@ -70,22 +70,22 @@ export default function BarChart(props: BarChartProps) {
     activeBarId,
   } = props;
 
-  useMemo(() => runValidationsOnAllSeries(bars), [bars]);
+  useMemo(() => runValidationsOnAllSeries(data), [data]);
 
-  const lengthOfLongestData = useMemo(() => getLengthOfLongestData(bars), [bars]);
+  const lengthOfLongestData = useMemo(() => getLengthOfLongestData(data), [data]);
 
   const startIndex = useRef(0);
   const endIndex = useRef(Math.min(BRUSH_ITEMS_PER_PAGE, lengthOfLongestData - 1));
   const [isLegendHovered, setIsLegendHovered] = useState(false);
-  const [isBarTypeHovered, setIsBarTypeHovered] = useState(() => getNamesObject(bars));
-  const [visibleBars, setVisibleBars] = useState(() => getNamesObject(bars, true));
+  const [isBarTypeHovered, setIsBarTypeHovered] = useState(() => getNamesObject(data));
+  const [visibleBars, setVisibleBars] = useState(() => getNamesObject(data, true));
 
   const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
 
   const transformedDataForRecharts: Array<{ x: number | string }> = useMemo(() => {
     const transformedDataByKey: Record<string, any> = {};
 
-    bars.forEach((barType) => {
+    data.forEach((barType) => {
       barType.data.forEach(({ x, y }) => {
         transformedDataByKey[x] ??= { x };
         transformedDataByKey[x][barType.name] = y;
@@ -93,18 +93,18 @@ export default function BarChart(props: BarChartProps) {
     });
 
     return Object.values(transformedDataByKey);
-  }, [bars]);
+  }, [data]);
 
   const maxYValue = useMemo(() => {
     let maxYValue = Number.NEGATIVE_INFINITY;
-    bars.forEach((currentBarType) => {
+    data.forEach((currentBarType) => {
       currentBarType.data.forEach(({ y }) => {
         if (maxYValue < y) maxYValue = y;
       });
     });
 
     return maxYValue;
-  }, [bars]);
+  }, [data]);
 
   const widthOfLongestXTickLabel = useMemo(
     () =>
@@ -151,7 +151,7 @@ export default function BarChart(props: BarChartProps) {
 
     return yAxisWidth;
   }, [
-    bars,
+    data,
     maxYValue,
     settingsToMerge?.yAxis?.label,
     settingsToMerge?.yAxis?.tickSuffix,
@@ -269,7 +269,7 @@ export default function BarChart(props: BarChartProps) {
           >
             {chartSettings.zoomSlider.showPreviewInSlider ? (
               <BarChartBase data={transformedDataForRecharts}>
-                {bars.map(({ name }) => (
+                {data.map(({ name }) => (
                   <Bar key={name} dataKey={name} isAnimationActive={false} fill='#999' />
                 ))}
               </BarChartBase>
@@ -298,7 +298,7 @@ export default function BarChart(props: BarChartProps) {
           );
         })}
 
-        {bars.map(({ name, data, unit, color, barBorderColor, stackId }, index) => {
+        {data.map(({ name, data, unit, color, barBorderColor, stackId }, index) => {
           const barColorInLegend = color ?? DEFAULT_BAR_COLOR;
 
           const barProps = {
