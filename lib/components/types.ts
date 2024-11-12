@@ -54,6 +54,10 @@ type BaseChartSettings = {
     /**
      * @default true
      */
+    showTickLine?: boolean;
+    /**
+     * @default true
+     */
     showAxisLine?: boolean;
     /**
      * @default ['auto','auto']
