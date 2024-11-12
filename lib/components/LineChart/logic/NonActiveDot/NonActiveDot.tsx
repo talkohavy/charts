@@ -20,7 +20,7 @@ type ActiveDotProps = DotProps & {
 export default function NonActiveDot(props: ActiveDotProps) {
   const { cx, cy, payload, dataKey, data, r, stroke, opacity, showChartValues, showLineValues, hideDots } = props;
 
-  if (!payload[dataKey]) return;
+  if (!payload[dataKey]) return null;
 
   const dataItem = (data.find((dotData) => dotData.x === payload.x && dotData.y === payload[dataKey]) ??
     {}) as LineSeriesDataItem;

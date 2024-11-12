@@ -16,7 +16,7 @@ export type ActiveDotProps = DotProps & {
 export default function ActiveDot(props: ActiveDotProps) {
   const { cx, cy, payload, dataKey, data, r, fill, onClick, opacity } = props;
 
-  if (!payload[dataKey]) return;
+  if (!payload[dataKey]) return null;
 
   const { dot, value } = data.find((dotData) => dotData.x === payload.x && dotData.y === payload[dataKey]) ?? {};
   const { show: showDotValue, color, customValue } = value ?? {};
