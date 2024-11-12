@@ -21,7 +21,6 @@ import {
   getLengthOfLongestData,
   getLineChartMergedChartSettings,
   getNamesObject,
-  getTextWidth,
   getWidthOfLongestXLabel,
   getXAxisHeight,
   runValidationsOnAllSeries,
@@ -127,16 +126,6 @@ export default function LineChart(props: LineChartProps) {
       fontSize: settingsToMerge?.yAxis?.tickFontSize,
       tickCount: settingsToMerge?.yAxis?.tickCount,
       customTicks: settingsToMerge?.yAxis?.customTicks,
-    });
-
-    let widthOfLongestFirstXTickLabel = 0;
-    lines.forEach((currentLine) => {
-      if (!currentLine.data.length) return;
-
-      const firstDataPointsXLength = getTextWidth({ text: currentLine.data[0]!.x.toString() });
-      if (widthOfLongestFirstXTickLabel < firstDataPointsXLength) {
-        widthOfLongestFirstXTickLabel = firstDataPointsXLength;
-      }
     });
 
     return yAxisWidth;

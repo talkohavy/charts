@@ -24,7 +24,6 @@ import {
   getBarChartMergedChartSettings,
   getLengthOfLongestData,
   getNamesObject,
-  getTextWidth,
   getWidthOfLongestXLabel,
   getXAxisHeight,
   runValidationsOnAllSeries,
@@ -148,16 +147,6 @@ export default function BarChart(props: BarChartProps) {
       fontSize: settingsToMerge?.yAxis?.tickFontSize,
       tickCount: settingsToMerge?.yAxis?.tickCount,
       customTicks: settingsToMerge?.yAxis?.customTicks,
-    });
-
-    let widthOfLongestFirstXTickLabel = 0;
-    bars.forEach((currentLine) => {
-      if (!currentLine.data.length) return;
-
-      const firstDataPointsXLength = getTextWidth({ text: currentLine.data[0]!.x.toString() });
-      if (widthOfLongestFirstXTickLabel < firstDataPointsXLength) {
-        widthOfLongestFirstXTickLabel = firstDataPointsXLength;
-      }
     });
 
     return yAxisWidth;
