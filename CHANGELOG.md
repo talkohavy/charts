@@ -1,5 +1,15 @@
 # @talkohavy/charts
 
+## 1.4.5
+
+### Patch Changes
+
+- added right:10px to both LineChart & BarChart
+- added axisLine & tickLine as options for yAxis
+- renamed lines to data in LineChart, and bars to data in BarChart
+- sort data in BarChart & LineChart
+- BUGFIX: forgot to add tickFormatter to XAxis component of BarChart as well
+
 ## 1.4.4
 
 ### Patch Changes
