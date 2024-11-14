@@ -96,6 +96,8 @@ export default function BarChart(props: BarChartProps) {
 
     const transformedData = Object.values(transformedDataByKey);
 
+    if (!transformedData.length) return transformedData;
+
     const sortNumbers = (a: XAsNumber, b: XAsNumber) => a.x - b.x;
     const sortStrings = (a: XAsString, b: XAsString) => a.x.localeCompare(b.x);
     const sorter = typeof transformedData[0].x === 'number' ? sortNumbers : sortStrings;
