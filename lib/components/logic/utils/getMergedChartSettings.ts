@@ -32,6 +32,7 @@ function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps) {
         margin: {
           left: sharedSettings?.yAxis?.label ? 12 : 0,
           bottom: sharedSettings?.xAxis?.label ? 20 : 0,
+          right: 10, // <--- needed for last tick label to not be cut off
         },
         stackOffset: 'sign' as StackOffsetType, // <--- sign knows how to deal with negative values, while default stackOffset just hides them (doesn't show them).
       },
@@ -58,6 +59,7 @@ function getLineChartMergedChartSettings(props: GetMergedChartSettingsProps) {
         margin: {
           left: sharedSettings?.yAxis?.label ? 12 : 0,
           bottom: sharedSettings?.xAxis?.label ? 30 : 0,
+          right: 10, // <--- needed for last tick label to not be cut off
         },
       },
     },
