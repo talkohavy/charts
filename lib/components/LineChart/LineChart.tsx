@@ -52,7 +52,8 @@ export default function LineChart(props: LineChartProps) {
     /**
      * **IMPORTANT!!!*
      *
-     * Each series data must be sorted!
+     * When choosing chart type of `datetime`, each data series must be sorted!
+     * For other types (category & number), recharts sorts the data internally.
      */
     data,
     onDotClick,
