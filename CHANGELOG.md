@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.4.6
+
+### Patch Changes
+
+- BUGFIX: yAxis ticks color isn't color, it's stroke
+
 ## 1.4.5
 
 ### Patch Changes
