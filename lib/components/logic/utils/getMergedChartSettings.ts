@@ -129,7 +129,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
     yAxis: {
       props: {
         hide: settings?.yAxis?.show === undefined ? false : !settings?.yAxis?.show,
-        color: settings?.yAxis?.tickColor ?? '#666',
+        stroke: settings?.yAxis?.tickColor ?? '#666',
         fontSize: settings?.yAxis?.tickFontSize,
         ticks: settings?.yAxis?.customTicks,
         axisLine: settings?.yAxis?.showAxisLine ?? true,
@@ -138,7 +138,6 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         domain: settings?.yAxis?.domain,
         width: yAxisWidth,
         tickFormatter: (settings?.yAxis?.tickFormatter ?? formatLabel) as CustomTickFormatterFunc,
-        stroke: '#666',
         padding: { top: 18 },
         includeHidden: true, // <--- when having multiple lines, and playing around clicking the legend items, animations look so much better with this as `true`.
         // dataKey: 'y'// <--- do NOT put dataKey on y axis of BarChart or LineChart! We are going to use the `name` of each Bars set.
