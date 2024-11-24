@@ -4,18 +4,18 @@ import type { LabelProps } from 'recharts';
 
 type CustomizedAxisTickProps = LabelProps & {
   payload: any;
-  xTickFormatter: CustomTickFormatterFunc;
   // overriding the default type of the following params, where each one can be number | string | undefined. I'm cancelling out the string type for all, and the undefined for most.
   x: number;
   y: number;
   angle: number;
   dy?: number;
+  tickFormatter: CustomTickFormatterFunc;
 };
 
 export default function CustomizedAxisTick(props: CustomizedAxisTickProps) {
-  const { x, y, dy, color, payload, angle, textAnchor, fontWeight, fontSize, xTickFormatter } = props;
+  const { x, y, dy, color, payload, angle, textAnchor, fontWeight, fontSize, tickFormatter } = props;
 
-  const formattedLabel = xTickFormatter(payload.value);
+  const formattedLabel = tickFormatter(payload.value);
   const textWidth = getTextWidth({ text: formattedLabel, fontSize: fontSize as number });
   const translateXBy = x! + (angle < -45 ? -10 : angle ? 0 : textWidth / 2);
   const translateYBy = dy ? y + dy : y;

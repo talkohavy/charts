@@ -207,7 +207,6 @@ export default function BarChart(props: BarChartProps) {
 
         <XAxis
           {...chartSettings.xAxis.props}
-          tickFormatter={chartSettings.xAxis.tickFormatter}
           {...(barsLayout === 'vertical' ? chartSettings.xAxis.verticalProps : { type: 'number' as any })}
           label={{
             ...chartSettings.xAxis.label,
@@ -215,7 +214,7 @@ export default function BarChart(props: BarChartProps) {
           }}
           tick={(tickProps) => (
             // passes everything as an argument! x, y, width, height, everything! You'll even need to handle the tick's positioning, and format the entire tick.
-            <CustomizedAxisTick {...tickProps} xTickFormatter={chartSettings.xAxis.tickFormatter} />
+            <CustomizedAxisTick {...tickProps} />
           )}
         />
 

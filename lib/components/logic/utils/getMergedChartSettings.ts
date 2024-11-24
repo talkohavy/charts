@@ -93,6 +93,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         fontFamily: settings?.xAxis?.tickFontFamily,
         ticks: settings?.xAxis?.customTicks,
         tickLine: settings?.xAxis?.showTickLine ?? true,
+        tickFormatter: (settings?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType]) as RechartsTickFormatterFunc, // <--- only passes the string value as an argument.
         axisLine: settings?.xAxis?.showAxisLine ?? true,
         domain: (settings?.xAxis?.domain ?? ['auto', 'auto']) as AxisDomain,
         allowDataOverflow: false,
@@ -126,7 +127,6 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         type: (xAxisType === 'category' ? 'category' : 'number') as 'number' as 'number' | 'category' | undefined, // <--- 'category' v.s. 'number'. What is the difference? Isn't it the same eventually? Well no, because consider a case where gaps exist. For instance, 0 1 2 4 5. A 'category' would place an even distance between 2 & 4, when in fact it's a double gap!
         scale: (xAxisType === 'category' ? 'auto' : 'time') as ScaleType,
       },
-      tickFormatter: (settings?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType]) as RechartsTickFormatterFunc, // <--- only passes the string value as an argument.
     },
     yAxis: {
       props: {
