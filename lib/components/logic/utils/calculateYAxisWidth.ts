@@ -22,16 +22,22 @@ type CalculateYAxisWidthProps = {
   yTickSuffix?: string;
   yLabel?: string;
   fontSize?: number;
+  fontFamily?: string;
   tickCount?: number;
   customTicks?: Array<number>;
 };
 
 function calculateYAxisWidth(props: CalculateYAxisWidthProps) {
-  const { maxYValue, yTickSuffix, yLabel, fontSize, tickCount = DEFAULT_Y_TICK_COUNT, customTicks } = props;
+  const { maxYValue, yTickSuffix, yLabel, fontSize, fontFamily, tickCount = DEFAULT_Y_TICK_COUNT, customTicks } = props;
 
   const yTickValues = customTicks ?? getTickValues({ maxYValue, tickCount });
 
-  const longestYTickWidth = calculateLongestNiceTickWidth(yTickValues, yTickSuffix, fontSize);
+  const longestYTickWidth = calculateLongestNiceTickWidth({
+    niceTicks: yTickValues,
+    suffix: yTickSuffix,
+    fontSize,
+    fontFamily,
+  });
 
   const yAxisWidth = longestYTickWidth + TICK_DASH_WIDTH + (yLabel ? 10 : 0);
 
