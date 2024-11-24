@@ -29,7 +29,6 @@ import {
   getNamesObject,
   runValidationsOnAllSeries,
 } from '../logic/utils';
-import styles from './BarChart.module.scss';
 import { ACTIVE_BAR_COLOR, BAR_LAYOUT_TO_CHART_LAYOUT, DEFAULT_BAR_COLOR } from './constants';
 import { CLASSES } from './logic/constants';
 import type {
@@ -108,12 +107,7 @@ export default function BarChart(props: BarChartProps) {
     <ResponsiveContainer width='100%' height='100%'>
       <BarChartBase
         data={transformedDataForRecharts}
-        className={clsx(
-          CLASSES.barChart,
-          styles.barChartDefaultStyle,
-          settingsToMerge?.xAxis?.label && styles.barChartLabelGap,
-          className,
-        )}
+        className={clsx(CLASSES.barChart, className)}
         style={style}
         {...chartSettings.barChartBase.props}
         layout={BAR_LAYOUT_TO_CHART_LAYOUT[barsLayout]} // <--- chart layout is by default 'horizontal' (which means bars layout is vertical).
