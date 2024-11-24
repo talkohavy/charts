@@ -95,12 +95,12 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         tickLine: settings?.xAxis?.showTickLine ?? true,
         tickFormatter: (settings?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType]) as RechartsTickFormatterFunc, // <--- only passes the string value as an argument.
         axisLine: settings?.xAxis?.showAxisLine ?? true,
+        stroke: settings?.xAxis?.axisLineColor ?? '#666', // <--- this is the color of the xAxis line itself!
         domain: (settings?.xAxis?.domain ?? ['auto', 'auto']) as AxisDomain,
         allowDataOverflow: false,
         angle: settings?.xAxis?.tickAngle ? -Math.abs(settings?.xAxis?.tickAngle) : 0,
         height: xAxisHeight,
         textAnchor: 'end', // <--- CustomizedAxisTick assumes this will always be set to 'end'. We calculate x with it. It's easier to render angled xAxis ticks that way.
-        stroke: '#666', // <--- this is the color of the xAxis line itself!
         padding: { right: 40 }, // <--- you can use this to remove padding between: A. The first bar and the Y axis; B. The last bar and the chart axis. I'm using 40 to have the last dot always visible in case the last data point is a large red dot - 40 would make it visible.
         interval: 'preserveStartEnd', // <--- defaults to "preserveEnd". If set 0, all the ticks will be shown. If set "preserveStart", "preserveEnd" or "preserveStartEnd", the ticks which is to be shown or hidden will be calculated automatically.
         // minTickGap: 5,
@@ -133,9 +133,12 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
     yAxis: {
       props: {
         hide: settings?.yAxis?.show === undefined ? false : !settings?.yAxis?.show,
-        stroke: settings?.yAxis?.tickColor ?? '#666',
+        stroke: settings?.yAxis?.axisLineColor ?? '#666',
         fontSize: settings?.yAxis?.tickFontSize,
         fontFamily: settings?.yAxis?.tickFontFamily,
+        tick: {
+          fill: settings?.yAxis?.tickColor ?? '#666',
+        },
         ticks: settings?.yAxis?.customTicks,
         axisLine: settings?.yAxis?.showAxisLine ?? true,
         tickLine: settings?.yAxis?.showTickLine ?? true,

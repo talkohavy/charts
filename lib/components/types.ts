@@ -24,6 +24,10 @@ type BaseChartSettings = {
      */
     showTickLine?: boolean;
     /**
+     * @default '#666'
+     */
+    axisLineColor?: string;
+    /**
      * @default true
      */
     showAxisLine?: boolean;
@@ -61,6 +65,10 @@ type BaseChartSettings = {
      * @default true
      */
     showAxisLine?: boolean;
+    /**
+     * @default '#666'
+     */
+    axisLineColor?: string;
     /**
      * @default ['auto','auto']
      */
