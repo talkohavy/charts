@@ -1,5 +1,5 @@
 type CheckboxProps = {
-  isChecked: boolean;
+  isChecked: boolean | undefined | null;
   setIsChecked: (value: any) => void;
   label?: string;
 };
