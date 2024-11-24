@@ -10,7 +10,7 @@ import type {
   RechartsTickFormatterFunc,
 } from '../../types';
 import type { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent';
-import type { AxisDomain, LayoutType, ScaleType, StackOffsetType } from 'recharts/types/util/types';
+import type { AxisDomain, AxisInterval, LayoutType, ScaleType, StackOffsetType } from 'recharts/types/util/types';
 
 type GetMergedChartSettingsProps = {
   chartType: 'LineChart' | 'BarChart';
@@ -102,7 +102,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         height: xAxisHeight,
         textAnchor: 'end', // <--- CustomizedAxisTick assumes this will always be set to 'end'. We calculate x with it. It's easier to render angled xAxis ticks that way.
         padding: { right: 40 }, // <--- you can use this to remove padding between: A. The first bar and the Y axis; B. The last bar and the chart axis. I'm using 40 to have the last dot always visible in case the last data point is a large red dot - 40 would make it visible.
-        interval: 'preserveStartEnd', // <--- defaults to "preserveEnd". If set 0, all the ticks will be shown. If set "preserveStart", "preserveEnd" or "preserveStartEnd", the ticks which is to be shown or hidden will be calculated automatically.
+        interval: 'preserveStartEnd' as AxisInterval, // <--- defaults to "preserveEnd". If set 0, all the ticks will be shown. If set "preserveStart", "preserveEnd" or "preserveStartEnd", the ticks which is to be shown or hidden will be calculated automatically.
         // minTickGap: 5,
         // mirror: true,
         // dy: 0,
