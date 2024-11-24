@@ -31,6 +31,7 @@ type BaseChartSettings = {
      * @default ['auto','auto']
      */
     domain?: AxisDomain;
+    customTicks?: Array<number>;
     label?: string;
     /**
      * The color of the tick's value.

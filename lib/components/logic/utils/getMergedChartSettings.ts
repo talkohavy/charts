@@ -91,6 +91,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         color: settings?.xAxis?.tickColor ?? 'black', // <--- this is the color of the tick's value!
         fontSize: settings?.xAxis?.tickFontSize,
         fontFamily: settings?.xAxis?.tickFontFamily,
+        ticks: settings?.xAxis?.customTicks,
         tickLine: settings?.xAxis?.showTickLine ?? true,
         axisLine: settings?.xAxis?.showAxisLine ?? true,
         domain: (settings?.xAxis?.domain ?? ['auto', 'auto']) as AxisDomain,
