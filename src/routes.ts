@@ -3,6 +3,7 @@ import { lazy } from 'react';
 const LineChartExamplesPage = lazy(() => import('./pages/LineChartExamplesPage'));
 const BarChartExamplePage = lazy(() => import('./pages/BarChartExamplePage'));
 const PieChartExamplePage = lazy(() => import('./pages/PieChartExamplesPage'));
+const LineChartPlaygroundPage = lazy(() => import('./pages/LineChartPlaygroundPage'));
 
 export const routes = [
   // Leave this as the first, since it will serve as the homepage
@@ -23,5 +24,11 @@ export const routes = [
     text: 'Pie Chart',
     activeNames: ['/pie-chart'],
     Component: PieChartExamplePage,
+  },
+  {
+    to: '/line-chart-playground',
+    text: 'Playground L',
+    activeNames: ['/line-chart-playground'],
+    Component: LineChartPlaygroundPage,
   },
 ];
