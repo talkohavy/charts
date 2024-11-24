@@ -102,10 +102,12 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         textAnchor: 'end', // <--- CustomizedAxisTick assumes this will always be set to 'end'. We calculate x with it. It's easier to render angled xAxis ticks that way.
         stroke: '#666', // <--- this is the color of the xAxis line itself!
         padding: { right: 40 }, // <--- you can use this to remove padding between: A. The first bar and the Y axis; B. The last bar and the chart axis. I'm using 40 to have the last dot always visible in case the last data point is a large red dot - 40 would make it visible.
+        interval: 'preserveStartEnd', // <--- defaults to "preserveEnd". If set 0, all the ticks will be shown. If set "preserveStart", "preserveEnd" or "preserveStartEnd", the ticks which is to be shown or hidden will be calculated automatically.
+        // minTickGap: 5,
+        // mirror: true,
         // dy: 0,
         // tickSize: 6, // <--- defaults to 6. The length of tick line.
         // tickCount: 5, // <-- defaults to 5
-        // interval: 0, // <--- defaults to "preserveEnd". If set 0, all the ticks will be shown. If set "preserveStart", "preserveEnd" or "preserveStartEnd", the ticks which is to be shown or hidden will be calculated automatically.
         // includeHidden: true, // <--- defaults to false. Ensures that all data points within a chart contribute to its domain calculation, even when they are hidden.
         // allowDecimals: false, // <--- default to true
         // unit: 'cm', // <--- Doesn't appear if you're using `tick`, which you are. Also, it is good practice to have units appear on the label itself, and not on the ticks of the xAxis.
