@@ -26,7 +26,6 @@ import {
   getNamesObject,
   runValidationsOnAllSeries,
 } from '../logic/utils';
-import styles from './LineChart.module.scss';
 import ActiveDot, { ActiveDotProps } from './logic/ActiveDot';
 import { CLASSES } from './logic/constants';
 import NonActiveDot from './logic/NonActiveDot';
@@ -94,7 +93,7 @@ export default function LineChart(props: LineChartProps) {
       <LineChartBase
         {...chartSettings.lineChartBase.props}
         data={transformedDataForRecharts}
-        className={clsx(CLASSES.lineChart, settingsToMerge?.xAxis?.label && styles.lineChartLabelGap, className)}
+        className={clsx(CLASSES.lineChart, className)}
         style={style}
       >
         {/* MUST come before XAxis & YAxis */}
