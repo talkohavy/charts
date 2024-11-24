@@ -1,6 +1,6 @@
 import { AxisDomain } from 'recharts/types/util/types';
 
-type BaseChartSettings = {
+export type BaseChartSettings = {
   general?: {
     /**
      * According to recharts, if you leave this as undefined, it would default to `true` in CSR, and to `false` in SSR.

@@ -15,28 +15,22 @@ import {
 import { BRUSH_ITEMS_PER_PAGE, DASHED_LINE, CLASSES as GLOBAL_CLASSES } from '../logic/constants';
 import CustomizedAxisTick from '../logic/CustomAxisTick';
 import CustomTooltip from '../logic/CustomTooltip';
+import useMaxYValue from '../logic/hooks/useMaxYValue';
+import useTransformedDataForRecharts from '../logic/hooks/useTransformedDataForRecharts';
+import useWidthOfLongestXTickLabel from '../logic/hooks/useWidthOfLongestXTickLabel';
+import useXAxisHeight from '../logic/hooks/useXAxisHeight';
+import useYAxisWidth from '../logic/hooks/useYAxisWidth';
 import {
-  FORMATTERS,
-  calculateYAxisWidth,
   getLengthOfLongestData,
   getLineChartMergedChartSettings,
   getNamesObject,
-  getWidthOfLongestXLabel,
-  getXAxisHeight,
   runValidationsOnAllSeries,
 } from '../logic/utils';
 import styles from './LineChart.module.scss';
 import ActiveDot, { ActiveDotProps } from './logic/ActiveDot';
 import { CLASSES } from './logic/constants';
 import NonActiveDot from './logic/NonActiveDot';
-import type {
-  BaseChartProps,
-  CustomTickFormatterFunc,
-  LineChartSettings,
-  LineSeries,
-  XAsNumber,
-  XAsString,
-} from '../types';
+import type { BaseChartProps, CustomTickFormatterFunc, LineChartSettings, LineSeries } from '../types';
 import '../../recharts.css';
 
 type LineChartProps = BaseChartProps & {
@@ -74,96 +68,15 @@ export default function LineChart(props: LineChartProps) {
 
   const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
 
-  const transformedDataForRecharts: Array<{ x: number | string }> = useMemo(() => {
-    const transformedDataByKey: Record<string, any> = {};
-
-    data.forEach((currentLine) => {
-      currentLine.data.forEach(({ x, y }) => {
-        transformedDataByKey[x] ??= { x };
-        transformedDataByKey[x][currentLine.name] = y;
-      });
-    });
-
-    const transformedData = Object.values(transformedDataByKey);
-
-    if (!transformedData.length) return transformedData;
-
-    const sortNumbers = (a: XAsNumber, b: XAsNumber) => a.x - b.x;
-    const sortStrings = (a: XAsString, b: XAsString) => a.x.localeCompare(b.x);
-    const sorter = typeof transformedData[0].x === 'number' ? sortNumbers : sortStrings;
-
-    transformedData.sort(sorter);
-
-    return transformedData;
-  }, [data]);
-
-  const maxYValue = useMemo(() => {
-    let maxYValue = Number.NEGATIVE_INFINITY;
-    data.forEach((currentLine) => {
-      currentLine.data.forEach(({ y }) => {
-        if (y !== null && maxYValue < y) maxYValue = y;
-      });
-    });
-
-    return maxYValue;
-  }, [data]);
-
-  const widthOfLongestXTickLabel = useMemo(
-    () =>
-      getWidthOfLongestXLabel({
-        transformedDataForRecharts,
-        xTickFormatter: (settingsToMerge?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType]) as CustomTickFormatterFunc,
-        xFontSize: settingsToMerge?.xAxis?.tickFontSize,
-        xFontFamily: settingsToMerge?.xAxis?.tickFontFamily,
-      }),
-    [
-      transformedDataForRecharts,
-      xAxisType,
-      settingsToMerge?.xAxis?.tickFormatter,
-      settingsToMerge?.xAxis?.tickFontSize,
-      settingsToMerge?.xAxis?.tickFontFamily,
-    ],
-  );
-
-  const xAxisHeight = useMemo(
-    () =>
-      getXAxisHeight({
-        tickAngle: -positiveXTickRotateAngle,
-        maxTextWidth: widthOfLongestXTickLabel,
-        isLegendVisible: !!settingsToMerge?.legend?.show,
-        isSliderVisible: !!settingsToMerge?.zoomSlider?.show,
-        isXLabelVisible: !!settingsToMerge?.xAxis?.label,
-      }),
-    [
-      positiveXTickRotateAngle,
-      widthOfLongestXTickLabel,
-      settingsToMerge?.legend?.show,
-      settingsToMerge?.zoomSlider?.show,
-      settingsToMerge?.xAxis?.label,
-    ],
-  );
-
-  const yAxisWidth = useMemo(() => {
-    const yAxisWidth = calculateYAxisWidth({
-      maxYValue,
-      yLabel: settingsToMerge?.yAxis?.label,
-      yTickSuffix: settingsToMerge?.yAxis?.tickSuffix,
-      fontSize: settingsToMerge?.yAxis?.tickFontSize,
-      tickCount: settingsToMerge?.yAxis?.tickCount,
-      customTicks: settingsToMerge?.yAxis?.customTicks,
-    });
-
-    return yAxisWidth;
-  }, [
-    data,
-    maxYValue,
-    settingsToMerge?.yAxis?.label,
-    settingsToMerge?.yAxis?.tickSuffix,
-    settingsToMerge?.yAxis?.tickFontSize,
-    settingsToMerge?.yAxis?.tickCount,
-    settingsToMerge?.yAxis?.customTicks,
-  ]);
-
+  const { transformedDataForRecharts } = useTransformedDataForRecharts({ data });
+  const { maxYValue } = useMaxYValue({ data });
+  const { widthOfLongestXTickLabel } = useWidthOfLongestXTickLabel({
+    settingsToMerge,
+    transformedDataForRecharts,
+    xAxisType,
+  });
+  const { xAxisHeight } = useXAxisHeight({ settingsToMerge, positiveXTickRotateAngle, widthOfLongestXTickLabel });
+  const { yAxisWidth } = useYAxisWidth({ data, settingsToMerge, maxYValue });
   const chartSettings = useMemo(
     () =>
       getLineChartMergedChartSettings({
@@ -177,7 +90,6 @@ export default function LineChart(props: LineChartProps) {
   );
 
   return (
-    // minHeight={300}
     <ResponsiveContainer width='100%' height='100%'>
       <LineChartBase
         {...chartSettings.lineChartBase.props}

@@ -33,7 +33,7 @@ type GetHeightProps = {
   isXLabelVisible: boolean;
 };
 
-function getXAxisHeight(props: GetHeightProps): number | undefined {
+function getXAxisHeight(props: GetHeightProps): number {
   const { tickAngle: thetaInDegrees, maxTextWidth, isLegendVisible, isSliderVisible, isXLabelVisible } = props;
 
   const addRotationHeight = getRotationHeight({ thetaInDegrees, maxTextWidth });
