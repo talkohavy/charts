@@ -17,7 +17,7 @@ export default function CustomizedAxisTick(props: CustomizedAxisTickProps) {
 
   const formattedLabel = tickFormatter(payload.value);
   const textWidth = getTextWidth({ text: formattedLabel, fontSize: fontSize as number });
-  const translateXBy = x! + (angle < -45 ? -10 : angle ? 0 : textWidth / 2);
+  const translateXBy = x + (angle < -45 ? -10 : angle ? 0 : textWidth / 2);
   const translateYBy = dy ? y + dy : y;
 
   return (
