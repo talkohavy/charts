@@ -43,6 +43,7 @@ type BaseChartSettings = {
      */
     tickAngle?: number;
     tickFontSize?: number;
+    tickFontFamily?: string;
     tickFormatter?: CustomTickFormatterFunc;
     // tickSuffix: string;
   };
@@ -73,6 +74,7 @@ type BaseChartSettings = {
     tickColor?: string;
     tickSuffix?: string;
     tickFontSize?: number;
+    tickFontFamily?: string;
     tickFormatter?: (value: any) => string;
   };
   grid?: {

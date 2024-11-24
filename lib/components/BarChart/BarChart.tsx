@@ -124,12 +124,14 @@ export default function BarChart(props: BarChartProps) {
         transformedDataForRecharts,
         xTickFormatter: (settingsToMerge?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType]) as CustomTickFormatterFunc,
         xFontSize: settingsToMerge?.xAxis?.tickFontSize,
+        xFontFamily: settingsToMerge?.xAxis?.tickFontFamily,
       }),
     [
       transformedDataForRecharts,
       xAxisType,
       settingsToMerge?.xAxis?.tickFormatter,
       settingsToMerge?.xAxis?.tickFontSize,
+      settingsToMerge?.xAxis?.tickFontFamily,
     ],
   );
 
