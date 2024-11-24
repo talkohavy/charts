@@ -194,10 +194,8 @@ export default function LineChart(props: LineChartProps) {
           label={chartSettings.xAxis.label}
           type={xAxisType === 'datetime' ? 'number' : xAxisType} // <--- 'category' v.s. 'number'. What is the difference? Isn't it the same eventually? Well no, because consider a case where gaps exist. For instance, 0 1 2 4 5. A 'category' would place an even distance between 2 & 4, when in fact it's a double gap!
           scale={xAxisType === 'datetime' ? 'time' : 'auto'}
-          tick={(tickProps) => (
-            // passes everything as an argument! x, y, width, height, everything! You'll even need to handle the tick's positioning, and format the entire tick.
-            <CustomizedAxisTick {...tickProps} />
-          )}
+          // passes everything as an argument! x, y, width, height, everything! You'll even need to handle the tick's positioning, and format the entire tick.
+          tick={(tickProps) => <CustomizedAxisTick {...tickProps} />}
         />
 
         <YAxis

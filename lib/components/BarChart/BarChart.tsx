@@ -212,10 +212,8 @@ export default function BarChart(props: BarChartProps) {
             ...chartSettings.xAxis.label,
             value: barsLayout === 'vertical' ? chartSettings.xAxis.label?.value : chartSettings.yAxis.label?.value,
           }}
-          tick={(tickProps) => (
-            // passes everything as an argument! x, y, width, height, everything! You'll even need to handle the tick's positioning, and format the entire tick.
-            <CustomizedAxisTick {...tickProps} />
-          )}
+          // passes everything as an argument! x, y, width, height, everything! You'll even need to handle the tick's positioning, and format the entire tick.
+          tick={(tickProps) => <CustomizedAxisTick {...tickProps} />}
         />
 
         <YAxis
