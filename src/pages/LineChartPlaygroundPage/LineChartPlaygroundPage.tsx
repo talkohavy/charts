@@ -4,27 +4,15 @@ import Checkbox from '../../components/controls/Checkbox';
 import Input from '../../components/controls/Input';
 import NumberInput from '../../components/controls/NumberInput';
 import Select from '../../components/controls/Select';
+import { useDarkTheme } from '../../providers/DarkThemeProvider/DarkThemeContext';
+import { formatDateAndMonth } from '../../utils/formatters/formatDateAndTime';
 import { mainExample } from './examples/index';
+import { THEME } from './logic/theme';
 
-// function customDateFormatter(date) {
-//   const options = {
-//     // weekday: 'short', // undefined | short | long
-//     dayPeriod: 'short',
-//     year: 'numeric',
-//     month: 'numeric', // numeric | short | long
-//     day: 'numeric',
-//     hour: 'numeric',
-//     hour12: false, // defaults to true. false is 24H
-//     minute: 'numeric',
-//     // second: 'numeric',
-//     // timeZone: 'Australia/Sydney',
-//     // timeZoneName: 'short',
-//   };
-//   // @ts-ignore
-//   const formattedDate = Intl.DateTimeFormat('en-US', options).format(date);
-
-//   return formattedDate;
-// }
+type GridLines = {
+  horizontal?: boolean;
+  vertical?: boolean;
+};
 
 enum AxisType {
   Category = 'category',
@@ -39,6 +27,7 @@ const lineTypeOptions = [
 ];
 
 export default function LineChartPlaygroundPage() {
+  const { isDarkMode } = useDarkTheme();
   const [showBorder, setShowBorder] = useState(true);
   const [showAsCard, setShowAsCard] = useState(false);
   const [showValues, setShowValues] = useState(false);
@@ -50,7 +39,9 @@ export default function LineChartPlaygroundPage() {
   const [showZoomSlider, setShowZoomSlider] = useState(false);
   const [showPreviewInSlider, setShowPreviewInSlider] = useState(false);
   const [showLegend, setShowLegend] = useState(false);
-  const [showGrid, setShowGrid] = useState(true);
+  const [showGrid, setShowGrid] = useState<boolean | GridLines>(true);
+
+  const theme = isDarkMode ? 'dark' : 'light';
 
   return (
     <div className='flex size-full flex-col items-center justify-start gap-10 overflow-auto p-6'>
@@ -72,7 +63,9 @@ export default function LineChartPlaygroundPage() {
                   // show: true,
                   label: xLabel,
                   tickAngle: xTickAngle,
-                  // tickFormatter: customDateFormatter,
+                  tickFormatter: formatDateAndMonth,
+                  tickColor: THEME[theme].xTickColor,
+                  axisLineColor: THEME[theme].xAxisLineColor,
                   // tickFormatter: () => {},
                   // tickSuffix: 'cm'
                 },
@@ -80,15 +73,13 @@ export default function LineChartPlaygroundPage() {
                   // show: true,
                   label: yLabel,
                   tickSuffix: yTickSuffix,
+                  tickColor: THEME[theme].yTickColor,
+                  axisLineColor: THEME[theme].yAxisLineColor,
                   // tickFormatter: () => {},
                 },
                 grid: {
                   show: showGrid,
-                  color: 'red',
-                  // @ts-ignore
-                  showHorizontalLines: showGrid?.showHorizontalLines,
-                  // @ts-ignore
-                  showVerticalLines: showGrid?.showVerticalLines,
+                  color: THEME[theme].gridLinesColor,
                 },
                 legend: {
                   show: showLegend,
@@ -152,19 +143,16 @@ export default function LineChartPlaygroundPage() {
                 setIsChecked={() => setShowLegend((flag) => !flag)}
                 label='Show Legend'
               />
-              <Checkbox isChecked={showGrid} setIsChecked={() => setShowGrid((flag) => !flag)} label='Show Grid' />
+              <Checkbox isChecked={!!showGrid} setIsChecked={() => setShowGrid((flag) => !flag)} label='Show Grid' />
 
               <div className='flex items-center gap-6 px-10'>
                 <Checkbox
-                  // @ts-ignore
-                  isChecked={showGrid?.showHorizontalLines}
-                  // @ts-ignore
-                  setIsChecked={() => setShowGrid({ showHorizontalLines: true })}
+                  isChecked={(showGrid as GridLines)?.horizontal}
+                  setIsChecked={() => setShowGrid({ horizontal: true })}
                   label='Only horizontal'
                 />
                 <Checkbox
-                  // @ts-ignore
-                  isChecked={showGrid?.showVerticalLines}
+                  isChecked={(showGrid as any)?.showVerticalLines}
                   // @ts-ignore
                   setIsChecked={() => setShowGrid({ showVerticalLines: true })}
                   label='Only vertical'
@@ -174,9 +162,9 @@ export default function LineChartPlaygroundPage() {
           </div>
         </div>
 
-        <div className='h-full w-2/5 overflow-auto rounded-md border bg-blue-50/50 p-4'>
+        {/* <div className='h-full w-2/5 overflow-auto rounded-md border bg-blue-50/50 p-4'>
           <pre>{JSON.stringify(mainExample, null, 4)}</pre>
-        </div>
+        </div> */}
       </div>
     </div>
   );

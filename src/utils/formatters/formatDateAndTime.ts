@@ -39,3 +39,9 @@ export function formatDateAndTime(datetime: number) {
 
   return `${monthName} ${dayInMonth}, ${hours}:${minutes}${amPm.toLowerCase()}`;
 }
+
+export function formatDateAndMonth(datetime: number) {
+  const { monthName, dayInMonth } = getTimeParts(datetime);
+
+  return `${monthName} ${dayInMonth}`;
+}

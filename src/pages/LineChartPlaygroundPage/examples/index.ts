@@ -14,6 +14,6 @@ const lineChartExamples = {
   example6,
 };
 
-const mainExample = lineChartExamples.example1;
+const mainExample = lineChartExamples.example6;
 
 export { mainExample };
