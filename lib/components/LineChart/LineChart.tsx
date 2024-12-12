@@ -29,13 +29,13 @@ import {
 import ActiveDot, { ActiveDotProps } from './logic/ActiveDot';
 import { CLASSES } from './logic/constants';
 import NonActiveDot from './logic/NonActiveDot';
-import type { BaseChartProps, CustomTickFormatterFunc, LineChartSettings, LineSeries } from '../types';
+import type { BaseChartProps, LineChartSettings, LineSeries } from '../types';
 import '../../recharts.css';
 
 type LineChartProps = BaseChartProps & {
   settings?: LineChartSettings;
   data: Array<LineSeries>;
-  onDotClick?: (data: ActiveDotProps) => void;
+  onDotClick?: (data: ActiveDotProps, e: any) => void;
 };
 
 export default function LineChart(props: LineChartProps) {
@@ -116,15 +116,7 @@ export default function LineChart(props: LineChartProps) {
         />
 
         {chartSettings.tooltip.show && (
-          <Tooltip
-            content={(tooltipProps) => (
-              <CustomTooltip
-                {...tooltipProps}
-                xValueFormatter={chartSettings.tooltip.xValueFormatter as CustomTickFormatterFunc}
-                ySuffix={chartSettings.tooltip.yTickSuffix}
-              />
-            )}
-          />
+          <Tooltip content={(tooltipProps) => <CustomTooltip {...tooltipProps} {...chartSettings.tooltip.props} />} />
         )}
 
         {chartSettings.legend.show && (
@@ -246,7 +238,7 @@ export default function LineChart(props: LineChartProps) {
                   data={data}
                   showChartValues={chartSettings.general.showValues}
                   showLineValues={showLineValues}
-                  onClick={() => onDotClick?.(dotProps)}
+                  onClick={(e: any) => onDotClick?.(dotProps, e)}
                 />
               )}
             />

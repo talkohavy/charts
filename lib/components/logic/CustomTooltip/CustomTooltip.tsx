@@ -8,10 +8,11 @@ import type { TooltipProps } from 'recharts';
 type CustomTooltipProps = TooltipProps<number | string | Array<number | string>, number | string> & {
   ySuffix: string;
   xValueFormatter: CustomTickFormatterFunc;
+  nameFormatter: (name: string) => string;
 };
 
 export default function CustomTooltip(props: CustomTooltipProps) {
-  const { active, payload, label, separator, xValueFormatter, ySuffix } = props;
+  const { active, payload, label, separator, nameFormatter, xValueFormatter, ySuffix } = props;
 
   if (active && payload && payload.length) {
     const formattedXLabel = xValueFormatter(label);
@@ -21,12 +22,15 @@ export default function CustomTooltip(props: CustomTooltipProps) {
         <p className={styles.customTooltipHeader}>{formattedXLabel}</p>
 
         <ul className={styles.customTooltipItemsList}>
-          {payload.map(({ name, value, color, unit }, index) => {
+          {payload.map((item, index) => {
+            const { name, value, color, unit } = item;
+
             const formattedValue = formatLabel(value);
+            const formattedName = nameFormatter(name as string);
 
             return (
               <li key={index} style={{ color }}>
-                <span>{name}</span>
+                <span>{formattedName}</span>
                 <span>{separator}</span>
                 <span>{formattedValue}</span>
                 <span>{unit ?? ySuffix}</span>

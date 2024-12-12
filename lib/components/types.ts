@@ -118,6 +118,7 @@ export type BaseChartSettings = {
     show?: boolean;
     xValueFormatter?: (value: any) => string;
     yValueFormatter?: (value: any) => string;
+    nameFormatter?: (name: string) => string;
   };
 };
 

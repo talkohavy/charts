@@ -183,15 +183,21 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         verticalAlign: 'bottom' as VerticalAlignmentType, // <--- pin legend to top, bottom or center.
         align: 'left' as HorizontalAlignmentType, // <--- defaults to 'center'. Horizontal alignment.
         iconSize: 14, // <--- defaults to 14
-        formatter: settings?.legend?.nameFormatter ?? ((value) => formatLabel(value, 14)),
+        formatter: settings?.legend?.nameFormatter ?? ((name) => formatLabel(name, 14)),
         height: legendHeight,
         // iconType: 'circle' // <--- defaults to 'line'
       },
     },
     tooltip: {
       show: showTooltip,
-      yTickSuffix: settings?.yAxis?.tickSuffix ?? '', // <--- Notice that I copy whatever the yAxis has.
-      xValueFormatter: settings?.xAxis?.tickFormatter ?? settings?.tooltip?.xValueFormatter ?? FORMATTERS[xAxisType],
+      props: {
+        ySuffix: settings?.yAxis?.tickSuffix ?? '', // <--- Notice that I copy whatever the yAxis has.
+        xValueFormatter:
+          settings?.xAxis?.tickFormatter ??
+          settings?.tooltip?.xValueFormatter ??
+          (FORMATTERS[xAxisType] as CustomTickFormatterFunc),
+        nameFormatter: settings?.tooltip?.nameFormatter ?? ((name: string) => name),
+      },
     },
     zoomSlider: {
       show: settings?.zoomSlider?.show,

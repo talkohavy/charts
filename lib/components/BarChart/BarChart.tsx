@@ -31,13 +31,7 @@ import {
 } from '../logic/utils';
 import { ACTIVE_BAR_COLOR, BAR_LAYOUT_TO_CHART_LAYOUT, DEFAULT_BAR_COLOR } from './constants';
 import { CLASSES } from './logic/constants';
-import type {
-  BarChartSettings,
-  BarClickEventProps,
-  BarSeries,
-  BaseChartProps,
-  CustomTickFormatterFunc,
-} from '../types';
+import type { BarChartSettings, BarClickEventProps, BarSeries, BaseChartProps } from '../types';
 import '../../recharts.css';
 
 type BarChartProps = BaseChartProps & {
@@ -138,15 +132,7 @@ export default function BarChart(props: BarChartProps) {
         />
 
         {chartSettings.tooltip.show && (
-          <Tooltip
-            content={(tooltipProps) => (
-              <CustomTooltip
-                {...tooltipProps}
-                xValueFormatter={chartSettings.tooltip.xValueFormatter as CustomTickFormatterFunc}
-                ySuffix={chartSettings.tooltip.yTickSuffix}
-              />
-            )}
-          />
+          <Tooltip content={(tooltipProps) => <CustomTooltip {...tooltipProps} {...chartSettings.tooltip.props} />} />
         )}
 
         {chartSettings.legend.show && (
