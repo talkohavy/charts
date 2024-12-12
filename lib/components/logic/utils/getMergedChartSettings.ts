@@ -2,7 +2,6 @@ import { BRUSH_HEIGHT } from '../constants';
 import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
 import { FORMATTERS, formatLabel } from './formatters';
 import { getLegendHeight } from './getLegendHeight';
-import { getTextWidth } from './getTextWidth';
 import type {
   BarChartSettings,
   CustomTickFormatterFunc,
@@ -155,9 +154,7 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         angle: -90,
         position: 'left',
         fontSize: settings?.yAxis?.labelFontSize,
-        dy: settings?.yAxis?.label
-          ? -getTextWidth({ text: settings.yAxis.label, fontSize: settings?.yAxis?.labelFontSize }) / 2
-          : 0,
+        style: { textAnchor: 'middle' },
       },
       horizontalProps: {
         dataKey: 'x',
