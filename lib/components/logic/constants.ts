@@ -1,17 +1,17 @@
-const BRUSH_HEIGHT = 25;
-const BRUSH_ITEMS_PER_PAGE = 10;
-const LEGEND_HEIGHT = 25;
-const X_AXIS_BASE_HEIGHT = 10;
-const TICK_DASH_WIDTH = 10;
-const DASHED_LINE = '20 20'; // or '5 5'
-const DEFAULT_Y_TICK_COUNT = 5; // <--- recharts defaults to 5 anyways
+export const BRUSH_HEIGHT = 25;
+export const BRUSH_ITEMS_PER_PAGE = 10;
+export const LEGEND_HEIGHT = 25;
+export const X_AXIS_BASE_HEIGHT = 10;
+export const TICK_DASH_WIDTH = 10;
+export const DASHED_LINE = '20 20'; // or '5 5'
+export const DEFAULT_Y_TICK_COUNT = 5; // <--- recharts defaults to 5 anyways
 
-const CLASSES = {
+export const CLASSES = {
   tooltip: 'tk-custom-tooltip',
-  brush: 'tk-custom-brush', // 'recharts-custom-brush'
+  brush: 'tk-custom-brush',
 };
 
-const COLORS = [
+export const COLORS = [
   '#0088FE',
   '#00C49F',
   '#FFBB28',
@@ -33,15 +33,3 @@ const COLORS = [
   '#8BC34A',
   '#FF5252',
 ];
-
-export {
-  BRUSH_HEIGHT,
-  BRUSH_ITEMS_PER_PAGE,
-  CLASSES,
-  COLORS,
-  DASHED_LINE,
-  DEFAULT_Y_TICK_COUNT,
-  LEGEND_HEIGHT,
-  TICK_DASH_WIDTH,
-  X_AXIS_BASE_HEIGHT,
-};
