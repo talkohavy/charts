@@ -143,16 +143,12 @@ export default function BarChart(props: BarChartProps) {
             dataKey: name,
             stackId,
             unit,
+            hide: !visibleBars[name],
+            onClick: (props: any, index: number) => onClickBar?.({ ...props, barTypeIndex: index, name }),
           };
 
           return (
-            <Bar
-              key={`${name}-${index}`}
-              {...chartSettings.bars.props}
-              {...barProps}
-              hide={!visibleBars[name]}
-              onClick={(props, index) => onClickBar?.({ ...props, barTypeIndex: index, name })}
-            >
+            <Bar key={`${name}-${index}`} {...chartSettings.bars.props} {...barProps}>
               {chartSettings.general.showValues && (
                 <LabelList
                   dataKey={name}
@@ -164,11 +160,14 @@ export default function BarChart(props: BarChartProps) {
 
               {data.map(({ x, color: specificColor }) => {
                 const barId = `${name}-${x}`;
-                const barFillColor =
-                  barId === activeBarId ? ACTIVE_BAR_COLOR : (specificColor ?? color ?? DEFAULT_BAR_COLOR);
-                const barOpacity = isLegendHovered ? (isBarTypeHovered[name] ? 1 : 0.2) : undefined;
 
-                return <Cell key={barId} fill={barFillColor} opacity={barOpacity} cursor={onClickBar && 'pointer'} />;
+                const cellProps = {
+                  fill: barId === activeBarId ? ACTIVE_BAR_COLOR : (specificColor ?? color ?? DEFAULT_BAR_COLOR),
+                  opacity: isLegendHovered ? (isBarTypeHovered[name] ? 1 : 0.2) : undefined,
+                  cursor: onClickBar && 'pointer',
+                };
+
+                return <Cell key={barId} {...cellProps} />;
               })}
             </Bar>
           );
