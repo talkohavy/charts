@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Payload } from 'recharts/types/component/DefaultLegendContent';
 import { DataKey } from 'recharts/types/util/types';
+import { BarSeries, LineSeries } from '../../types';
 import { getNamesObject } from '../utils';
 
 type UseLegendLogicProps = {
-  data: Array<any>;
+  data: Array<LineSeries | BarSeries>;
 };
 
 export function useLegendLogic(props: UseLegendLogicProps) {
