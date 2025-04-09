@@ -19,7 +19,7 @@ type GetMergedChartSettingsProps = {
   xAxisType: 'category' | 'number' | 'datetime';
 };
 
-function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps) {
+export function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps) {
   const sharedSettings = getSharedMergedChartSettings(props);
 
   const settingsToMerge = props.settings as BarChartSettings;
@@ -52,7 +52,7 @@ function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps) {
   };
 }
 
-function getLineChartMergedChartSettings(props: GetMergedChartSettingsProps) {
+export function getLineChartMergedChartSettings(props: GetMergedChartSettingsProps) {
   const sharedSettings = getSharedMergedChartSettings(props);
 
   const settingsToMerge = props.settings as LineChartSettings;
@@ -80,7 +80,7 @@ function getLineChartMergedChartSettings(props: GetMergedChartSettingsProps) {
   };
 }
 
-function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
+export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
   const { chartType, settings, xAxisHeight, yAxisWidth, xAxisType } = props;
 
   const showGrid = settings?.grid?.show ?? true;
@@ -221,5 +221,3 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
     },
   };
 }
-
-export { getBarChartMergedChartSettings, getLineChartMergedChartSettings, getSharedMergedChartSettings };

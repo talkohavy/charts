@@ -10,7 +10,7 @@ type GetPointOnArcProps = {
  * @description
  * Function to calculate endpoint of arc given center, radius, and angle in degrees.
  */
-function getPointOnArc(props: GetPointOnArcProps) {
+export function getPointOnArc(props: GetPointOnArcProps) {
   const { radius, angleInRadians } = props;
 
   const dir = getDirectionFromAngle(angleInRadians);
@@ -20,5 +20,3 @@ function getPointOnArc(props: GetPointOnArcProps) {
 
   return { x, y };
 }
-
-export { getPointOnArc };

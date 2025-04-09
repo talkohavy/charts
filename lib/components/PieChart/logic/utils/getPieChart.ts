@@ -7,7 +7,7 @@ type GetPieChartProps = {
   radius: number;
 };
 
-function getPieChart(props: GetPieChartProps): Array<PieChartDrawData> {
+export function getPieChart(props: GetPieChartProps): Array<PieChartDrawData> {
   const { data, radius } = props;
 
   const sum = data.reduce((acc, curItem) => acc + curItem.value, 0);
@@ -42,5 +42,3 @@ function getPieChart(props: GetPieChartProps): Array<PieChartDrawData> {
 
   return piChartData;
 }
-
-export { getPieChart };

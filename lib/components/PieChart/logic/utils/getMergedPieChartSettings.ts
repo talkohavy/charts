@@ -13,11 +13,11 @@ const defaultYValueFormatter = (num: number) => {
   }
 };
 
-type getMergedPieChartSettingsProps = {
+type GetMergedPieChartSettingsProps = {
   settings?: PieChartSettings;
 };
 
-function getMergedPieChartSettings(props: getMergedPieChartSettingsProps) {
+export function getMergedPieChartSettings(props: GetMergedPieChartSettingsProps) {
   const { settings } = props;
 
   const showLegend = settings?.legend?.show ?? true;
@@ -41,5 +41,3 @@ function getMergedPieChartSettings(props: getMergedPieChartSettingsProps) {
     },
   };
 }
-
-export { getMergedPieChartSettings };

@@ -3,7 +3,7 @@ import { BarSeries, LineSeries } from '../../types';
 /**
  * @throws An Error.
  */
-function validateUniqueNamesOnDataSets(allSeries: Array<BarSeries | LineSeries>) {
+export function validateUniqueNamesOnDataSets(allSeries: Array<BarSeries | LineSeries>) {
   for (let i = 0; i < allSeries.length - 1; i++) {
     for (let j = i + 1; j < allSeries.length; j++) {
       if ((allSeries[i] as any).name === (allSeries[j] as any).name)
@@ -60,5 +60,3 @@ function runValidationsOnAllSeries(allSeries: Array<BarSeries | LineSeries>) {
   validateXAxisValuesAreSameType(allSeries);
   validateUniqueNamesOnDataSets(allSeries);
 }
-
-export { runValidationsOnAllSeries };

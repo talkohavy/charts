@@ -8,7 +8,7 @@ type GetWidthOfLongestXLabeProps = {
   xFontFamily?: string;
 };
 
-function getWidthOfLongestXLabel(props: GetWidthOfLongestXLabeProps) {
+export function getWidthOfLongestXLabel(props: GetWidthOfLongestXLabeProps) {
   const { transformedDataForRecharts, xTickFormatter, xFontSize, xFontFamily } = props;
 
   let widthOfLongestXTickLabel = 0;
@@ -25,5 +25,3 @@ function getWidthOfLongestXLabel(props: GetWidthOfLongestXLabeProps) {
 
   return widthOfLongestXTickLabel;
 }
-
-export { getWidthOfLongestXLabel };

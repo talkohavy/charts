@@ -6,7 +6,7 @@ type getLegendHeightProps = {
   chartType?: 'LineChart' | 'BarChart';
 };
 
-function getLegendHeight(props: getLegendHeightProps) {
+export function getLegendHeight(props: getLegendHeightProps) {
   const { showLegend, xAxisLabel, chartType } = props;
 
   if (!showLegend) return;
@@ -23,5 +23,3 @@ function getLegendHeight(props: getLegendHeightProps) {
     return 15;
   }
 }
-
-export { getLegendHeight };

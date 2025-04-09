@@ -7,7 +7,7 @@ type GetTickValuesProps = {
   tickCount: number;
 };
 
-function getTickValues(props: GetTickValuesProps) {
+export function getTickValues(props: GetTickValuesProps) {
   const { maxYValue, tickCount } = props;
 
   const domain: [number, number] = [0, maxYValue];
@@ -27,7 +27,7 @@ type CalculateYAxisWidthProps = {
   customTicks?: Array<number>;
 };
 
-function calculateYAxisWidth(props: CalculateYAxisWidthProps) {
+export function calculateYAxisWidth(props: CalculateYAxisWidthProps) {
   const { maxYValue, yTickSuffix, yLabel, fontSize, fontFamily, tickCount = DEFAULT_Y_TICK_COUNT, customTicks } = props;
 
   const yTickValues = customTicks ?? getTickValues({ maxYValue, tickCount });
@@ -43,5 +43,3 @@ function calculateYAxisWidth(props: CalculateYAxisWidthProps) {
 
   return yAxisWidth;
 }
-
-export { calculateYAxisWidth };

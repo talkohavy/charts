@@ -7,7 +7,7 @@ type GetFontSizeFromProps = {
  * @description
  * 100% is actually 1.
  */
-function getFontSizeFrom(props: GetFontSizeFromProps) {
+export function getFontSizeFrom(props: GetFontSizeFromProps) {
   const { percent } = props;
 
   // No matter if big pieChart or small pieChart, Pie slices below 2% are 24px:
@@ -16,5 +16,3 @@ function getFontSizeFrom(props: GetFontSizeFromProps) {
   // PieChart is large version:
   return 40;
 }
-
-export { getFontSizeFrom };

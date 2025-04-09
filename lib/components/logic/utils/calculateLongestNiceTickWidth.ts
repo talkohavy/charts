@@ -8,7 +8,7 @@ type CalculateLongestNiceTickWidthProps = {
   fontFamily?: string;
 };
 
-function calculateLongestNiceTickWidth(props: CalculateLongestNiceTickWidthProps) {
+export function calculateLongestNiceTickWidth(props: CalculateLongestNiceTickWidthProps) {
   const { niceTicks, suffix = '', fontSize, fontFamily } = props;
 
   let widthOfLongestTickLabel = 0;
@@ -23,5 +23,3 @@ function calculateLongestNiceTickWidth(props: CalculateLongestNiceTickWidthProps
 
   return widthOfLongestTickLabel;
 }
-
-export { calculateLongestNiceTickWidth };

@@ -5,7 +5,7 @@ type CalculateXAxisLabelPositioningProps = {
   showZoomSlider: boolean;
 };
 
-function calculateXAxisLabelPositioning(props: CalculateXAxisLabelPositioningProps) {
+export function calculateXAxisLabelPositioning(props: CalculateXAxisLabelPositioningProps) {
   const { showLegend, showZoomSlider } = props;
 
   let xLabelGoesDownBy = 10;
@@ -16,5 +16,3 @@ function calculateXAxisLabelPositioning(props: CalculateXAxisLabelPositioningPro
 
   return xLabelGoesDownBy;
 }
-
-export { calculateXAxisLabelPositioning };

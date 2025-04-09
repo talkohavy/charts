@@ -1,8 +1,8 @@
-const CLASSES = {
+export const CLASSES = {
   pieChart: 'tk-custom-pie-chart',
 };
 
-const PIE_CHART = {
+export const PIE_CHART = {
   radius: {
     small: 250,
     large: 385,
@@ -14,5 +14,3 @@ const PIE_CHART = {
   height: 800,
   width: 1000,
 };
-
-export { CLASSES, PIE_CHART };

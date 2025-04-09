@@ -25,7 +25,7 @@ function formatNumber(props: FormatNumberProps): string {
 }
 
 // Note: do not remove `index`! formatLabel props MUST be same as in CustomTickFormatterFunc type
-function formatLabel(value: any, _index?: number, maxStringLength: number = 9): string | undefined {
+export function formatLabel(value: any, _index?: number, maxStringLength: number = 9): string | undefined {
   if (value == null) return undefined;
 
   if (typeof value === 'string') return ellipsisString({ str: value, maxStringLength });
@@ -39,16 +39,14 @@ function formatLabel(value: any, _index?: number, maxStringLength: number = 9): 
  * I didn't put number as the type, because of FORMATTERS. When calling FORMATTERS[type](value),
  * there's a mixture of types, and hence a typescript error.
  */
-function formatDate(date: any): string {
+export function formatDate(date: any): string {
   const formattedDate = Intl.DateTimeFormat('en-US').format(date);
 
   return formattedDate;
 }
 
-const FORMATTERS = {
+export const FORMATTERS = {
   category: formatLabel,
   number: formatLabel,
   datetime: formatDate,
 };
-
-export { FORMATTERS, formatDate, formatLabel };
