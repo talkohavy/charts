@@ -1,15 +1,17 @@
 import { useMemo } from 'react';
 import { BarSeries, BaseChartSettings, LineSeries } from '../../types';
 import { calculateYAxisWidth } from '../utils';
+import useMaxYValue from './useMaxYValue';
 
 type UseYAxisWidthProps = {
   data: Array<LineSeries | BarSeries>;
-  maxYValue: number;
   settingsToMerge?: BaseChartSettings;
 };
 
 export default function useYAxisWidth(props: UseYAxisWidthProps) {
-  const { data, settingsToMerge, maxYValue } = props;
+  const { data, settingsToMerge } = props;
+
+  const { maxYValue } = useMaxYValue({ data });
 
   const yAxisWidth = useMemo(() => {
     const yAxisWidth = calculateYAxisWidth({

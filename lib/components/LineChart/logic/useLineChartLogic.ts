@@ -3,9 +3,7 @@ import { getLineChartMergedChartSettings, runValidationsOnAllSeries } from '../.
 import useTransformedDataForRecharts from '../../logic/hooks/useTransformedDataForRecharts';
 import useYAxisWidth from '../../logic/hooks/useYAxisWidth';
 import useXAxisHeight from '../../logic/hooks/useXAxisHeight';
-import useWidthOfLongestXTickLabel from '../../logic/hooks/useWidthOfLongestXTickLabel';
 import { LineChartProps } from '../LineChart';
-import useMaxYValue from '../../logic/hooks/useMaxYValue';
 import { useLegendLogic } from '../../logic/hooks/useLegendLogic';
 import { useBrushLogic } from '../../logic/hooks/useBrushLogic';
 
@@ -15,14 +13,9 @@ export function useLineChartLogic(props: LineChartProps) {
   useMemo(() => runValidationsOnAllSeries(data), [data]);
 
   const { transformedDataForRecharts } = useTransformedDataForRecharts({ data });
-  const { maxYValue } = useMaxYValue({ data });
-  const { widthOfLongestXTickLabel } = useWidthOfLongestXTickLabel({
-    settingsToMerge,
-    transformedDataForRecharts,
-    xAxisType,
-  });
-  const { xAxisHeight } = useXAxisHeight({ settingsToMerge, widthOfLongestXTickLabel });
-  const { yAxisWidth } = useYAxisWidth({ data, settingsToMerge, maxYValue });
+
+  const { xAxisHeight } = useXAxisHeight({ settingsToMerge, transformedDataForRecharts, xAxisType });
+  const { yAxisWidth } = useYAxisWidth({ data, settingsToMerge });
   const chartSettings = useMemo(
     () =>
       getLineChartMergedChartSettings({

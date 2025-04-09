@@ -1,16 +1,24 @@
 import { useMemo } from 'react';
 import { BaseChartSettings } from '../../types';
 import { getXAxisHeight } from '../utils';
+import useWidthOfLongestXTickLabel from './useWidthOfLongestXTickLabel';
 
 type UseXAxisHeightProps = {
   settingsToMerge?: BaseChartSettings;
-  widthOfLongestXTickLabel: number;
+  transformedDataForRecharts: Array<{ x: number | string }>;
+  xAxisType: 'category' | 'number' | 'datetime';
 };
 
 export default function useXAxisHeight(props: UseXAxisHeightProps) {
-  const { settingsToMerge, widthOfLongestXTickLabel } = props;
+  const { settingsToMerge, transformedDataForRecharts, xAxisType } = props;
 
   const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
+
+  const { widthOfLongestXTickLabel } = useWidthOfLongestXTickLabel({
+    settingsToMerge,
+    transformedDataForRecharts,
+    xAxisType,
+  });
 
   const xAxisHeight = useMemo(
     () =>
