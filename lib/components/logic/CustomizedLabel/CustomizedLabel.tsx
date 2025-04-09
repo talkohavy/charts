@@ -13,6 +13,8 @@ export default function CustomizedLabel(props: LabelProps) {
   // This calculation below assumes that textAnchor will always be set to 'end'.
   const xPosition = +x! + +width! / 2;
 
+  const formattedLabel = formatLabel(value);
+
   return (
     <text
       x={xPosition}
@@ -22,7 +24,7 @@ export default function CustomizedLabel(props: LabelProps) {
       className={clsx('chart-customized-label', styles.textLabel)}
       style={{ fontSize, fontWeight }}
     >
-      {formatLabel(value)}
+      {formattedLabel}
     </text>
   );
 }
