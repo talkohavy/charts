@@ -164,15 +164,11 @@ export default function BarChart(props: BarChartProps) {
 
               {data.map(({ x, color: specificColor }) => {
                 const barId = `${name}-${x}`;
+                const barFillColor =
+                  barId === activeBarId ? ACTIVE_BAR_COLOR : (specificColor ?? color ?? DEFAULT_BAR_COLOR);
+                const barOpacity = isLegendHovered ? (isBarTypeHovered[name] ? 1 : 0.2) : undefined;
 
-                return (
-                  <Cell
-                    key={barId}
-                    fill={barId === activeBarId ? ACTIVE_BAR_COLOR : (specificColor ?? color ?? DEFAULT_BAR_COLOR)}
-                    opacity={isLegendHovered ? (isBarTypeHovered[name] ? 1 : 0.2) : undefined}
-                    cursor={onClickBar && 'pointer'}
-                  />
-                );
+                return <Cell key={barId} fill={barFillColor} opacity={barOpacity} cursor={onClickBar && 'pointer'} />;
               })}
             </Bar>
           );
