@@ -5,7 +5,7 @@ type UseMaxYValueProps = {
   data: Array<BarSeries | LineSeries>;
 };
 
-export default function useMaxYValue(props: UseMaxYValueProps) {
+export function useMaxYValue(props: UseMaxYValueProps) {
   const { data } = props;
 
   const maxYValue = useMemo(() => {

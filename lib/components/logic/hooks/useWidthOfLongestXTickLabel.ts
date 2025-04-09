@@ -8,7 +8,7 @@ type UseWidthOfLongestXTickLabelProps = {
   xAxisType: 'category' | 'number' | 'datetime';
 };
 
-export default function useWidthOfLongestXTickLabel(props: UseWidthOfLongestXTickLabelProps) {
+export function useWidthOfLongestXTickLabel(props: UseWidthOfLongestXTickLabelProps) {
   const { transformedDataForRecharts, settingsToMerge, xAxisType } = props;
 
   const widthOfLongestXTickLabel = useMemo(

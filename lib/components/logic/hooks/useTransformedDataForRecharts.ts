@@ -5,7 +5,7 @@ type UseTransformedDataForRechartsProps = {
   data: Array<LineSeries | BarSeries>;
 };
 
-export default function useTransformedDataForRecharts(props: UseTransformedDataForRechartsProps) {
+export function useTransformedDataForRecharts(props: UseTransformedDataForRechartsProps) {
   const { data } = props;
 
   const transformedDataForRecharts: Array<{ x: number | string }> = useMemo(() => {
