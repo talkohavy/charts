@@ -3,7 +3,7 @@ import { BarSeries, LineSeries } from '../../types';
 /**
  * @throws An Error.
  */
-export function validateUniqueNamesOnDataSets(allSeries: Array<BarSeries | LineSeries>) {
+function validateUniqueNamesOnDataSets(allSeries: Array<BarSeries | LineSeries>) {
   for (let i = 0; i < allSeries.length - 1; i++) {
     for (let j = i + 1; j < allSeries.length; j++) {
       if ((allSeries[i] as any).name === (allSeries[j] as any).name)
@@ -49,7 +49,7 @@ function validateDataExists(series: BarSeries | LineSeries) {
 /**
  * @throws An Error.
  */
-function runValidationsOnAllSeries(allSeries: Array<BarSeries | LineSeries>) {
+export function runValidationsOnAllSeries(allSeries: Array<BarSeries | LineSeries>) {
   if (!allSeries) throw new Error(`chart data was not defined... allSeries was ${allSeries}`);
 
   allSeries.forEach((series) => {

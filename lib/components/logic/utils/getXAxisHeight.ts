@@ -7,7 +7,7 @@ type GetRotationHeightProps = {
   thetaInDegrees?: number;
 };
 
-export function getRotationHeight(props: GetRotationHeightProps) {
+function getRotationHeight(props: GetRotationHeightProps) {
   const { thetaInDegrees, maxTextWidth } = props;
 
   if (!thetaInDegrees) return 0;
@@ -33,7 +33,7 @@ type GetHeightProps = {
   isXLabelVisible: boolean;
 };
 
-function getXAxisHeight(props: GetHeightProps): number {
+export function getXAxisHeight(props: GetHeightProps): number {
   const { tickAngle: thetaInDegrees, maxTextWidth, isLegendVisible, isSliderVisible, isXLabelVisible } = props;
 
   const addRotationHeight = getRotationHeight({ thetaInDegrees, maxTextWidth });
