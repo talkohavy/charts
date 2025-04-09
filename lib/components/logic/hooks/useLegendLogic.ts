@@ -3,11 +3,11 @@ import { Payload } from 'recharts/types/component/DefaultLegendContent';
 import { DataKey } from 'recharts/types/util/types';
 import { getNamesObject } from '../utils';
 
-type UseLegendActionsProps = {
+type UseLegendLogicProps = {
   data: Array<any>;
 };
 
-export function useLegendActions(props: UseLegendActionsProps) {
+export function useLegendLogic(props: UseLegendLogicProps) {
   const { data } = props;
 
   const [isLegendHovered, setIsLegendHovered] = useState(false);

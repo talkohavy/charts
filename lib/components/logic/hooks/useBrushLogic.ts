@@ -2,11 +2,11 @@ import { useMemo, useRef } from 'react';
 import { getLengthOfLongestData } from '../utils';
 import { BRUSH_ITEMS_PER_PAGE } from '../constants';
 
-type UseBrushActionsProps = {
+type UseBrushLogicProps = {
   data: Array<any>;
 };
 
-export function useBrushActions(props: UseBrushActionsProps) {
+export function useBrushLogic(props: UseBrushLogicProps) {
   const { data } = props;
 
   const lengthOfLongestData = useMemo(() => getLengthOfLongestData(data), [data]);

@@ -6,8 +6,8 @@ import useXAxisHeight from '../../logic/hooks/useXAxisHeight';
 import useWidthOfLongestXTickLabel from '../../logic/hooks/useWidthOfLongestXTickLabel';
 import { LineChartProps } from '../LineChart';
 import useMaxYValue from '../../logic/hooks/useMaxYValue';
-import { useLegendActions } from '../../logic/hooks/useLegendActions';
-import { useBrushActions } from '../../logic/hooks/useBrushActions';
+import { useLegendLogic } from '../../logic/hooks/useLegendLogic';
+import { useBrushLogic } from '../../logic/hooks/useBrushLogic';
 
 export function useLineChartLogic(props: LineChartProps) {
   const { type: xAxisType = 'category', data, settings: settingsToMerge } = props;
@@ -44,9 +44,9 @@ export function useLineChartLogic(props: LineChartProps) {
     onLegendMouseLeave,
     onLegendClick,
     visibleSeries: visibleLines,
-  } = useLegendActions({ data });
+  } = useLegendLogic({ data });
 
-  const { startIndex, endIndex, onBrushChange } = useBrushActions({ data });
+  const { startIndex, endIndex, onBrushChange } = useBrushLogic({ data });
 
   return {
     xAxisType,
