@@ -34,13 +34,17 @@ function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps) {
           right: 10, // <--- needed for last tick label to not be cut off
         },
         stackOffset: 'sign' as StackOffsetType, // <--- sign knows how to deal with negative values, while default stackOffset just hides them (doesn't show them).
+        // reverseStackOrder // <--- default is false. When true, stacked items will be rendered right to left. By default, stacked items are rendered left to right. Render direction affects SVG layering, not x position.
+        // barCategoryGap='10%' // <--- gap between bars. Hard to make this generic. The default seems to do a pretty good job.
       },
     },
     bars: {
       props: {
-        // minPointSize: 5, // <--- give a min height to the lowest value, so that it would still be visible.
         barSize: settings?.bars?.barSize, // <--- it is best to leave this as automatically calculated
+        // minPointSize: 5, // <--- give a min height to the lowest value, so that it would still be visible.
         // background: { fill: barBackgroundOverlayColor } // <--- DO NOT put a background! This is what interrupted my onClick event from getting the right BarChart name!
+        // onAnimationEnd={() => console.log('animation end!')}
+        // label={{ position: 'top' }} // <--- Don't need! I'm using a custom label renderer instead (CustomizedLabel).
       },
     },
   };
@@ -207,7 +211,9 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
       },
     },
     referenceLines: {
-      props: {},
+      props: {
+        // isFront // <--- defaults to false. true will display it on top of bars in BarCharts, or lines in LineCharts.
+      },
     },
   };
 }

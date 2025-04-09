@@ -212,7 +212,6 @@ export type BaseChartProps = {
    * recharts has a bug where if you have padding, the cursor will offset when trying to hover over data points.
    */
   className?: string;
-  style?: any;
 };
 
 export type CurveType =
