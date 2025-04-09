@@ -1,7 +1,7 @@
+import type { LabelProps } from 'recharts';
 import clsx from 'clsx';
 import { formatLabel } from '../utils/formatters';
 import styles from './CustomizedLabel.module.scss';
-import type { LabelProps } from 'recharts';
 
 // NOTE!!! The color of each bar is stored in 'fill'.
 export default function CustomizedLabel(props: LabelProps) {

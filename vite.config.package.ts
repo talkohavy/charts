@@ -1,9 +1,9 @@
+import react from '@vitejs/plugin-react-swc';
+import { glob } from 'glob';
 import { extname, relative, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import { glob } from 'glob';
 import { defineConfig } from 'vite';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
-import react from '@vitejs/plugin-react-swc';
 
 export default defineConfig({
   root: `${process.cwd()}/src`, // <--- defaults to process.cwd(). where the index.html is located.

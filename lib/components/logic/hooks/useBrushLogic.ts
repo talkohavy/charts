@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react';
-import { getLengthOfLongestData } from '../utils';
 import { BRUSH_ITEMS_PER_PAGE } from '../constants';
+import { getLengthOfLongestData } from '../utils';
 
 type UseBrushLogicProps = {
   data: Array<any>;

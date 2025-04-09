@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
+import { useBrushLogic } from '../../logic/hooks/useBrushLogic';
+import { useLegendLogic } from '../../logic/hooks/useLegendLogic';
 import useTransformedDataForRecharts from '../../logic/hooks/useTransformedDataForRecharts';
 import useXAxisHeight from '../../logic/hooks/useXAxisHeight';
 import useYAxisWidth from '../../logic/hooks/useYAxisWidth';
 import { getBarChartMergedChartSettings, runValidationsOnAllSeries } from '../../logic/utils';
 import { BarChartProps } from '../BarChart';
-import { useLegendLogic } from '../../logic/hooks/useLegendLogic';
-import { useBrushLogic } from '../../logic/hooks/useBrushLogic';
 
 export function useBarChartLogic(props: BarChartProps) {
   const { type: xAxisType = 'category', data, settings: settingsToMerge } = props;

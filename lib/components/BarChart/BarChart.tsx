@@ -13,6 +13,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import type { BarChartSettings, BarClickEventProps, BarSeries, BaseChartProps } from '../types';
 import { CLASSES as GLOBAL_CLASSES } from '../logic/constants';
 import CustomizedAxisTick from '../logic/CustomAxisTick';
 import CustomizedLabel from '../logic/CustomizedLabel';
@@ -20,7 +21,6 @@ import CustomTooltip from '../logic/CustomTooltip';
 import { ACTIVE_BAR_COLOR, BAR_LAYOUT_TO_CHART_LAYOUT, DEFAULT_BAR_COLOR } from './constants';
 import { CLASSES } from './logic/constants';
 import { useBarChartLogic } from './logic/useBarChartLogic';
-import type { BarChartSettings, BarClickEventProps, BarSeries, BaseChartProps } from '../types';
 import '../../recharts.css';
 
 export type BarChartProps = BaseChartProps & {

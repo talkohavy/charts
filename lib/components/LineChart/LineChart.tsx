@@ -11,13 +11,13 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import type { BaseChartProps, LineChartSettings, LineSeries } from '../types';
 import { DASHED_LINE, CLASSES as GLOBAL_CLASSES } from '../logic/constants';
 import CustomizedAxisTick from '../logic/CustomAxisTick';
 import CustomTooltip from '../logic/CustomTooltip';
 import ActiveDot, { ActiveDotProps } from './logic/ActiveDot';
 import { CLASSES } from './logic/constants';
 import NonActiveDot from './logic/NonActiveDot';
-import type { BaseChartProps, LineChartSettings, LineSeries } from '../types';
 import { useLineChartLogic } from './logic/useLineChartLogic';
 import '../../recharts.css';
 

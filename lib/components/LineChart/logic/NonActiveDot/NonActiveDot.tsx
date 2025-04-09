@@ -1,6 +1,6 @@
+import type { DotProps } from 'recharts';
 import { formatLabel } from '../../../logic/utils/formatters';
 import { LineSeriesDataItem, ValuePositions } from '../../../types';
-import type { DotProps } from 'recharts';
 
 const VALUE_POSITION: Record<ValuePositions, (radius: number) => number> = {
   [ValuePositions.Above]: (radius) => -5 - radius * 1.1,

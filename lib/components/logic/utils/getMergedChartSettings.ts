@@ -1,15 +1,15 @@
-import { BRUSH_HEIGHT } from '../constants';
-import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
-import { FORMATTERS, formatLabel } from './formatters';
-import { getLegendHeight } from './getLegendHeight';
+import type { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent';
+import type { AxisDomain, AxisInterval, LayoutType, ScaleType, StackOffsetType } from 'recharts/types/util/types';
 import type {
   BarChartSettings,
   CustomTickFormatterFunc,
   LineChartSettings,
   RechartsTickFormatterFunc,
 } from '../../types';
-import type { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent';
-import type { AxisDomain, AxisInterval, LayoutType, ScaleType, StackOffsetType } from 'recharts/types/util/types';
+import { BRUSH_HEIGHT } from '../constants';
+import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
+import { FORMATTERS, formatLabel } from './formatters';
+import { getLegendHeight } from './getLegendHeight';
 
 type GetMergedChartSettingsProps = {
   chartType: 'LineChart' | 'BarChart';

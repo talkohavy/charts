@@ -1,9 +1,9 @@
+import type { TooltipProps } from 'recharts';
 import clsx from 'clsx';
 import { CustomTickFormatterFunc } from '../../types';
 import { CLASSES } from '../constants';
 import { formatLabel } from '../utils/formatters';
 import styles from './CustomTooltip.module.scss';
-import type { TooltipProps } from 'recharts';
 
 type CustomTooltipProps = TooltipProps<number | string | Array<number | string>, number | string> & {
   ySuffix: string;

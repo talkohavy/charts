@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
-import { getLineChartMergedChartSettings, runValidationsOnAllSeries } from '../../logic/utils';
-import useTransformedDataForRecharts from '../../logic/hooks/useTransformedDataForRecharts';
-import useYAxisWidth from '../../logic/hooks/useYAxisWidth';
-import useXAxisHeight from '../../logic/hooks/useXAxisHeight';
-import { LineChartProps } from '../LineChart';
-import { useLegendLogic } from '../../logic/hooks/useLegendLogic';
 import { useBrushLogic } from '../../logic/hooks/useBrushLogic';
+import { useLegendLogic } from '../../logic/hooks/useLegendLogic';
+import useTransformedDataForRecharts from '../../logic/hooks/useTransformedDataForRecharts';
+import useXAxisHeight from '../../logic/hooks/useXAxisHeight';
+import useYAxisWidth from '../../logic/hooks/useYAxisWidth';
+import { getLineChartMergedChartSettings, runValidationsOnAllSeries } from '../../logic/utils';
+import { LineChartProps } from '../LineChart';
 
 export function useLineChartLogic(props: LineChartProps) {
   const { type: xAxisType = 'category', data, settings: settingsToMerge } = props;
