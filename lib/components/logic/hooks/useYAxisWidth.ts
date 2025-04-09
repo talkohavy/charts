@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { BarSeries, BaseChartSettings, LineSeries } from '../../types';
-import { calculateYAxisWidth } from '../utils';
+import { calculateYAxisWidth } from '../utils/calculateYAxisWidth';
 import { useMaxYValue } from './useMaxYValue';
 
 type UseYAxisWidthProps = {

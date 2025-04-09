@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { BaseChartSettings } from '../../types';
-import { getXAxisHeight } from '../utils';
+import { getXAxisHeight } from '../utils/getXAxisHeight';
 import { useWidthOfLongestXTickLabel } from './useWidthOfLongestXTickLabel';
 
 type UseXAxisHeightProps = {

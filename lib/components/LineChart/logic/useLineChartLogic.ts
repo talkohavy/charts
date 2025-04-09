@@ -4,7 +4,8 @@ import { useLegendLogic } from '../../logic/hooks/useLegendLogic';
 import { useTransformedDataForRecharts } from '../../logic/hooks/useTransformedDataForRecharts';
 import { useXAxisHeight } from '../../logic/hooks/useXAxisHeight';
 import { useYAxisWidth } from '../../logic/hooks/useYAxisWidth';
-import { getLineChartMergedChartSettings, runValidationsOnAllSeries } from '../../logic/utils';
+import { getLineChartMergedChartSettings } from '../../logic/utils/getMergedChartSettings';
+import { runValidationsOnAllSeries } from '../../logic/utils/runValidationsOnAllSeries';
 import { LineChartProps } from '../LineChart';
 
 export function useLineChartLogic(props: LineChartProps) {

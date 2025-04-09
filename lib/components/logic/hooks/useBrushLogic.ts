@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react';
 import { BarSeries, LineSeries } from '../../types';
 import { BRUSH_ITEMS_PER_PAGE } from '../constants';
-import { getLengthOfLongestData } from '../utils';
+import { getLengthOfLongestData } from '../utils/getLengthOfLongestData';
 
 type UseBrushLogicProps = {
   data: Array<LineSeries | BarSeries>;

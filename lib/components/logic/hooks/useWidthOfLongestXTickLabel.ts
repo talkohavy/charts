@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { BaseChartSettings, CustomTickFormatterFunc } from '../../types';
-import { FORMATTERS, getWidthOfLongestXLabel } from '../utils';
+import { FORMATTERS } from '../utils/formatters';
+import { getWidthOfLongestXLabel } from '../utils/getWidthOfLongestXLabel';
 
 type UseWidthOfLongestXTickLabelProps = {
   transformedDataForRecharts: Array<any>;
