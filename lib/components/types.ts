@@ -203,6 +203,13 @@ export type BaseChartProps = {
    * Use 'number' when your xAxis is made of *numbers*, which can contain gaps. i.e. [1,2,3,6]. In this example, recharts will take care of properly spacing 3 and 6, while if using 'category' the space between them would be 1.
    *
    * Use 'datetime' when your xAxis is time-based. xAxis values MUST BE of unix timestamp.
+   *
+   *
+   * **IMPORTANT!!!*
+   *
+   * When choosing chart type of `datetime`, each data series must be sorted!
+   * For other types (category & number), recharts sorts the data internally.
+   *
    * @default 'category'
    */
   type?: 'category' | 'number' | 'datetime';

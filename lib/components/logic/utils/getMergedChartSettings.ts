@@ -22,15 +22,17 @@ type GetMergedChartSettingsProps = {
 function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps) {
   const sharedSettings = getSharedMergedChartSettings(props);
 
-  const settings = props.settings as BarChartSettings;
+  const settingsToMerge = props.settings as BarChartSettings;
+  const hasLeftGap = !!sharedSettings.yAxis.props.label.value;
+  const hasBottomGap = !sharedSettings.xAxis.props.hide;
 
   return {
     ...sharedSettings,
     barChartBase: {
       props: {
         margin: {
-          left: sharedSettings?.yAxis?.label ? 12 : 0,
-          bottom: sharedSettings?.xAxis?.label ? 20 : 0,
+          left: hasLeftGap ? 12 : 0,
+          bottom: hasBottomGap ? 30 : 10,
           right: 10, // <--- needed for last tick label to not be cut off
         },
         stackOffset: 'sign' as StackOffsetType, // <--- sign knows how to deal with negative values, while default stackOffset just hides them (doesn't show them).
@@ -40,7 +42,7 @@ function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps) {
     },
     bars: {
       props: {
-        barSize: settings?.bars?.barSize, // <--- it is best to leave this as automatically calculated
+        barSize: settingsToMerge?.bars?.barSize, // <--- it is best to leave this as automatically calculated
         // minPointSize: 5, // <--- give a min height to the lowest value, so that it would still be visible.
         // background: { fill: barBackgroundOverlayColor } // <--- DO NOT put a background! This is what interrupted my onClick event from getting the right BarChart name!
         // onAnimationEnd={() => console.log('animation end!')}
@@ -54,14 +56,16 @@ function getLineChartMergedChartSettings(props: GetMergedChartSettingsProps) {
   const sharedSettings = getSharedMergedChartSettings(props);
 
   const settingsToMerge = props.settings as LineChartSettings;
+  const hasLeftGap = !!sharedSettings.yAxis.props.label.value;
+  const hasBottomGap = !sharedSettings.xAxis.props.hide;
 
   return {
     ...sharedSettings,
     lineChartBase: {
       props: {
         margin: {
-          left: sharedSettings?.yAxis?.label ? 12 : 0,
-          bottom: sharedSettings?.xAxis?.label ? 30 : 0,
+          left: hasLeftGap ? 12 : 0,
+          bottom: hasBottomGap ? 30 : 10,
           right: 10, // <--- needed for last tick label to not be cut off
         },
       },
@@ -91,6 +95,16 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
     xAxis: {
       props: {
         hide: settings?.xAxis?.show === undefined ? false : !settings?.xAxis?.show,
+        label: {
+          value: settings?.xAxis?.label,
+          angle: 0,
+          position: 'bottom',
+          dy: calculateXAxisLabelPositioning({
+            showLegend,
+            showZoomSlider: settings?.zoomSlider?.show ?? false,
+          }),
+          dx: -yAxisWidth / 2,
+        },
         color: settings?.xAxis?.tickColor ?? 'black', // <--- this is the color of the tick's value!
         fontSize: settings?.xAxis?.tickFontSize,
         fontFamily: settings?.xAxis?.tickFontFamily,
@@ -116,16 +130,6 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         // unit: 'cm', // <--- Doesn't appear if you're using `tick`, which you are. Also, it is good practice to have units appear on the label itself, and not on the ticks of the xAxis.
         // fontWeight: 100,
       },
-      label: {
-        value: settings?.xAxis?.label,
-        angle: 0,
-        position: 'bottom',
-        dy: calculateXAxisLabelPositioning({
-          showLegend,
-          showZoomSlider: settings?.zoomSlider?.show ?? false,
-        }),
-        dx: -yAxisWidth / 2,
-      },
       verticalProps: {
         dataKey: 'x',
         padding: 'gap' as 'gap' | 'no-gap', // <--- 'gap' is unique to BarChart. 'gap' gives the first and the last bar gap from the walls. 'no-gap' has both the first & last bars touch the walls.
@@ -136,6 +140,13 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
     yAxis: {
       props: {
         hide: settings?.yAxis?.show === undefined ? false : !settings?.yAxis?.show,
+        label: {
+          value: settings?.yAxis?.label,
+          angle: -90,
+          position: 'left',
+          fontSize: settings?.yAxis?.labelFontSize,
+          style: { textAnchor: 'middle' },
+        },
         stroke: settings?.yAxis?.axisLineColor ?? '#666',
         fontSize: settings?.yAxis?.tickFontSize,
         fontFamily: settings?.yAxis?.tickFontFamily,
@@ -152,13 +163,6 @@ function getSharedMergedChartSettings(props: GetMergedChartSettingsProps) {
         padding: { top: 18 },
         includeHidden: true, // <--- when having multiple lines, and playing around clicking the legend items, animations look so much better with this as `true`.
         // dataKey: 'y'// <--- do NOT put dataKey on y axis of BarChart or LineChart! We are going to use the `name` of each Bars set.
-      },
-      label: {
-        value: settings?.yAxis?.label,
-        angle: -90,
-        position: 'left',
-        fontSize: settings?.yAxis?.labelFontSize,
-        style: { textAnchor: 'middle' },
       },
       horizontalProps: {
         dataKey: 'x',

@@ -1,4 +1,3 @@
-import { useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
 import {
   Brush,
@@ -12,81 +11,39 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { BRUSH_ITEMS_PER_PAGE, DASHED_LINE, CLASSES as GLOBAL_CLASSES } from '../logic/constants';
+import { DASHED_LINE, CLASSES as GLOBAL_CLASSES } from '../logic/constants';
 import CustomizedAxisTick from '../logic/CustomAxisTick';
 import CustomTooltip from '../logic/CustomTooltip';
-import useMaxYValue from '../logic/hooks/useMaxYValue';
-import useTransformedDataForRecharts from '../logic/hooks/useTransformedDataForRecharts';
-import useWidthOfLongestXTickLabel from '../logic/hooks/useWidthOfLongestXTickLabel';
-import useXAxisHeight from '../logic/hooks/useXAxisHeight';
-import useYAxisWidth from '../logic/hooks/useYAxisWidth';
-import {
-  getLengthOfLongestData,
-  getLineChartMergedChartSettings,
-  getNamesObject,
-  runValidationsOnAllSeries,
-} from '../logic/utils';
 import ActiveDot, { ActiveDotProps } from './logic/ActiveDot';
 import { CLASSES } from './logic/constants';
 import NonActiveDot from './logic/NonActiveDot';
 import type { BaseChartProps, LineChartSettings, LineSeries } from '../types';
+import { useLineChartLogic } from './logic/useLineChartLogic';
 import '../../recharts.css';
 
-type LineChartProps = BaseChartProps & {
+export type LineChartProps = BaseChartProps & {
   settings?: LineChartSettings;
   data: Array<LineSeries>;
   onDotClick?: (data: ActiveDotProps, e: any) => void;
 };
 
 export default function LineChart(props: LineChartProps) {
+  const { data, onDotClick, referenceLines, className } = props;
+
   const {
-    type: xAxisType = 'category',
-    settings: settingsToMerge,
-    /**
-     * **IMPORTANT!!!*
-     *
-     * When choosing chart type of `datetime`, each data series must be sorted!
-     * For other types (category & number), recharts sorts the data internally.
-     */
-    data,
-    onDotClick,
-    referenceLines,
-    className,
-    style,
-  } = props;
-
-  useMemo(() => runValidationsOnAllSeries(data), [data]);
-
-  const lengthOfLongestData = useMemo(() => getLengthOfLongestData(data), [data]);
-
-  const startIndex = useRef(0);
-  const endIndex = useRef(Math.min(BRUSH_ITEMS_PER_PAGE, lengthOfLongestData - 1));
-  const [isLegendHovered, setIsLegendHovered] = useState(false);
-  const [isLineHovered, setIsLineHovered] = useState(() => getNamesObject(data));
-  const [visibleLines, setVisibleLines] = useState(() => getNamesObject(data, true));
-
-  const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
-
-  const { transformedDataForRecharts } = useTransformedDataForRecharts({ data });
-  const { maxYValue } = useMaxYValue({ data });
-  const { widthOfLongestXTickLabel } = useWidthOfLongestXTickLabel({
-    settingsToMerge,
-    transformedDataForRecharts,
     xAxisType,
-  });
-  const { xAxisHeight } = useXAxisHeight({ settingsToMerge, positiveXTickRotateAngle, widthOfLongestXTickLabel });
-  const { yAxisWidth } = useYAxisWidth({ data, settingsToMerge, maxYValue });
-  const chartSettings = useMemo(
-    () =>
-      getLineChartMergedChartSettings({
-        settings: settingsToMerge,
-        chartType: 'LineChart',
-        xAxisType,
-        xAxisHeight,
-        yAxisWidth,
-      }),
-    [settingsToMerge, xAxisType, xAxisHeight, yAxisWidth],
-  );
+    transformedDataForRecharts,
+    chartSettings,
+    startIndex,
+    endIndex,
+    isLineHovered,
+    isLegendHovered,
+    visibleLines,
+    onLegendMouseEnter,
+    onLegendMouseLeave,
+    onLegendClick,
+    onBrushChange,
+  } = useLineChartLogic(props);
 
   return (
     <ResponsiveContainer width='100%' height='100%'>
@@ -94,25 +51,21 @@ export default function LineChart(props: LineChartProps) {
         {...chartSettings.lineChartBase.props}
         data={transformedDataForRecharts}
         className={clsx(CLASSES.lineChart, className)}
-        style={style}
       >
-        {/* MUST come before XAxis & YAxis */}
+        {/* MUST come before XAxis & YAxis! It needs to be painted behind them */}
         {chartSettings.grid.show && <CartesianGrid {...chartSettings.grid.props} />}
 
         <XAxis
-          {...chartSettings.xAxis.props}
           dataKey='x'
-          label={chartSettings.xAxis.label}
+          {...chartSettings.xAxis.props}
           type={xAxisType === 'datetime' ? 'number' : xAxisType} // <--- 'category' v.s. 'number'. What is the difference? Isn't it the same eventually? Well no, because consider a case where gaps exist. For instance, 0 1 2 4 5. A 'category' would place an even distance between 2 & 4, when in fact it's a double gap!
           scale={xAxisType === 'datetime' ? 'time' : 'auto'}
-          // passes everything as an argument! x, y, width, height, everything! You'll even need to handle the tick's positioning, and format the entire tick.
           tick={(tickProps) => <CustomizedAxisTick {...tickProps} />}
         />
 
         <YAxis
           {...chartSettings.yAxis.props}
           type={'number' as 'number' | 'category' | undefined} // <--- defaults to 'number'. 'category' or 'number'.
-          label={chartSettings.yAxis.label}
         />
 
         {chartSettings.tooltip.show && (
@@ -122,30 +75,9 @@ export default function LineChart(props: LineChartProps) {
         {chartSettings.legend.show && (
           <Legend
             {...chartSettings.legend.props}
-            onMouseEnter={(payload) => {
-              const lineName = payload.dataKey as string;
-
-              if (!visibleLines[lineName]) return;
-
-              setIsLegendHovered(true);
-              setIsLineHovered((prevState) => ({ ...prevState, [lineName]: true }));
-            }}
-            onMouseLeave={(payload) => {
-              const lineName = payload.dataKey as string;
-
-              if (!visibleLines[lineName]) return;
-
-              setIsLegendHovered(false);
-
-              setIsLineHovered((prevState) => ({ ...prevState, [lineName]: false }));
-            }}
-            onClick={(payload) => {
-              const lineName = payload.dataKey as string;
-
-              if (visibleLines[lineName]) setIsLegendHovered(false);
-
-              setVisibleLines((prevState) => ({ ...prevState, [lineName]: !prevState[lineName] }));
-            }}
+            onMouseEnter={onLegendMouseEnter}
+            onMouseLeave={onLegendMouseLeave}
+            onClick={onLegendClick}
           />
         )}
 
@@ -154,10 +86,7 @@ export default function LineChart(props: LineChartProps) {
             {...chartSettings.zoomSlider.props}
             startIndex={startIndex.current} // <--- The default start index of brush. If the option is not set, the start index will be 0.
             endIndex={endIndex.current} // <---The default end index of brush. If the option is not set, the end index will be calculated by the length of data.
-            onChange={(brushProps) => {
-              startIndex.current = brushProps.startIndex as number;
-              endIndex.current = brushProps.endIndex as number;
-            }}
+            onChange={onBrushChange}
             className={GLOBAL_CLASSES.tooltip}
           >
             {chartSettings.zoomSlider.showPreviewInSlider ? (
@@ -189,14 +118,7 @@ export default function LineChart(props: LineChartProps) {
 
           if (isDashed) referenceLineProps.strokeDasharray = '10 10';
 
-          return (
-            <ReferenceLine
-              key={index}
-              {...chartSettings.referenceLines.props}
-              {...referenceLineProps}
-              // isFront // <--- defaults to false. true will display it on top of bars in BarCharts, or data in LineCharts.
-            />
-          );
+          return <ReferenceLine key={index} {...chartSettings.referenceLines.props} {...referenceLineProps} />;
         })}
 
         {data.map((line) => {
@@ -221,13 +143,13 @@ export default function LineChart(props: LineChartProps) {
               {...chartSettings.lines.props}
               {...lineProps}
               hide={!visibleLines[name]}
-              // This solves the pesky error of "Warning: A props object containing a "key" prop is being spread into JSX: let props = {key: someKey, r: ..., stroke: ..., strokeWidth: ..., opacity: ..., strokeDasharray: ..., fill: ..., width: ..., height: ..., value: ..., dataKey: ..., cx: ..., cy: ..., index: ..., payload: ..., data: ..., showChartValues: ..., showLineValues: ...};"
+              // This destruct below solves the pesky error of "Warning: A props object containing a "key" prop is being spread into JSX: let props = {key: someKey, r: ..., stroke: ..., strokeWidth: ..., opacity: ..., strokeDasharray: ..., fill: ..., width: ..., height: ..., value: ..., dataKey: ..., cx: ..., cy: ..., index: ..., payload: ..., data: ..., showChartValues: ..., showLineValues: ...};"
               dot={({ key, ...dotProps }) => (
                 <NonActiveDot
                   key={key}
                   {...dotProps}
-                  hideDots={chartSettings.lines.hideDots}
                   data={data}
+                  hideDots={chartSettings.lines.hideDots}
                   showChartValues={chartSettings.general.showValues}
                   showLineValues={showLineValues}
                 />

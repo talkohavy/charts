@@ -72,8 +72,9 @@ export default function BarChart(props: BarChartProps) {
           {...chartSettings.xAxis.props}
           {...(barsLayout === 'vertical' ? chartSettings.xAxis.verticalProps : { type: 'number' as any })}
           label={{
-            ...chartSettings.xAxis.label,
-            value: barsLayout === 'vertical' ? chartSettings.xAxis.label?.value : chartSettings.yAxis.label?.value,
+            ...chartSettings.xAxis.props.label,
+            value:
+              barsLayout === 'vertical' ? chartSettings.xAxis.props.label.value : chartSettings.yAxis.props.label.value,
           }}
           tick={(tickProps) => <CustomizedAxisTick {...tickProps} />}
         />
@@ -81,8 +82,9 @@ export default function BarChart(props: BarChartProps) {
         <YAxis
           {...chartSettings.yAxis.props}
           label={{
-            ...chartSettings.yAxis.label,
-            value: barsLayout === 'vertical' ? chartSettings.yAxis.label.value : chartSettings.xAxis.label.value,
+            ...chartSettings.yAxis.props.label,
+            value:
+              barsLayout === 'vertical' ? chartSettings.yAxis.props.label.value : chartSettings.xAxis.props.label.value,
           }}
           {...(barsLayout === 'vertical' ? {} : chartSettings.yAxis.horizontalProps)}
         />
