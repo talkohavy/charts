@@ -1,19 +1,13 @@
-import { useMemo, useRef, useState } from 'react';
-import {
-  getLengthOfLongestData,
-  getLineChartMergedChartSettings,
-  getNamesObject,
-  runValidationsOnAllSeries,
-} from '../../logic/utils';
+import { useMemo, useRef } from 'react';
+import { getLengthOfLongestData, getLineChartMergedChartSettings, runValidationsOnAllSeries } from '../../logic/utils';
 import useTransformedDataForRecharts from '../../logic/hooks/useTransformedDataForRecharts';
 import useYAxisWidth from '../../logic/hooks/useYAxisWidth';
 import useXAxisHeight from '../../logic/hooks/useXAxisHeight';
 import useWidthOfLongestXTickLabel from '../../logic/hooks/useWidthOfLongestXTickLabel';
 import { LineChartProps } from '../LineChart';
-import { Payload } from 'recharts/types/component/DefaultLegendContent';
-import { DataKey } from 'recharts/types/util/types';
 import useMaxYValue from '../../logic/hooks/useMaxYValue';
 import { BRUSH_ITEMS_PER_PAGE } from '../../logic/constants';
+import { useLegendActions } from '../../logic/hooks/useLegendActions';
 
 export function useLineChartLogic(props: LineChartProps) {
   const { type: xAxisType = 'category', data, settings: settingsToMerge } = props;
@@ -24,9 +18,6 @@ export function useLineChartLogic(props: LineChartProps) {
 
   const startIndex = useRef<number | undefined>(0);
   const endIndex = useRef<number | undefined>(Math.min(BRUSH_ITEMS_PER_PAGE, lengthOfLongestData - 1));
-  const [isLegendHovered, setIsLegendHovered] = useState(false);
-  const [isLineHovered, setIsLineHovered] = useState(() => getNamesObject(data));
-  const [visibleLines, setVisibleLines] = useState(() => getNamesObject(data, true));
 
   const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
 
@@ -51,37 +42,19 @@ export function useLineChartLogic(props: LineChartProps) {
     [settingsToMerge, xAxisType, xAxisHeight, yAxisWidth],
   );
 
-  const onLegendMouseEnter = (payload: Payload & { dataKey?: DataKey<any> }) => {
-    const lineName = payload.dataKey as string;
-
-    if (!visibleLines[lineName]) return;
-
-    setIsLegendHovered(true);
-    setIsLineHovered((prevState) => ({ ...prevState, [lineName]: true }));
-  };
-
-  const onLegendMouseLeave = (payload: Payload & { dataKey?: DataKey<any> }) => {
-    const lineName = payload.dataKey as string;
-
-    if (!visibleLines[lineName]) return;
-
-    setIsLegendHovered(false);
-
-    setIsLineHovered((prevState) => ({ ...prevState, [lineName]: false }));
-  };
-
-  const onLegendClick = (payload: Payload & { dataKey?: DataKey<any> }) => {
-    const lineName = payload.dataKey as string;
-
-    if (visibleLines[lineName]) setIsLegendHovered(false);
-
-    setVisibleLines((prevState) => ({ ...prevState, [lineName]: !prevState[lineName] }));
-  };
-
   const onBrushChange = (brushProps: { startIndex?: number; endIndex?: number }) => {
     startIndex.current = brushProps.startIndex;
     endIndex.current = brushProps.endIndex;
   };
+
+  const {
+    isLegendHovered,
+    isSeriesHovered: isLineHovered,
+    onLegendMouseEnter,
+    onLegendMouseLeave,
+    onLegendClick,
+    visibleSeries: visibleLines,
+  } = useLegendActions({ data });
 
   return {
     xAxisType,

@@ -1,19 +1,13 @@
-import { useMemo, useRef, useState } from 'react';
-import { Payload } from 'recharts/types/component/DefaultLegendContent';
-import { DataKey } from 'recharts/types/util/types';
+import { useMemo, useRef } from 'react';
 import { BRUSH_ITEMS_PER_PAGE } from '../../logic/constants';
 import useMaxYValue from '../../logic/hooks/useMaxYValue';
 import useTransformedDataForRecharts from '../../logic/hooks/useTransformedDataForRecharts';
 import useWidthOfLongestXTickLabel from '../../logic/hooks/useWidthOfLongestXTickLabel';
 import useXAxisHeight from '../../logic/hooks/useXAxisHeight';
 import useYAxisWidth from '../../logic/hooks/useYAxisWidth';
-import {
-  getBarChartMergedChartSettings,
-  getLengthOfLongestData,
-  getNamesObject,
-  runValidationsOnAllSeries,
-} from '../../logic/utils';
+import { getBarChartMergedChartSettings, getLengthOfLongestData, runValidationsOnAllSeries } from '../../logic/utils';
 import { BarChartProps } from '../BarChart';
+import { useLegendActions } from '../../logic/hooks/useLegendActions';
 
 export function useBarChartLogic(props: BarChartProps) {
   const { type: xAxisType = 'category', data, settings: settingsToMerge } = props;
@@ -24,9 +18,6 @@ export function useBarChartLogic(props: BarChartProps) {
 
   const startIndex = useRef<number | undefined>(0);
   const endIndex = useRef<number | undefined>(Math.min(BRUSH_ITEMS_PER_PAGE, lengthOfLongestData - 1));
-  const [isLegendHovered, setIsLegendHovered] = useState(false);
-  const [isBarTypeHovered, setIsBarTypeHovered] = useState(() => getNamesObject(data));
-  const [visibleBars, setVisibleBars] = useState(() => getNamesObject(data, true));
 
   const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
 
@@ -51,37 +42,19 @@ export function useBarChartLogic(props: BarChartProps) {
     [settingsToMerge, xAxisType, xAxisHeight, yAxisWidth],
   );
 
-  const onLegendMouseEnter = (payload: Payload & { dataKey?: DataKey<any> }) => {
-    const barName = payload.dataKey as string;
-
-    if (!visibleBars[barName]) return;
-
-    setIsLegendHovered(true);
-    setIsBarTypeHovered((prevState) => ({ ...prevState, [barName]: true }));
-  };
-
-  const onLegendMouseLeave = (payload: Payload & { dataKey?: DataKey<any> }) => {
-    const barName = payload.dataKey as string;
-
-    if (!visibleBars[barName]) return;
-
-    setIsLegendHovered(false);
-
-    setIsBarTypeHovered((prevState) => ({ ...prevState, [barName]: false }));
-  };
-
-  const onLegendClick = (payload: Payload & { dataKey?: DataKey<any> }) => {
-    const barName = payload.dataKey as string;
-
-    if (visibleBars[barName]) setIsLegendHovered(false);
-
-    setVisibleBars((prevState) => ({ ...prevState, [barName]: !prevState[barName] }));
-  };
-
   const onBrushChange = (brushProps: { startIndex?: number; endIndex?: number }) => {
     startIndex.current = brushProps.startIndex;
     endIndex.current = brushProps.endIndex;
   };
+
+  const {
+    isLegendHovered,
+    isSeriesHovered: isBarTypeHovered,
+    onLegendMouseEnter,
+    onLegendMouseLeave,
+    onLegendClick,
+    visibleSeries: visibleBars,
+  } = useLegendActions({ data });
 
   return {
     transformedDataForRecharts,
