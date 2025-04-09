@@ -1,23 +1,18 @@
-import { useMemo, useRef } from 'react';
-import { BRUSH_ITEMS_PER_PAGE } from '../../logic/constants';
+import { useMemo } from 'react';
 import useMaxYValue from '../../logic/hooks/useMaxYValue';
 import useTransformedDataForRecharts from '../../logic/hooks/useTransformedDataForRecharts';
 import useWidthOfLongestXTickLabel from '../../logic/hooks/useWidthOfLongestXTickLabel';
 import useXAxisHeight from '../../logic/hooks/useXAxisHeight';
 import useYAxisWidth from '../../logic/hooks/useYAxisWidth';
-import { getBarChartMergedChartSettings, getLengthOfLongestData, runValidationsOnAllSeries } from '../../logic/utils';
+import { getBarChartMergedChartSettings, runValidationsOnAllSeries } from '../../logic/utils';
 import { BarChartProps } from '../BarChart';
 import { useLegendActions } from '../../logic/hooks/useLegendActions';
+import { useBrushActions } from '../../logic/hooks/useBrushActions';
 
 export function useBarChartLogic(props: BarChartProps) {
   const { type: xAxisType = 'category', data, settings: settingsToMerge } = props;
 
   useMemo(() => runValidationsOnAllSeries(data), [data]);
-
-  const lengthOfLongestData = useMemo(() => getLengthOfLongestData(data), [data]);
-
-  const startIndex = useRef<number | undefined>(0);
-  const endIndex = useRef<number | undefined>(Math.min(BRUSH_ITEMS_PER_PAGE, lengthOfLongestData - 1));
 
   const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
 
@@ -42,11 +37,6 @@ export function useBarChartLogic(props: BarChartProps) {
     [settingsToMerge, xAxisType, xAxisHeight, yAxisWidth],
   );
 
-  const onBrushChange = (brushProps: { startIndex?: number; endIndex?: number }) => {
-    startIndex.current = brushProps.startIndex;
-    endIndex.current = brushProps.endIndex;
-  };
-
   const {
     isLegendHovered,
     isSeriesHovered: isBarTypeHovered,
@@ -55,6 +45,8 @@ export function useBarChartLogic(props: BarChartProps) {
     onLegendClick,
     visibleSeries: visibleBars,
   } = useLegendActions({ data });
+
+  const { startIndex, endIndex, onBrushChange } = useBrushActions({ data });
 
   return {
     transformedDataForRecharts,
