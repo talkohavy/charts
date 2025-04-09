@@ -3,13 +3,14 @@ import { BaseChartSettings } from '../../types';
 import { getXAxisHeight } from '../utils';
 
 type UseXAxisHeightProps = {
-  widthOfLongestXTickLabel: number;
-  positiveXTickRotateAngle: number;
   settingsToMerge?: BaseChartSettings;
+  widthOfLongestXTickLabel: number;
 };
 
 export default function useXAxisHeight(props: UseXAxisHeightProps) {
-  const { settingsToMerge, positiveXTickRotateAngle, widthOfLongestXTickLabel } = props;
+  const { settingsToMerge, widthOfLongestXTickLabel } = props;
+
+  const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
 
   const xAxisHeight = useMemo(
     () =>

@@ -14,8 +14,6 @@ export function useBarChartLogic(props: BarChartProps) {
 
   useMemo(() => runValidationsOnAllSeries(data), [data]);
 
-  const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
-
   const { transformedDataForRecharts } = useTransformedDataForRecharts({ data });
   const { maxYValue } = useMaxYValue({ data });
   const { widthOfLongestXTickLabel } = useWidthOfLongestXTickLabel({
@@ -23,7 +21,7 @@ export function useBarChartLogic(props: BarChartProps) {
     transformedDataForRecharts,
     xAxisType,
   });
-  const { xAxisHeight } = useXAxisHeight({ settingsToMerge, widthOfLongestXTickLabel, positiveXTickRotateAngle });
+  const { xAxisHeight } = useXAxisHeight({ settingsToMerge, widthOfLongestXTickLabel });
   const { yAxisWidth } = useYAxisWidth({ data, maxYValue, settingsToMerge });
   const chartSettings = useMemo(
     () =>

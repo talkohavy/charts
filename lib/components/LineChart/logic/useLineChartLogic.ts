@@ -14,8 +14,6 @@ export function useLineChartLogic(props: LineChartProps) {
 
   useMemo(() => runValidationsOnAllSeries(data), [data]);
 
-  const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
-
   const { transformedDataForRecharts } = useTransformedDataForRecharts({ data });
   const { maxYValue } = useMaxYValue({ data });
   const { widthOfLongestXTickLabel } = useWidthOfLongestXTickLabel({
@@ -23,7 +21,7 @@ export function useLineChartLogic(props: LineChartProps) {
     transformedDataForRecharts,
     xAxisType,
   });
-  const { xAxisHeight } = useXAxisHeight({ settingsToMerge, positiveXTickRotateAngle, widthOfLongestXTickLabel });
+  const { xAxisHeight } = useXAxisHeight({ settingsToMerge, widthOfLongestXTickLabel });
   const { yAxisWidth } = useYAxisWidth({ data, settingsToMerge, maxYValue });
   const chartSettings = useMemo(
     () =>
