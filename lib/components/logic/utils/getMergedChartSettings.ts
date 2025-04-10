@@ -6,7 +6,7 @@ import type {
   LineChartSettings,
   RechartsTickFormatterFunc,
 } from '../../types';
-import { BRUSH_HEIGHT } from '../constants';
+import { BRUSH_HEIGHT, TICK_DASH_WIDTH } from '../constants';
 import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
 import { FORMATTERS, formatLabel } from './formatters';
 import { getLegendHeight } from './getLegendHeight';
@@ -153,6 +153,7 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
         tick: {
           fill: settings?.yAxis?.tickColor ?? '#666',
         },
+        tickSize: settings?.yAxis?.tickSize ?? TICK_DASH_WIDTH,
         ticks: settings?.yAxis?.customTicks,
         axisLine: settings?.yAxis?.showAxisLine ?? true,
         tickLine: settings?.yAxis?.showTickLine ?? true,

@@ -2,7 +2,7 @@ export const BRUSH_HEIGHT = 25;
 export const BRUSH_ITEMS_PER_PAGE = 10;
 export const LEGEND_HEIGHT = 25;
 export const X_AXIS_BASE_HEIGHT = 10;
-export const TICK_DASH_WIDTH = 10;
+export const TICK_DASH_WIDTH = 6;
 export const DASHED_LINE = '20 20'; // or '5 5'
 export const DEFAULT_Y_TICK_COUNT = 5; // <--- recharts defaults to 5 anyways
 

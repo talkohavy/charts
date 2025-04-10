@@ -78,6 +78,10 @@ export type BaseChartSettings = {
      * @default 5
      */
     tickCount?: number;
+    /**
+     * @default 6
+     */
+    tickSize?: number;
     label?: string;
     labelFontSize?: number;
     tickColor?: string;
