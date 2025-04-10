@@ -39,7 +39,7 @@ export function calculateYAxisWidth(props: CalculateYAxisWidthProps) {
     fontFamily,
   });
 
-  const yAxisWidth = longestYTickWidth + TICK_DASH_WIDTH + (yLabel ? 10 : 0);
+  const yAxisWidth = longestYTickWidth + TICK_DASH_WIDTH + (yLabel ? 10 : 5);
 
   return yAxisWidth;
 }

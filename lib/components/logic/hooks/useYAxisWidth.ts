@@ -19,6 +19,7 @@ export function useYAxisWidth(props: UseYAxisWidthProps) {
       yLabel: settingsToMerge?.yAxis?.label,
       yTickSuffix: settingsToMerge?.yAxis?.tickSuffix,
       fontSize: settingsToMerge?.yAxis?.tickFontSize,
+      fontFamily: settingsToMerge?.yAxis?.tickFontFamily,
       tickCount: settingsToMerge?.yAxis?.tickCount,
       customTicks: settingsToMerge?.yAxis?.customTicks,
     });
@@ -30,6 +31,7 @@ export function useYAxisWidth(props: UseYAxisWidthProps) {
     settingsToMerge?.yAxis?.label,
     settingsToMerge?.yAxis?.tickSuffix,
     settingsToMerge?.yAxis?.tickFontSize,
+    settingsToMerge?.yAxis?.tickFontFamily,
     settingsToMerge?.yAxis?.tickCount,
     settingsToMerge?.yAxis?.customTicks,
   ]);
