@@ -70,7 +70,7 @@ export default function BarChart(props: BarChartProps) {
 
         <XAxis
           {...chartSettings.xAxis.props}
-          {...(barsLayout === 'vertical' ? chartSettings.xAxis.verticalProps : { type: 'number' as any })}
+          {...(barsLayout === 'vertical' ? chartSettings.xAxis.verticalProps : chartSettings.xAxis.horizontalProps)}
           label={{
             ...chartSettings.xAxis.props.label,
             value:
@@ -81,12 +81,12 @@ export default function BarChart(props: BarChartProps) {
 
         <YAxis
           {...chartSettings.yAxis.props}
+          {...(barsLayout === 'vertical' ? chartSettings.yAxis.verticalProps : chartSettings.yAxis.horizontalProps)}
           label={{
             ...chartSettings.yAxis.props.label,
             value:
               barsLayout === 'vertical' ? chartSettings.yAxis.props.label.value : chartSettings.xAxis.props.label.value,
           }}
-          {...(barsLayout === 'vertical' ? {} : chartSettings.yAxis.horizontalProps)}
         />
 
         {chartSettings.tooltip.show && (

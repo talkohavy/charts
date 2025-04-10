@@ -136,6 +136,10 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
         type: (xAxisType === 'category' ? 'category' : 'number') as 'number' as 'number' | 'category' | undefined, // <--- 'category' v.s. 'number'. What is the difference? Isn't it the same eventually? Well no, because consider a case where gaps exist. For instance, 0 1 2 4 5. A 'category' would place an even distance between 2 & 4, when in fact it's a double gap!
         scale: (xAxisType === 'category' ? 'auto' : 'time') as ScaleType,
       },
+      horizontalProps: {
+        type: 'number' as any,
+        tickFormatter: (settings?.yAxis?.tickFormatter ?? formatLabel) as CustomTickFormatterFunc,
+      },
     },
     yAxis: {
       props: {
@@ -169,7 +173,9 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
         dataKey: 'x',
         type: 'category' as 'number' | 'category', // <--- defaults to 'number'. Options are: 'category' or 'number'.
         padding: 'gap' as any, // <--- 'gap' is unique to BarChart. 'gap' gives the first and the last bar gap from the walls. 'no-gap' has both the first & last bars touch the walls.
+        tickFormatter: (settings?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType]) as RechartsTickFormatterFunc,
       },
+      verticalProps: {},
     },
     grid: {
       show: !!showGrid,

@@ -5,7 +5,6 @@ import Input from '../../components/controls/Input';
 import NumberInput from '../../components/controls/NumberInput';
 import Select from '../../components/controls/Select';
 import { useDarkTheme } from '../../providers/DarkThemeProvider/DarkThemeContext';
-import { formatDateAndMonth } from '../../utils/formatters/formatDateAndTime';
 import { mainExample } from './examples/index';
 import { THEME } from './logic/theme';
 
