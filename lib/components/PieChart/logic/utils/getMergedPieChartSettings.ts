@@ -1,4 +1,4 @@
-import { FORMATTERS, formatLabel } from '../../../logic/utils';
+import { formatLabel, FORMATTERS } from '../../../logic/utils/formatters';
 import { PieChartSettings } from '../../types';
 
 const defaultYValueFormatter = (num: number) => {
