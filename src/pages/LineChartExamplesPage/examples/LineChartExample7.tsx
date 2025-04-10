@@ -27,14 +27,7 @@ export default function LineChartExample7() {
       <p>A Line chart with 1 singled out point</p>
 
       <div className='size-full max-h-md max-w-lg'>
-        <LineChart
-          data={lines}
-          settings={{ grid: { show: true } }}
-          style={{
-            fontFamily: 'Hiragino Sans GB,Arial,sans-serif',
-            border: '1px solid black',
-          }}
-        />
+        <LineChart data={lines} settings={{ grid: { show: true } }} className='border border-black' />
       </div>
     </div>
   );

@@ -55,10 +55,7 @@ export default function LineChartExample10() {
               tickAngle: 45,
             },
           }}
-          style={{
-            fontFamily: 'Hiragino Sans GB,Arial,sans-serif',
-            border: '1px solid black',
-          }}
+          className='border border-black'
         />
       </div>
     </div>

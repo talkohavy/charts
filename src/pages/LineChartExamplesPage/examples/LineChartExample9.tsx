@@ -33,14 +33,7 @@ export default function LineChartExample9() {
       <p>LineChart has values above dots</p>
 
       <div className='size-full max-h-md max-w-lg'>
-        <LineChart
-          data={lines}
-          settings={{ grid: { show: true } }}
-          style={{
-            fontFamily: 'Hiragino Sans GB,Arial,sans-serif',
-            border: '1px solid black',
-          }}
-        />
+        <LineChart data={lines} settings={{ grid: { show: true } }} className='border border-black' />
       </div>
     </div>
   );

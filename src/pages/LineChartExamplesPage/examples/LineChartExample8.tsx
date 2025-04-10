@@ -27,12 +27,7 @@ export default function LineChartExample8() {
       <p>A Line chart as a Card</p>
 
       <div className='size-full max-h-md max-w-lg'>
-        <LineChart
-          data={lines}
-          settings={{ grid: { show: true } }}
-          className='rounded-lg border p-4 font-thin'
-          style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif' }}
-        />
+        <LineChart data={lines} settings={{ grid: { show: true } }} className='rounded-lg border p-4 font-thin' />
       </div>
     </div>
   );

@@ -30,10 +30,7 @@ export default function LineChartExample4() {
         <LineChart
           data={lines}
           settings={{ grid: { show: true }, legend: { show: true } }}
-          style={{
-            fontFamily: 'Hiragino Sans GB,Arial,sans-serif',
-            border: '1px solid black',
-          }}
+          className='border border-black'
         />
       </div>
     </div>

@@ -47,10 +47,7 @@ export default function LineChartExample6() {
           data={lines}
           referenceLines={referenceLines}
           settings={{ grid: { show: true } }}
-          style={{
-            fontFamily: 'Hiragino Sans GB,Arial,sans-serif',
-            border: '1px solid black',
-          }}
+          className='border border-black'
         />
       </div>
     </div>

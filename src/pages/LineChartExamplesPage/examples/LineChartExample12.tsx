@@ -72,10 +72,7 @@ export default function LineChartExample12() {
             legend: { show: true },
             zoomSlider: { show: true },
           }}
-          style={{
-            fontFamily: 'Hiragino Sans GB,Arial,sans-serif',
-            border: '1px solid black',
-          }}
+          className='border border-black'
         />
       </div>
     </div>
