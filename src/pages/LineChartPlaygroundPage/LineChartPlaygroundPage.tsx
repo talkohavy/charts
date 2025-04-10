@@ -75,6 +75,7 @@ export default function LineChartPlaygroundPage() {
                   tickSuffix: yTickSuffix,
                   tickColor: THEME[theme].yTickColor,
                   axisLineColor: THEME[theme].yAxisLineColor,
+                  // tickFontFamily: 'Hiragino Sans GB',
                   // tickFormatter: () => {},
                 },
                 grid: {
@@ -98,8 +99,7 @@ export default function LineChartPlaygroundPage() {
                 },
               }}
               // referenceLines={referenceLines}
-              className={showAsCard ? 'rounded-lg border border-neutral-300 p-4 font-thin' : undefined}
-              style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif', border: showBorder && '1px solid black' }}
+              className={showAsCard ? 'border rounded-lg border-neutral-300 p-1 font-thin' : undefined}
             />
           </div>
 
