@@ -4,6 +4,7 @@ const LineChartExamplesPage = lazy(() => import('./pages/LineChartExamplesPage')
 const BarChartExamplePage = lazy(() => import('./pages/BarChartExamplePage'));
 const PieChartExamplePage = lazy(() => import('./pages/PieChartExamplesPage'));
 const LineChartPlaygroundPage = lazy(() => import('./pages/LineChartPlaygroundPage'));
+const BarChartPlaygroundPage = lazy(() => import('./pages/BarChartPlaygroundPage'));
 
 export const routes = [
   // Leave this as the first, since it will serve as the homepage
@@ -30,5 +31,11 @@ export const routes = [
     text: 'Playground L',
     activeNames: ['/line-chart-playground'],
     Component: LineChartPlaygroundPage,
+  },
+  {
+    to: '/bar-chart-playground',
+    text: 'Playground B',
+    activeNames: ['/bar-chart-playground'],
+    Component: BarChartPlaygroundPage,
   },
 ];
