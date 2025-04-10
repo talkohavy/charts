@@ -191,7 +191,7 @@ export type BarSeries = {
 
 export type BarSeriesDataItem = {
   x: number | string;
-  y: number;
+  y: number | null;
   color?: string;
 };
 
