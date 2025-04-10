@@ -39,6 +39,7 @@ export default function BarChartPlaygroundPage() {
   const [xAxisTypeOption, setXAxisTypeOption] = useState(lineTypeOptions[0]);
   const [xLabel, setXLabel] = useState('');
   const [yLabel, setYLabel] = useState('');
+  const [xTickSuffix, setXTickSuffix] = useState('');
   const [yTickSuffix, setYTickSuffix] = useState('');
   const [xTickAngle, setXTickAngle] = useState(0);
   const [showZoomSlider, setShowZoomSlider] = useState(false);
@@ -71,6 +72,7 @@ export default function BarChartPlaygroundPage() {
                   tickAngle: xTickAngle,
                   // tickFormatter: formatDateAndMonth,
                   tickColor: THEME[theme].xTickColor,
+                  tickSuffix: xTickSuffix,
                   axisLineColor: THEME[theme].xAxisLineColor,
                   // tickFormatter: () => {},
                   // tickSuffix: 'cm'
@@ -112,6 +114,7 @@ export default function BarChartPlaygroundPage() {
               <Select selectedOption={xAxisTypeOption} setOption={setXAxisTypeOption} options={lineTypeOptions} />
               <Input value={xLabel} setValue={setXLabel} placeholder='x label (i.e. countries)' />
               <Input value={yLabel} setValue={setYLabel} placeholder='y label (i.e. Amount in GDP)' />
+              <Input value={xTickSuffix} setValue={setXTickSuffix} placeholder='x tick suffix (i.e. cm)' />
               <Input value={yTickSuffix} setValue={setYTickSuffix} placeholder='y tick suffix (i.e. cm)' />
               <NumberInput value={xTickAngle} setValue={setXTickAngle} />
             </div>

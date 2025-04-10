@@ -19,6 +19,7 @@ export function useWidthOfLongestXTickLabel(props: UseWidthOfLongestXTickLabelPr
         xTickFormatter: (settingsToMerge?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType]) as CustomTickFormatterFunc,
         xFontSize: settingsToMerge?.xAxis?.tickFontSize,
         xFontFamily: settingsToMerge?.xAxis?.tickFontFamily,
+        xTickSuffix: settingsToMerge?.xAxis?.tickSuffix,
       }),
     [
       transformedDataForRecharts,
@@ -26,6 +27,7 @@ export function useWidthOfLongestXTickLabel(props: UseWidthOfLongestXTickLabelPr
       settingsToMerge?.xAxis?.tickFormatter,
       settingsToMerge?.xAxis?.tickFontSize,
       settingsToMerge?.xAxis?.tickFontFamily,
+      settingsToMerge?.xAxis?.tickSuffix,
     ],
   );
 

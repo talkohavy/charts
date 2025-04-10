@@ -42,6 +42,7 @@ export type BaseChartSettings = {
      * @default '#666'
      */
     tickColor?: string;
+    tickSuffix?: string;
     /**
      * The angle of the tick's value.
      * @default 0

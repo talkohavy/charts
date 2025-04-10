@@ -9,13 +9,13 @@ import { runValidationsOnAllSeries } from '../../logic/utils/runValidationsOnAll
 import { BarChartProps } from '../BarChart';
 
 export function useBarChartLogic(props: BarChartProps) {
-  const { type: xAxisType = 'category', data, settings: settingsToMerge } = props;
+  const { type: xAxisType = 'category', data, settings: settingsToMerge, layout = 'horizontal' } = props;
 
   useMemo(() => runValidationsOnAllSeries(data), [data]);
 
   const { transformedDataForRecharts } = useTransformedDataForRecharts({ data });
   const { xAxisHeight } = useXAxisHeight({ settingsToMerge, transformedDataForRecharts, xAxisType });
-  const { yAxisWidth } = useYAxisWidth({ data, settingsToMerge });
+  const { yAxisWidth } = useYAxisWidth({ data, settingsToMerge, layout, transformedDataForRecharts, xAxisType });
   const chartSettings = useMemo(
     () =>
       getBarChartMergedChartSettings({

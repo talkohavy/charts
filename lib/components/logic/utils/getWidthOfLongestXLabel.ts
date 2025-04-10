@@ -6,16 +6,17 @@ type GetWidthOfLongestXLabeProps = {
   xTickFormatter: CustomTickFormatterFunc;
   xFontSize?: number;
   xFontFamily?: string;
+  xTickSuffix?: string;
 };
 
 export function getWidthOfLongestXLabel(props: GetWidthOfLongestXLabeProps) {
-  const { transformedDataForRecharts, xTickFormatter, xFontSize, xFontFamily } = props;
+  const { transformedDataForRecharts, xTickFormatter, xFontSize, xFontFamily, xTickSuffix = '' } = props;
 
   let widthOfLongestXTickLabel = 0;
 
   transformedDataForRecharts.forEach(({ x: currentXTickValue }) => {
     const currentXTickWidth = getTextWidth({
-      text: xTickFormatter(currentXTickValue) ?? '',
+      text: `${xTickFormatter(currentXTickValue)}${xTickSuffix}`,
       fontSize: xFontSize,
       fontFamily: xFontFamily,
     });

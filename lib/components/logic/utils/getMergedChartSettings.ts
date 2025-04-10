@@ -174,6 +174,7 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
         type: 'category' as 'number' | 'category', // <--- defaults to 'number'. Options are: 'category' or 'number'.
         padding: 'gap' as any, // <--- 'gap' is unique to BarChart. 'gap' gives the first and the last bar gap from the walls. 'no-gap' has both the first & last bars touch the walls.
         tickFormatter: (settings?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType]) as RechartsTickFormatterFunc,
+        unit: settings?.xAxis?.tickSuffix ?? '',
       },
       verticalProps: {},
     },
