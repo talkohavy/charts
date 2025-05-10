@@ -10,8 +10,8 @@
     "clean": "rm -rf node_modules",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "typecheck": "tsc -p tsconfig.package.json",
-    "typecheck-app": "tsc -p tsconfig.app.json",
+    "tsc": "tsc -p tsconfig.package.json",
+    "tsc:app": "tsc -p tsconfig.app.json",
     "format-check": "prettier . --check --config .prettierrc.mjs --ignore-path .prettierignore",
     "format": "prettier . --write --log-level silent --config .prettierrc.json --ignore-path .prettierignore",
     "test": "node --test",
@@ -51,7 +51,7 @@
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.29.1",
-    "vite": "^6.0.5",
+    "vite": "^6.3.5",
     "vite-plugin-lib-inject-css": "^2.1.1"
   },
   "dependencies": {
