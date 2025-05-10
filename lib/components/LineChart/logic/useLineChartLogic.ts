@@ -16,7 +16,13 @@ export function useLineChartLogic(props: LineChartProps) {
   const { transformedDataForRecharts } = useTransformedDataForRecharts({ data });
 
   const { xAxisHeight } = useXAxisHeight({ settingsToMerge, transformedDataForRecharts, xAxisType });
-  const { yAxisWidth } = useYAxisWidth({ data, settingsToMerge });
+  const { yAxisWidth } = useYAxisWidth({
+    data,
+    settingsToMerge,
+    layout: 'horizontal',
+    transformedDataForRecharts,
+    xAxisType,
+  });
   const chartSettings = useMemo(
     () =>
       getLineChartMergedChartSettings({
