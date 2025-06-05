@@ -1,24 +1,14 @@
 import clsx from 'clsx';
-import {
-  Bar,
-  BarChart as BarChartBase,
-  Brush,
-  CartesianGrid,
-  Cell,
-  LabelList,
-  Legend,
-  ReferenceLine,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
+import { BarChart as BarChartBase, ResponsiveContainer } from 'recharts';
 import type { BarChartSettings, BarClickEventProps, BarSeries, BaseChartProps } from '../types';
-import { CLASSES as GLOBAL_CLASSES } from '../logic/constants';
-import CustomizedAxisTick from '../logic/CustomAxisTick';
-import CustomizedLabel from '../logic/CustomizedLabel';
-import CustomTooltip from '../logic/CustomTooltip';
-import { ACTIVE_BAR_COLOR, BAR_LAYOUT_TO_CHART_LAYOUT, DEFAULT_BAR_COLOR } from './logic/constants';
+import { useBarChartAxes } from '../logic/useComponents/useBarChartAxes';
+import { useBarChartBrush } from '../logic/useComponents/useBarChartBrush';
+import { useBars } from '../logic/useComponents/useBars';
+import { useGrid } from '../logic/useComponents/useGrid';
+import { useLegend } from '../logic/useComponents/useLegend';
+import { useReferenceLines } from '../logic/useComponents/useReferenceLines';
+import { useTooltip } from '../logic/useComponents/useTooltip';
+import { BAR_LAYOUT_TO_CHART_LAYOUT } from './logic/constants';
 import { CLASSES } from './logic/constants';
 import { useBarChartLogic } from './logic/useBarChartLogic';
 import '../../recharts.css';
@@ -41,7 +31,14 @@ export type BarChartProps = BaseChartProps & {
 };
 
 export default function BarChart(props: BarChartProps) {
-  const { layout: barsLayout = 'vertical', data, referenceLines, className, onClickBar, activeBarId } = props;
+  const {
+    layout: barsLayout = 'vertical',
+    data,
+    referenceLines: referenceLinesData,
+    className,
+    onClickBar,
+    activeBarId,
+  } = props;
 
   const {
     transformedDataForRecharts,
@@ -57,6 +54,34 @@ export default function BarChart(props: BarChartProps) {
     onBrushChange,
   } = useBarChartLogic(props);
 
+  const axes = useBarChartAxes({ xAxisSettings: chartSettings.xAxis, yAxisSettings: chartSettings.yAxis, barsLayout });
+  const tooltip = useTooltip({ tooltipSettings: chartSettings.tooltip });
+  const legend = useLegend({
+    legendSettings: chartSettings.legend,
+    onLegendClick,
+    onLegendMouseEnter,
+    onLegendMouseLeave,
+  });
+  const brush = useBarChartBrush({
+    brushSettings: chartSettings.zoomSlider,
+    startIndex,
+    endIndex,
+    onBrushChange,
+    transformedDataForRecharts,
+    data,
+  });
+  const referenceLines = useReferenceLines({ data: referenceLinesData, settings: chartSettings.referenceLines });
+  const bars = useBars({
+    data,
+    barsSettings: chartSettings.bars,
+    visibleBars,
+    onClickBar,
+    activeBarId,
+    isLegendHovered,
+    isBarTypeHovered,
+  });
+  const grid = useGrid({ gridSettings: chartSettings.grid });
+
   return (
     <ResponsiveContainer width='100%' height='100%'>
       <BarChartBase
@@ -65,113 +90,14 @@ export default function BarChart(props: BarChartProps) {
         layout={BAR_LAYOUT_TO_CHART_LAYOUT[barsLayout]} // <--- chart layout is by default 'horizontal' (which means bars layout is vertical).
         {...chartSettings.barChartBase.props}
       >
-        {/* MUST come before XAxis & YAxis! It needs to be painted behind them */}
-        {chartSettings.grid.show && <CartesianGrid {...chartSettings.grid.props} />}
-
-        <XAxis
-          {...chartSettings.xAxis.props}
-          {...(barsLayout === 'vertical' ? chartSettings.xAxis.verticalProps : chartSettings.xAxis.horizontalProps)}
-          label={{
-            ...chartSettings.xAxis.props.label,
-            value:
-              barsLayout === 'vertical' ? chartSettings.xAxis.props.label.value : chartSettings.yAxis.props.label.value,
-          }}
-          tick={(tickProps) => <CustomizedAxisTick {...tickProps} />}
-        />
-
-        <YAxis
-          {...chartSettings.yAxis.props}
-          {...(barsLayout === 'vertical' ? chartSettings.yAxis.verticalProps : chartSettings.yAxis.horizontalProps)}
-          label={{
-            ...chartSettings.yAxis.props.label,
-            value:
-              barsLayout === 'vertical' ? chartSettings.yAxis.props.label.value : chartSettings.xAxis.props.label.value,
-          }}
-        />
-
-        {chartSettings.tooltip.show && (
-          <Tooltip content={(tooltipProps) => <CustomTooltip {...tooltipProps} {...chartSettings.tooltip.props} />} />
-        )}
-
-        {chartSettings.legend.show && (
-          <Legend
-            {...chartSettings.legend.props}
-            onMouseEnter={onLegendMouseEnter}
-            onMouseLeave={onLegendMouseLeave}
-            onClick={onLegendClick}
-          />
-        )}
-
-        {chartSettings.zoomSlider.show && (
-          <Brush
-            {...chartSettings.zoomSlider.props}
-            startIndex={startIndex.current} // <--- The default start index of brush. If the option is not set, the start index will be 0.
-            endIndex={endIndex.current} // <---The default end index of brush. If the option is not set, the end index will be calculated by the length of data.
-            onChange={onBrushChange}
-            className={GLOBAL_CLASSES.brush}
-          >
-            {chartSettings.zoomSlider.showPreviewInSlider ? (
-              <BarChartBase data={transformedDataForRecharts}>
-                {data.map(({ name }) => (
-                  <Bar key={name} dataKey={name} isAnimationActive={false} fill='#999' />
-                ))}
-              </BarChartBase>
-            ) : undefined}
-          </Brush>
-        )}
-
-        {referenceLines?.map(({ x, y, label, lineWidth, lineColor, isDashed }, index) => {
-          const referenceLineProps: any = {
-            x,
-            y,
-            label,
-            stroke: lineColor ?? '#666',
-            strokeWidth: lineWidth ?? 1,
-          };
-
-          if (isDashed) referenceLineProps.strokeDasharray = '10 10';
-
-          return <ReferenceLine key={index} {...chartSettings.referenceLines.props} {...referenceLineProps} />;
-        })}
-
-        {data.map(({ name, data, unit, color, barBorderColor, stackId }, index) => {
-          const barColorInLegend = color ?? DEFAULT_BAR_COLOR;
-
-          const barProps = {
-            fill: barColorInLegend,
-            stroke: barBorderColor,
-            dataKey: name,
-            stackId,
-            unit,
-            hide: !visibleBars[name],
-            onClick: (props: any, index: number) => onClickBar?.({ ...props, barTypeIndex: index, name }),
-          };
-
-          return (
-            <Bar key={`${name}-${index}`} {...chartSettings.bars.props} {...barProps}>
-              {chartSettings.general.showValues && (
-                <LabelList
-                  dataKey={name}
-                  fontSize={11}
-                  position={stackId ? 'center' : 'top'}
-                  content={CustomizedLabel}
-                />
-              )}
-
-              {data.map(({ x, color: specificColor }) => {
-                const barId = `${name}-${x}`;
-
-                const cellProps = {
-                  fill: barId === activeBarId ? ACTIVE_BAR_COLOR : (specificColor ?? color ?? DEFAULT_BAR_COLOR),
-                  opacity: isLegendHovered ? (isBarTypeHovered[name] ? 1 : 0.2) : undefined,
-                  cursor: onClickBar && 'pointer',
-                };
-
-                return <Cell key={barId} {...cellProps} />;
-              })}
-            </Bar>
-          );
-        })}
+        {/* Grid MUST be rendered before XAxis & YAxis! It needs to be painted behind them */}
+        {grid}
+        {axes}
+        {tooltip}
+        {legend}
+        {brush}
+        {referenceLines}
+        {bars}
       </BarChartBase>
     </ResponsiveContainer>
   );
