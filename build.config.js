@@ -14,8 +14,13 @@ import path from 'path';
  * }} PackageJson
  */
 
-const outDirName = 'dist';
 const ROOT_PROJECT = process.cwd();
+const outDirName = 'dist';
+const COLORS = {
+  green: '\x1b[32m',
+  blue: '\x1b[34m',
+  stop: '\x1b[39m',
+};
 
 buildPackageConfig();
 
@@ -32,17 +37,17 @@ async function buildPackageConfig() {
 }
 
 function cleanDistDirectory() {
-  console.log('- Step 1: clear the dist directory');
-  execSync('rm -rf dist');
+  console.log(`${COLORS.green}- Step 1: clear the ${outDirName} directory`);
+  execSync(`rm -rf ${outDirName}`);
 }
 
 function buildWithVite() {
-  console.log('- Step 2: build with vite');
+  console.log(`${COLORS.green}- Step 2: build with vite`);
   execSync('tsc -p ./tsconfig.package.json && vite build --config vite.config.package.ts');
 }
 
 function copyStaticFiles() {
-  console.log('[32m- Step 3:[39m copy static files');
+  console.log(`${COLORS.green}- Step 3: copy static files`);
 
   const filesToCopyArr = [
     { filename: 'package.json', sourceDirPath: [], destinationDirPath: [] },
@@ -67,7 +72,7 @@ function copyStaticFiles() {
 }
 
 function manipulatePackageJsonFile() {
-  console.log('[32m- Step 5:[39m copy & manipulate the package.json file');
+  console.log(`${COLORS.green}- Step 5: copy & manipulate the package.json file`);
 
   const packageJsonPath = path.resolve(ROOT_PROJECT, outDirName, 'package.json');
 
@@ -77,13 +82,13 @@ function manipulatePackageJsonFile() {
 
   // Step 2: Remove all scripts
   delete packageJson.scripts;
-  console.log('  • [34mdeleted[39m `scripts` key');
+  console.log(`  • ${COLORS.blue}deleted${COLORS.stop} \`scripts\` key`);
 
   // Step 3: Change from private to public
   delete packageJson.private;
   packageJson.publishConfig.access = 'public';
-  console.log('  • [34mchanged[39m from private to public');
-  console.log('  • [34mchanged[39m publishConfig access to public');
+  console.log(`  • ${COLORS.blue}changed${COLORS.stop} from private to public`);
+  console.log(`  • ${COLORS.blue}changed${COLORS.stop} publishConfig access to public`);
 
   // Step 4: remove 'outDirName/' from "main" & "types"
   packageJson.main = packageJson.main.replace(`${outDirName}/`, '');
@@ -91,5 +96,5 @@ function manipulatePackageJsonFile() {
 
   // Step 5: create new package.json file in the output folder
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson));
-  console.log('  • [34mpackage.json[39m file written successfully!');
+  console.log(`  • ${COLORS.blue}package.json${COLORS.stop} file written successfully!`);
 }
