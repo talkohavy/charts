@@ -1,5 +1,13 @@
 # @talkohavy/charts
 
+## 1.4.7
+
+### Patch Changes
+
+- yAxis label is now 100% perfectly centered
+- getMergedSettings - passing props to Tooltip in a better way, added a nameFormatter to the Tooltip
+- Published wrongfully. Manual increase version.
+
 ## 1.4.6
 
 ### Patch Changes
