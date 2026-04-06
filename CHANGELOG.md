@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 1.4.8
+
+### Patch Changes
+
+- BUGFIX: the return of the missing axis.
+
 ## 1.4.7
 
 ### Patch Changes
