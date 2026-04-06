@@ -1,6 +1,6 @@
 import type { DotProps } from 'recharts';
 import { formatLabel } from '../../../logic/utils/formatters';
-import { LineSeriesDataItem, ValuePositions } from '../../../types';
+import { type LineSeriesDataItem, ValuePositions } from '../../../types';
 
 const VALUE_POSITION: Record<ValuePositions, (radius: number) => number> = {
   [ValuePositions.Above]: (radius) => -5 - radius * 1.1,
@@ -38,6 +38,7 @@ export default function NonActiveDot(props: ActiveDotProps) {
 
   return (
     <svg>
+      <title>Non Active Dot</title>
       {isDotVisible && <circle cx={cx} cy={cy} {...dotProps} />}
 
       {isValueVisible && (

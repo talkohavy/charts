@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import type { BarChartProps } from '../BarChart';
 import { useBrushLogic } from '../../logic/hooks/useBrushLogic';
 import { useLegendLogic } from '../../logic/hooks/useLegendLogic';
 import { useTransformedDataForRecharts } from '../../logic/hooks/useTransformedDataForRecharts';
@@ -6,7 +7,6 @@ import { useXAxisHeight } from '../../logic/hooks/useXAxisHeight';
 import { useYAxisWidth } from '../../logic/hooks/useYAxisWidth';
 import { getBarChartMergedChartSettings } from '../../logic/utils/getMergedChartSettings';
 import { runValidationsOnAllSeries } from '../../logic/utils/runValidationsOnAllSeries';
-import { BarChartProps } from '../BarChart';
 
 export function useBarChartLogic(props: BarChartProps) {
   const { type: xAxisType = 'category', data, settings: settingsToMerge, layout = 'horizontal' } = props;

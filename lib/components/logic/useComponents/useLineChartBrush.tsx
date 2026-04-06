@@ -1,5 +1,5 @@
 import { Brush, Line, LineChart as LineChartBase } from 'recharts';
-import { LineSeries } from '../../types';
+import type { LineSeries } from '../../types';
 import { DASHED_LINE, CLASSES as GLOBAL_CLASSES } from '../constants';
 
 type UseLineChartBrushProps = {

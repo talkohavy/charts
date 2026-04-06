@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { BaseChartSettings } from '../../types';
+import type { BaseChartSettings } from '../../types';
 import { getXAxisHeight } from '../utils/getXAxisHeight';
 import { useWidthOfLongestXTickLabel } from './useWidthOfLongestXTickLabel';
 

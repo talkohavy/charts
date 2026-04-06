@@ -1,5 +1,5 @@
+import type { PieChartSettings } from '../../types';
 import { formatLabel, FORMATTERS } from '../../../logic/utils/formatters';
-import { PieChartSettings } from '../../types';
 
 const defaultYValueFormatter = (num: number) => {
   if (num >= 1000000) {
@@ -8,9 +8,9 @@ const defaultYValueFormatter = (num: number) => {
       compactDisplay: 'short',
       maximumFractionDigits: 2,
     }).format(num);
-  } else {
-    return new Intl.NumberFormat('en-US').format(num);
   }
+
+  return new Intl.NumberFormat('en-US').format(num);
 };
 
 type GetMergedPieChartSettingsProps = {

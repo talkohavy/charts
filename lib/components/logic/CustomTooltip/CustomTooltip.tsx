@@ -1,6 +1,6 @@
 import type { TooltipProps } from 'recharts';
 import clsx from 'clsx';
-import { CustomTickFormatterFunc } from '../../types';
+import type { CustomTickFormatterFunc } from '../../types';
 import { CLASSES } from '../constants';
 import { formatLabel } from '../utils/formatters';
 import styles from './CustomTooltip.module.scss';

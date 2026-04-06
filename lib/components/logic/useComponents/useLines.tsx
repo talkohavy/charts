@@ -1,7 +1,7 @@
 import { Line } from 'recharts';
-import ActiveDot, { ActiveDotProps } from '../../LineChart/logic/ActiveDot';
+import type { LineSeries } from '../../types';
+import ActiveDot, { type ActiveDotProps } from '../../LineChart/logic/ActiveDot';
 import NonActiveDot from '../../LineChart/logic/NonActiveDot';
-import { LineSeries } from '../../types';
 import { DASHED_LINE } from '../constants';
 
 type UseLinesProps = {

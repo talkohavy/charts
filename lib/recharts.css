@@ -18,7 +18,7 @@
 
 .tk-custom-line-chart .recharts-legend-item,
 .tk-custom-bar-chart .recharts-legend-item {
-  display: flex !important;
+  display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;

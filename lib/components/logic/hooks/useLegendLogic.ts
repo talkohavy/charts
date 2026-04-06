@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Payload } from 'recharts/types/component/DefaultLegendContent';
-import { DataKey } from 'recharts/types/util/types';
-import { BarSeries, LineSeries } from '../../types';
+import type { Payload } from 'recharts/types/component/DefaultLegendContent';
+import type { DataKey } from 'recharts/types/util/types';
+import type { BarSeries, LineSeries } from '../../types';
 import { getNamesObject } from '../utils/getNamesObject';
 
 type UseLegendLogicProps = {

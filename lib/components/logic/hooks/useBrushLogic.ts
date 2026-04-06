@@ -1,5 +1,5 @@
 import { useMemo, useRef } from 'react';
-import { BarSeries, LineSeries } from '../../types';
+import type { BarSeries, LineSeries } from '../../types';
 import { BRUSH_ITEMS_PER_PAGE } from '../constants';
 import { getLengthOfLongestData } from '../utils/getLengthOfLongestData';
 

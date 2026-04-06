@@ -54,7 +54,11 @@ export default function BarChart(props: BarChartProps) {
     onBrushChange,
   } = useBarChartLogic(props);
 
-  const axes = useBarChartAxes({ xAxisSettings: chartSettings.xAxis, yAxisSettings: chartSettings.yAxis, barsLayout });
+  const { xAxis, yAxis } = useBarChartAxes({
+    xAxisSettings: chartSettings.xAxis,
+    yAxisSettings: chartSettings.yAxis,
+    barsLayout,
+  });
   const tooltip = useTooltip({ tooltipSettings: chartSettings.tooltip });
   const legend = useLegend({
     legendSettings: chartSettings.legend,
@@ -92,7 +96,8 @@ export default function BarChart(props: BarChartProps) {
       >
         {/* Grid MUST be rendered before XAxis & YAxis! It needs to be painted behind them */}
         {grid}
-        {axes}
+        {xAxis}
+        {yAxis}
         {tooltip}
         {legend}
         {brush}

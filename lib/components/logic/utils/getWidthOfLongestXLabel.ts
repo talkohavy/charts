@@ -1,4 +1,4 @@
-import { CustomTickFormatterFunc } from '../../types';
+import type { CustomTickFormatterFunc } from '../../types';
 import { getTextWidth } from './getTextWidth';
 
 type GetWidthOfLongestXLabeProps = {

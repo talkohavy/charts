@@ -14,6 +14,8 @@
     "tsc:app": "tsc -p tsconfig.app.json",
     "format-check": "prettier . --check --config .prettierrc.mjs --ignore-path .prettierignore",
     "format": "prettier . --write --log-level silent --config .prettierrc.json --ignore-path .prettierignore",
+    "format:biome": "biome format ./src",
+    "format:biome:fix": "biome format --verbose ./src --write",
     "test": "node --test",
     "build": "node build.config.js",
     "build-webapp": "vite build --config vite.config.webapp.ts",

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { BarSeries, LineSeries } from '../../types';
+import type { BarSeries, LineSeries } from '../../types';
 
 type UseMaxYValueProps = {
   data: Array<BarSeries | LineSeries>;

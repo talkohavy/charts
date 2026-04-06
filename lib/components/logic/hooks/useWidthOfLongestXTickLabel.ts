@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { BaseChartSettings, CustomTickFormatterFunc } from '../../types';
+import type { BaseChartSettings, CustomTickFormatterFunc } from '../../types';
 import { FORMATTERS } from '../utils/formatters';
 import { getWidthOfLongestXLabel } from '../utils/getWidthOfLongestXLabel';
 

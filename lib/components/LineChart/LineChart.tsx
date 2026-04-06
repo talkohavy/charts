@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { LineChart as LineChartBase, ResponsiveContainer } from 'recharts';
 import type { BaseChartProps, LineChartSettings, LineSeries } from '../types';
+import type { ActiveDotProps } from './logic/ActiveDot';
 import { useGrid } from '../logic/useComponents/useGrid';
 import { useLegend } from '../logic/useComponents/useLegend';
 import { useLineChartAxes } from '../logic/useComponents/useLineChartAxes';
@@ -8,7 +9,6 @@ import { useLineChartBrush } from '../logic/useComponents/useLineChartBrush';
 import { useLines } from '../logic/useComponents/useLines';
 import { useReferenceLines } from '../logic/useComponents/useReferenceLines';
 import { useTooltip } from '../logic/useComponents/useTooltip';
-import { ActiveDotProps } from './logic/ActiveDot';
 import { CLASSES } from './logic/constants';
 import { useLineChartLogic } from './logic/useLineChartLogic';
 import '../../recharts.css';
@@ -38,7 +38,11 @@ export default function LineChart(props: LineChartProps) {
   } = useLineChartLogic(props);
 
   const grid = useGrid({ gridSettings: chartSettings.grid });
-  const axes = useLineChartAxes({ xAxisSettings: chartSettings.xAxis, yAxisSettings: chartSettings.yAxis, xAxisType });
+  const { xAxis, yAxis } = useLineChartAxes({
+    xAxisSettings: chartSettings.xAxis,
+    yAxisSettings: chartSettings.yAxis,
+    xAxisType,
+  });
   const tooltip = useTooltip({ tooltipSettings: chartSettings.tooltip });
   const legend = useLegend({
     legendSettings: chartSettings.legend,
@@ -74,7 +78,8 @@ export default function LineChart(props: LineChartProps) {
       >
         {/* Grid MUST be rendered before XAxis & YAxis! It needs to be painted behind them */}
         {grid}
-        {axes}
+        {xAxis}
+        {yAxis}
         {tooltip}
         {legend}
         {brush}

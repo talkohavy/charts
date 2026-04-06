@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
-import { BarSeries, BaseChartSettings, LineSeries } from '../../types';
+import type { BarSeries, BaseChartSettings, LineSeries } from '../../types';
+import { DEFAULT_Y_TICK_COUNT, TICK_DASH_WIDTH } from '../constants';
+import { calculateLongestNiceTickWidth } from '../utils/calculateLongestNiceTickWidth';
 import { getTickValues } from '../utils/calculateYAxisWidth';
 import { useMaxYValue } from './useMaxYValue';
 import { useWidthOfLongestXTickLabel } from './useWidthOfLongestXTickLabel';
-import { DEFAULT_Y_TICK_COUNT, TICK_DASH_WIDTH } from '../constants';
-import { calculateLongestNiceTickWidth } from '../utils/calculateLongestNiceTickWidth';
 
 type UseYAxisWidthProps = {
   data: Array<LineSeries | BarSeries>;

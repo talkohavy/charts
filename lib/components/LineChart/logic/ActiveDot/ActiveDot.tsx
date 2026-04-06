@@ -1,6 +1,6 @@
 import type { DotProps } from 'recharts';
 import { formatLabel } from '../../../logic/utils/formatters';
-import { LineSeriesDataItem, ValuePositions } from '../../../types';
+import { type LineSeriesDataItem, ValuePositions } from '../../../types';
 
 const DOT_CENTER = 3;
 
@@ -27,7 +27,8 @@ export default function ActiveDot(props: ActiveDotProps) {
   const dotProps = { r: (dot?.r ?? r)! * 1.1 + 2, fill: dot?.fill ?? fill, stroke: dot?.stroke, opacity };
 
   return (
-    <svg onClick={onClick}>
+    <svg onClick={onClick} onKeyUp={onClick}>
+      <title>Active Dot</title>
       <circle cx={cx} cy={cy} {...dotProps} />
 
       {/* An invisible circle to enlarge the clicking area */}

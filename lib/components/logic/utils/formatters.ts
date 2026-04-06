@@ -25,7 +25,7 @@ function formatNumber(props: FormatNumberProps): string {
 }
 
 // Note: do not remove `index`! formatLabel props MUST be same as in CustomTickFormatterFunc type
-export function formatLabel(value: any, _index?: number, maxStringLength: number = 9): string | undefined {
+export function formatLabel(value: any, _index?: number, maxStringLength = 9): string | undefined {
   if (value == null) return undefined;
 
   if (typeof value === 'string') return ellipsisString({ str: value, maxStringLength });

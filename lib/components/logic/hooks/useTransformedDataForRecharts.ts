@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { BarSeries, LineSeries, XAsNumber, XAsString } from '../../types';
+import type { BarSeries, LineSeries, XAsNumber, XAsString } from '../../types';
 
 type UseTransformedDataForRechartsProps = {
   data: Array<LineSeries | BarSeries>;

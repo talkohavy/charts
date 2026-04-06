@@ -1,4 +1,4 @@
-import { PieChartDrawData } from '../../types';
+import type { PieChartDrawData } from '../../types';
 import styles from './Legend.module.scss';
 
 type LegendProps = {

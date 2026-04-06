@@ -1,5 +1,5 @@
 import type { LabelProps } from 'recharts';
-import { CustomTickFormatterFunc } from '../../types';
+import type { CustomTickFormatterFunc } from '../../types';
 import { getTextWidth } from '../utils/getTextWidth';
 
 type CustomizedAxisTickProps = LabelProps & {
