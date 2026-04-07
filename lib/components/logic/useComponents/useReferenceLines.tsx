@@ -1,9 +1,10 @@
 import { ReferenceLine } from 'recharts';
 import type { ReferenceLine as IReferenceLine } from '../../types';
+import type { ResolvedReferenceLinesSettings } from '../../types/resolvedBarChartSettings';
 
 type UseReferenceLinesProps = {
   data?: IReferenceLine[];
-  settings: any;
+  settings: ResolvedReferenceLinesSettings;
 };
 
 export function useReferenceLines(props: UseReferenceLinesProps) {
