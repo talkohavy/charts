@@ -51,8 +51,9 @@ function copyStaticFiles() {
 
   const filesToCopyArr = [
     { filename: 'package.json', sourceDirPath: [], destinationDirPath: [] },
-    { filename: '.npmrc', sourceDirPath: [], destinationDirPath: [], isAllowedToFail: true },
     { filename: 'README.md', sourceDirPath: [], destinationDirPath: [] },
+    { filename: '.npmrc', sourceDirPath: [], destinationDirPath: [], isAllowedToFail: true },
+    { filename: 'variables.css', sourceDirPath: ['lib', 'styles'], destinationDirPath: [] },
   ];
 
   filesToCopyArr.forEach(({ filename, sourceDirPath, destinationDirPath, isAllowedToFail }) => {
