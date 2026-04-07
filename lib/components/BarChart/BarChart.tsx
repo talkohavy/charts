@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { BarChart as BarChartBase, ResponsiveContainer } from 'recharts';
 import type { BarChartProps } from '../types';
+import { CLASSES } from '../logic/constants';
 import { useBarChartAxes } from '../logic/useComponents/useBarChartAxes';
 import { useBarChartBrush } from '../logic/useComponents/useBarChartBrush';
 import { useBars } from '../logic/useComponents/useBars';
@@ -9,7 +10,6 @@ import { useLegend } from '../logic/useComponents/useLegend';
 import { useReferenceLines } from '../logic/useComponents/useReferenceLines';
 import { useTooltip } from '../logic/useComponents/useTooltip';
 import { BAR_LAYOUT_TO_CHART_LAYOUT } from './logic/constants';
-import { CLASSES } from './logic/constants';
 import { useBarChartLogic } from './logic/useBarChartLogic';
 import '../../recharts.css';
 

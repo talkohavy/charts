@@ -7,6 +7,8 @@ export const DASHED_LINE = '20 20'; // or '5 5'
 export const DEFAULT_Y_TICK_COUNT = 5; // <--- recharts defaults to 5 anyways
 
 export const CLASSES = {
+  lineChart: 'tk-custom-line-chart',
+  barChart: 'tk-custom-bar-chart',
   tooltip: 'tk-custom-tooltip',
   brush: 'tk-custom-brush',
 };
