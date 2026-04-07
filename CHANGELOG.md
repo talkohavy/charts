@@ -1,5 +1,12 @@
 # @talkohavy/charts
 
+## 2.0.1
+
+### Patch Changes
+
+- Removed deprecated Cell. Using Rectangle instead.
+- Internal TypeScripts issues (warnings & errors) all fixed.
+
 ## 2.0.0
 
 ### Major Changes
