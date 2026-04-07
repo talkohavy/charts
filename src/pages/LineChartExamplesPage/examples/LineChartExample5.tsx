@@ -3,7 +3,7 @@ import { LineChart, type LineSeries } from '../../../../lib/main';
 const lines: Array<LineSeries> = [
   {
     name: 'line1',
-    color: '#ff7300',
+    // color: '#ff7300',
     curveType: 'monotone',
     isDashed: true,
     data: [
@@ -17,7 +17,7 @@ const lines: Array<LineSeries> = [
   },
   {
     name: 'line2',
-    color: 'blue',
+    // color: 'blue',
     curveType: 'monotone',
     isDashed: true,
     data: [
@@ -31,7 +31,7 @@ const lines: Array<LineSeries> = [
   },
   {
     name: 'line3',
-    color: 'green',
+    // color: 'green',
     curveType: 'monotone',
     data: [
       { x: 0, y: 200 },
@@ -54,7 +54,12 @@ export default function LineChartExample5() {
       <div className='size-full max-h-md max-w-lg'>
         <LineChart
           data={lines}
-          settings={{ grid: { show: true }, legend: { show: true } }}
+          settings={{
+            grid: { show: true },
+            legend: { show: true },
+            xAxis: { label: 'Countries' },
+            yAxis: { label: 'hello' },
+          }}
           className='border border-black'
         />
       </div>

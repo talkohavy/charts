@@ -3,9 +3,9 @@ import { LineChart, type LineSeries } from '../../../../lib/main';
 const lines: Array<LineSeries> = [
   {
     name: 'line1',
-    color: 'black',
     curveType: 'monotone',
     isDashed: true,
+    // showValues: true,
     data: [
       { x: 'Page A', y: 10 }, // x: 0 | Page A
       { x: 'Page B', y: 2 }, // x: 10 | Page B
@@ -26,7 +26,12 @@ export default function LineChartExample1() {
 
       <div className='size-full max-h-md max-w-lg'>
         <LineChart
-          settings={{ grid: { show: true }, yAxis: { label: 'hello' } }}
+          settings={{
+            grid: { show: true },
+            // legend: { show: true },
+            xAxis: { label: 'Bananas' },
+            yAxis: { label: 'hello' },
+          }}
           data={lines}
           className='border border-black'
         />
