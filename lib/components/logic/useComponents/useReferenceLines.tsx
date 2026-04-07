@@ -2,7 +2,7 @@ import { ReferenceLine } from 'recharts';
 import type { ReferenceLine as IReferenceLine } from '../../types';
 
 type UseReferenceLinesProps = {
-  data?: Array<IReferenceLine>;
+  data?: IReferenceLine[];
   settings: any;
 };
 

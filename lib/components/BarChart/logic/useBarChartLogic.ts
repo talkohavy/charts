@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import type { BarChartProps } from '../BarChart';
+import type { BarChartProps } from '../../types';
 import { useBrushLogic } from '../../logic/hooks/useBrushLogic';
 import { useLegendLogic } from '../../logic/hooks/useLegendLogic';
 import { useTransformedDataForRecharts } from '../../logic/hooks/useTransformedDataForRecharts';

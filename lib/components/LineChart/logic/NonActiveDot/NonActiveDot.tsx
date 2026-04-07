@@ -1,8 +1,9 @@
 import type { DotProps } from 'recharts';
+import type { LineSeriesDataItem } from '../../../types';
+import { ValuePositions, type ValuePositionValues } from '../../../logic/constants';
 import { formatLabel } from '../../../logic/utils/formatters';
-import { type LineSeriesDataItem, ValuePositions } from '../../../types';
 
-const VALUE_POSITION: Record<ValuePositions, (radius: number) => number> = {
+const VALUE_POSITION: Record<ValuePositionValues, (radius: number) => number> = {
   [ValuePositions.Above]: (radius) => -5 - radius * 1.1,
   [ValuePositions.Center]: () => 3, // <--- 3 is the dot's center
   [ValuePositions.Below]: (radius) => 11 + radius * 1.1,
@@ -32,7 +33,7 @@ export default function NonActiveDot(props: ActiveDotProps) {
   const isDotVisible = !hideDots || dot;
 
   const dotProps = { r: (dot?.r ?? r)!, fill: dot?.fill ?? stroke, stroke: dot?.stroke, opacity };
-  const getDyOfText = VALUE_POSITION[dot?.position as ValuePositions] ?? VALUE_POSITION.above;
+  const getDyOfText = VALUE_POSITION[dot?.position as ValuePositionValues] ?? VALUE_POSITION.above;
   const dyOfText = getDyOfText(dotProps.r);
   const displayValue = customValue ?? formatLabel(payload[dataKey]);
 

@@ -1,6 +1,7 @@
 import type { DotProps } from 'recharts';
+import type { LineSeriesDataItem } from '../../../types';
+import { ValuePositions } from '../../../logic/constants';
 import { formatLabel } from '../../../logic/utils/formatters';
-import { type LineSeriesDataItem, ValuePositions } from '../../../types';
 
 const DOT_CENTER = 3;
 

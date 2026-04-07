@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { BarChart as BarChartBase, ResponsiveContainer } from 'recharts';
-import type { BarChartSettings, BarClickEventProps, BarSeries, BaseChartProps } from '../types';
+import type { BarChartProps } from '../types';
 import { useBarChartAxes } from '../logic/useComponents/useBarChartAxes';
 import { useBarChartBrush } from '../logic/useComponents/useBarChartBrush';
 import { useBars } from '../logic/useComponents/useBars';
@@ -12,23 +12,6 @@ import { BAR_LAYOUT_TO_CHART_LAYOUT } from './logic/constants';
 import { CLASSES } from './logic/constants';
 import { useBarChartLogic } from './logic/useBarChartLogic';
 import '../../recharts.css';
-
-export type BarChartProps = BaseChartProps & {
-  settings?: BarChartSettings;
-  data: Array<BarSeries>;
-  onClickBar?: (props: BarClickEventProps & { name: string; barTypeIndex: number }) => void;
-  /**
-   * Every Bar within the BarChart has an ID which is a string comprised of '[bar name]-[x value]'.
-   * @example
-   * const data = [{ name: 'hello', data: [{x: 'Israel', y: 140}, x: 'France', y: 120]}];
-   * // The barIds are: 'hello-Israel' & 'hello-France'
-   */
-  activeBarId?: string;
-  /**
-   * @default 'vertical'
-   */
-  layout?: 'horizontal' | 'vertical';
-};
 
 export default function BarChart(props: BarChartProps) {
   const {
