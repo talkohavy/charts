@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { LineChart as LineChartBase, ResponsiveContainer } from 'recharts';
-import type { LineChartProps } from '../types';
 import { CLASSES } from '../logic/constants';
 import { useGrid } from '../logic/useComponents/useGrid';
 import { useLegend } from '../logic/useComponents/useLegend';
@@ -10,6 +9,7 @@ import { useLines } from '../logic/useComponents/useLines';
 import { useReferenceLines } from '../logic/useComponents/useReferenceLines';
 import { useTooltip } from '../logic/useComponents/useTooltip';
 import { useLineChartLogic } from './logic/useLineChartLogic';
+import type { LineChartProps } from '../types';
 import '../../recharts.css';
 
 export default function LineChart(props: LineChartProps) {

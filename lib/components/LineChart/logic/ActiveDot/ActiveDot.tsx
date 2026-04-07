@@ -1,7 +1,7 @@
-import type { DotProps } from 'recharts';
-import type { LineSeriesDataItem } from '../../../types';
 import { ValuePositions } from '../../../logic/constants';
 import { formatLabel } from '../../../logic/utils/formatters';
+import type { LineSeriesDataItem } from '../../../types';
+import type { DotProps } from 'recharts';
 
 const DOT_CENTER = 3;
 
@@ -25,7 +25,8 @@ export default function ActiveDot(props: ActiveDotProps) {
   const isValueVisible = showDotValue && dot?.position === ValuePositions.Center;
   const displayValue = customValue ?? formatLabel(payload[dataKey]);
 
-  const dotProps = { r: (dot?.r ?? r)! * 1.1 + 2, fill: dot?.fill ?? fill, stroke: dot?.stroke, opacity };
+  const dotRadius = Number(dot?.r ?? r);
+  const dotProps = { r: dotRadius * 1.1 + 2, fill: dot?.fill ?? fill, stroke: dot?.stroke, opacity };
 
   return (
     <svg onClick={onClick} onKeyUp={onClick}>

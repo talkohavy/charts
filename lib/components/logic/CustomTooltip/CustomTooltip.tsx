@@ -1,11 +1,18 @@
-import type { TooltipProps } from 'recharts';
 import clsx from 'clsx';
-import type { CustomTickFormatterFunc } from '../../types';
 import { CLASSES, ThemeColors } from '../constants';
 import { formatLabel } from '../utils/formatters';
 import styles from './CustomTooltip.module.scss';
+import type { CustomTickFormatterFunc } from '../../types';
+import type { TooltipProps } from 'recharts';
 
 type CustomTooltipProps = TooltipProps<number | string | Array<number | string>, number | string> & {
+  payload: Array<{
+    name: string;
+    value: number;
+    color: string;
+    unit: string;
+  }>;
+  label: string;
   ySuffix: string;
   xValueFormatter: CustomTickFormatterFunc;
   nameFormatter: (name: string) => string;

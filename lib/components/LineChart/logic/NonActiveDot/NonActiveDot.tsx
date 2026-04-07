@@ -1,7 +1,7 @@
-import type { DotProps } from 'recharts';
-import type { LineSeriesDataItem } from '../../../types';
 import { ThemeColors, ValuePositions, type ValuePositionValues } from '../../../logic/constants';
 import { formatLabel } from '../../../logic/utils/formatters';
+import type { LineSeriesDataItem } from '../../../types';
+import type { DotProps } from 'recharts';
 
 const VALUE_POSITION: Record<ValuePositionValues, (radius: number) => number> = {
   [ValuePositions.Above]: (radius) => -5 - radius * 1.1,
@@ -34,7 +34,7 @@ export default function NonActiveDot(props: ActiveDotProps) {
 
   const dotProps = { r: (dot?.r ?? r)!, fill: dot?.fill ?? stroke, stroke: dot?.stroke, opacity };
   const getDyOfText = VALUE_POSITION[dot?.position as ValuePositionValues] ?? VALUE_POSITION.above;
-  const dyOfText = getDyOfText(dotProps.r);
+  const dyOfText = getDyOfText(Number(dotProps.r));
   const displayValue = customValue ?? formatLabel(payload[dataKey]);
 
   return (

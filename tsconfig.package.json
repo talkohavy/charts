@@ -34,11 +34,10 @@
     "moduleResolution": "Bundler", // Specify how TypeScript looks up a file from a given module specifier.
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true, // Option 'allowImportingTsExtensions' can only be used when either 'noEmit' or 'emitDeclarationOnly' is set.ts
-    "baseUrl": "./", // Specify the base directory to resolve non-relative module names.
     "typeRoots": ["node_modules/@types"], // Specify multiple folders that act like './node_modules/@types'.
     "paths": {
-      "/*": ["src/public/*"],
-      "@src/*": ["src/*"]
+      "/*": ["./src/public/*"],
+      "@src/*": ["./src/*"]
     },
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
@@ -63,7 +62,6 @@
     // Section 5: Emit
     // ---------------
     "noEmit": false, // set to `true` to disable emitting files from a compilation.
-    "outDir": "./dist", // Specify an output folder for all emitted files.
     "declaration": true, // Generate .d.ts files from TypeScript and JavaScript files in your project.
     "emitDeclarationOnly": true, // Only output d.ts files and not JavaScript files
     // "sourceMap": true, // defaults to `false`. Create source map files for emitted JavaScript files.
