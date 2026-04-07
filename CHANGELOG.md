@@ -1,5 +1,12 @@
 # @talkohavy/charts
 
+## 1.5.1
+
+### Patch Changes
+
+- The package now includes a css file called "variables.css".
+- Updated the README.md file as importing the base variables.css file.
+
 ## 1.5.0
 
 ### Minor Changes
