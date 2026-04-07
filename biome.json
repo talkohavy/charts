@@ -22,7 +22,8 @@
         "noDebugger": "off",
         "noDoubleEquals": "off",
         "noFocusedTests": "off",
-        "noTsIgnore": "off"
+        "noTsIgnore": "off",
+        "noUnknownAtRules": "off"
       },
       "correctness": {
         "useExhaustiveDependencies": "off",
