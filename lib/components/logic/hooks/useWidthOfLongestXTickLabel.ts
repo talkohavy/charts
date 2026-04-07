@@ -4,7 +4,7 @@ import { FORMATTERS } from '../utils/formatters';
 import { getWidthOfLongestXLabel } from '../utils/getWidthOfLongestXLabel';
 
 type UseWidthOfLongestXTickLabelProps = {
-  transformedDataForRecharts: Array<any>;
+  transformedDataForRecharts: Array<{ x: number | string }>;
   settingsToMerge?: BaseChartSettings;
   xAxisType: 'category' | 'number' | 'datetime';
 };
