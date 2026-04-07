@@ -14,8 +14,15 @@ export function useBarChartLogic(props: BarChartProps) {
   useMemo(() => runValidationsOnAllSeries(data), [data]);
 
   const { transformedDataForRecharts } = useTransformedDataForRecharts({ data });
+
   const { xAxisHeight } = useXAxisHeight({ settingsToMerge, transformedDataForRecharts, xAxisType });
-  const { yAxisWidth } = useYAxisWidth({ data, settingsToMerge, layout, transformedDataForRecharts, xAxisType });
+
+  const { yAxisWidth } = useYAxisWidth({
+    data,
+    settingsToMerge,
+    layout,
+  });
+
   const chartSettings = useMemo(
     () =>
       getBarChartMergedChartSettings({

@@ -1,31 +1,20 @@
 import { useMemo } from 'react';
 import type { BarSeries, BaseChartSettings, LineSeries } from '../../types';
-import { DEFAULT_Y_TICK_COUNT, TICK_DASH_WIDTH } from '../constants';
+import { ChartLayouts, type ChartLayoutValues, DEFAULT_Y_TICK_COUNT, TICK_DASH_WIDTH } from '../constants';
 import { calculateLongestNiceTickWidth } from '../utils/calculateLongestNiceTickWidth';
 import { getTickValues } from '../utils/calculateYAxisWidth';
 import { useMaxYValue } from './useMaxYValue';
-import { useWidthOfLongestTickLabel } from './useWidthOfLongestTickLabel';
 
 type UseYAxisWidthProps = {
-  seriesNames: string[];
   data: Array<LineSeries | BarSeries>;
   settingsToMerge?: BaseChartSettings;
-  layout: 'horizontal' | 'vertical';
-  xAxisType: 'category' | 'number' | 'datetime';
-  transformedDataForRecharts: Array<{ x: number | string }>;
+  layout: ChartLayoutValues;
 };
 
 export function useYAxisWidth(props: UseYAxisWidthProps) {
-  const { seriesNames, data, transformedDataForRecharts, xAxisType, settingsToMerge, layout } = props;
+  const { data, settingsToMerge, layout } = props;
 
   const { maxYValue } = useMaxYValue({ data });
-
-  const { widthOfLongestTickLabel } = useWidthOfLongestTickLabel({
-    keys: seriesNames,
-    settingsToMerge,
-    transformedDataForRecharts,
-    axisType: xAxisType,
-  });
 
   const yAxisWidth = useMemo(() => {
     const yTickSuffix = settingsToMerge?.yAxis?.tickSuffix;
@@ -37,7 +26,7 @@ export function useYAxisWidth(props: UseYAxisWidthProps) {
 
     let longestTickLength = 0;
 
-    if (layout === 'vertical') {
+    if (layout === ChartLayouts.Horizontal) {
       const yTickValues = customTicks ?? getTickValues({ maxYValue, tickCount });
 
       longestTickLength = calculateLongestNiceTickWidth({
@@ -47,7 +36,7 @@ export function useYAxisWidth(props: UseYAxisWidthProps) {
         fontFamily,
       });
     } else {
-      longestTickLength = widthOfLongestTickLabel;
+      longestTickLength = 200; // TODO: calculate the width of the longest tick label when axes are reversed
     }
 
     const yAxisWidth = longestTickLength + TICK_DASH_WIDTH + (yLabel ? 10 : 5);
@@ -63,7 +52,6 @@ export function useYAxisWidth(props: UseYAxisWidthProps) {
     settingsToMerge?.yAxis?.tickCount,
     settingsToMerge?.yAxis?.customTicks,
     layout,
-    widthOfLongestTickLabel,
   ]);
 
   return { yAxisWidth };

@@ -7,25 +7,23 @@ type UseWidthOfLongestTickLabelProps = {
   keys: string[];
   transformedDataForRecharts: Array<{ x: number | string }>;
   settingsToMerge?: BaseChartSettings;
-  axisType: 'category' | 'number' | 'datetime';
 };
 
 export function useWidthOfLongestTickLabel(props: UseWidthOfLongestTickLabelProps) {
-  const { keys, transformedDataForRecharts, settingsToMerge, axisType } = props;
+  const { keys, transformedDataForRecharts, settingsToMerge } = props;
 
   const widthOfLongestTickLabel = useMemo(
     () =>
       getWidthOfLongestLabel({
         keys,
         transformedDataForRecharts,
-        tickFormatter: (settingsToMerge?.xAxis?.tickFormatter ?? FORMATTERS[axisType]) as CustomTickFormatterFunc,
+        tickFormatter: (settingsToMerge?.xAxis?.tickFormatter ?? FORMATTERS.category) as CustomTickFormatterFunc,
         fontSize: settingsToMerge?.xAxis?.tickFontSize,
         fontFamily: settingsToMerge?.xAxis?.tickFontFamily,
         tickSuffix: settingsToMerge?.xAxis?.tickSuffix,
       }),
     [
       transformedDataForRecharts,
-      axisType,
       settingsToMerge?.xAxis?.tickFormatter,
       settingsToMerge?.xAxis?.tickFontSize,
       settingsToMerge?.xAxis?.tickFontFamily,

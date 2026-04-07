@@ -14,7 +14,8 @@ export function calculateLongestNiceTickWidth(props: CalculateLongestNiceTickWid
   let widthOfLongestTickLabel = 0;
 
   niceTicks.forEach((currentTickValue) => {
-    const currentTickWidth = getTextWidth({ text: `${formatLabel(currentTickValue)}${suffix}`, fontSize, fontFamily });
+    const currentTickLabel = `${formatLabel(currentTickValue)}${suffix}`;
+    const currentTickWidth = getTextWidth({ text: currentTickLabel, fontSize, fontFamily });
 
     if (widthOfLongestTickLabel < currentTickWidth) {
       widthOfLongestTickLabel = currentTickWidth;

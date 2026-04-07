@@ -2,4 +2,4 @@
 "@talkohavy/charts": minor
 ---
 
-LineChart & BarChart now Support Color Pallete Theme.
+LineChart & BarChart now Support Color Palette Theme.

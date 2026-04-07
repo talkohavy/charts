@@ -44,6 +44,13 @@ export const ValuePositions = {
 
 export type ValuePositionValues = (typeof ValuePositions)[keyof typeof ValuePositions];
 
+export const ChartLayouts = {
+  Horizontal: 'horizontal',
+  Vertical: 'vertical',
+} as const;
+
+export type ChartLayoutValues = (typeof ChartLayouts)[keyof typeof ChartLayouts];
+
 export const ThemeColors = {
   LineColor: '--tk-custom-line-chart-line-color',
   GridLinesColor: '--tk-custom-line-chart-grid-color',

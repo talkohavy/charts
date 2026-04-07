@@ -18,9 +18,10 @@ export function getWidthOfLongestLabel(props: GetWidthOfLongestLabeProps) {
   transformedDataForRecharts.forEach((dataPoint) => {
     const valuesToCompare = keys.map((key) => {
       const currentValue = dataPoint[key];
+      const currentTickLabel = `${tickFormatter(currentValue)}${tickSuffix}`;
 
       return getTextWidth({
-        text: `${tickFormatter(currentValue)}${tickSuffix}`,
+        text: currentTickLabel,
         fontSize: fontSize,
         fontFamily: fontFamily,
       });
