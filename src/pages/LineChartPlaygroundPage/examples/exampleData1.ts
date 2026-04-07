@@ -1,4 +1,4 @@
-import { LineSeries } from '../../../../lib/components/types';
+import type { LineSeries } from '../../../../lib/main';
 
 // Example 1: 1 line
 export const example1: Array<LineSeries> = [

@@ -1,5 +1,4 @@
-import { PieSlice } from '../../../../lib/components/PieChart/types';
-import { PieChart } from '../../../../lib/main';
+import { PieChart, type PieSlice } from '../../../../lib/main';
 
 const data: Array<PieSlice> = [
   { name: 'Group A', value: 20 },

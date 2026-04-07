@@ -1,7 +1,5 @@
 import { useMemo } from 'react';
-import { COLORS } from '../../../../lib/components/logic/constants';
-import { BarSeries } from '../../../../lib/components/types';
-import { BarChart } from '../../../../lib/main';
+import { BarChart, COLORS, type BarSeries } from '../../../../lib/main';
 
 const barsRaw: Array<BarSeries> = [
   {
@@ -38,7 +36,7 @@ export default function BarChartExample2() {
         <BarChart
           data={bars}
           settings={{ legend: { show: true } }}
-          style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif', border: '1px solid black' }}
+          // style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif', border: '1px solid black' }}
         />
       </div>
     </div>

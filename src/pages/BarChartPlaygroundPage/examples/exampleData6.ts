@@ -1,5 +1,4 @@
-import { COLORS } from '../../../../lib/components/logic/constants';
-import { BarSeries } from '../../../../lib/components/types';
+import { COLORS, type BarSeries } from '../../../../lib/main';
 
 const now = Date.UTC(2024, 10, 0, 22, 0, 0, 0);
 const _1_HOUR = 1000 * 60 * 60;

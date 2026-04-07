@@ -1,7 +1,5 @@
 import { useMemo } from 'react';
-import { COLORS } from '../../../../lib/components/logic/constants';
-import { BarSeries } from '../../../../lib/components/types';
-import { BarChart } from '../../../../lib/main';
+import { BarChart, COLORS, type BarSeries } from '../../../../lib/main';
 
 const barsRaw: Array<BarSeries> = [
   {

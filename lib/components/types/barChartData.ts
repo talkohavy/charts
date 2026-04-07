@@ -1,16 +1,21 @@
-import type { ReferenceLine } from './referenceLine';
+import type { BarChartSettings } from './barChartSettings';
+import type { BaseChartProps } from './common';
 
-export type BarClickEventProps = {
-  payload: { x: string | number };
-  value: number;
-  fill: string;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  background: { x: number; y: number; width: number; height: number };
-  tooltipPayload: Array<any>;
-  tooltipPosition: { x: number; y: number };
+export type BarChartProps = BaseChartProps & {
+  settings?: BarChartSettings;
+  data: Array<BarSeries>;
+  onClickBar?: (props: BarClickEventProps & { name: string; barTypeIndex: number }) => void;
+  /**
+   * Every Bar within the BarChart has an ID which is a string comprised of '[bar name]-[x value]'.
+   * @example
+   * const data = [{ name: 'hello', data: [{x: 'Israel', y: 140}, x: 'France', y: 120]}];
+   * // The barIds are: 'hello-Israel' & 'hello-France'
+   */
+  activeBarId?: string;
+  /**
+   * @default 'vertical'
+   */
+  layout?: 'horizontal' | 'vertical';
 };
 
 export type BarSeries = {
@@ -37,32 +42,15 @@ export type BarSeriesDataItem = {
   color?: string;
 };
 
-/**
- * @description
- * The below props are shared props between a LineChart & a BarChart.
- * They do not fit for PieChart.
- */
-export type BaseChartProps = {
-  /**
-   * Use 'category' when your xAxis is made of *words*. i.e. ['Cars', 'Ships', 'Planes', 'Other'].
-   *
-   * Use 'number' when your xAxis is made of *numbers*, which can contain gaps. i.e. [1,2,3,6]. In this example, recharts will take care of properly spacing 3 and 6, while if using 'category' the space between them would be 1.
-   *
-   * Use 'datetime' when your xAxis is time-based. xAxis values MUST BE of unix timestamp.
-   *
-   *
-   * **IMPORTANT!!!*
-   *
-   * When choosing chart type of `datetime`, each data series must be sorted!
-   * For other types (category & number), recharts sorts the data internally.
-   *
-   * @default 'category'
-   */
-  type?: 'category' | 'number' | 'datetime';
-  referenceLines?: Array<ReferenceLine>;
-  /**
-   * IMPORTANT! This `className` cannot contain paddings of any kind!
-   * recharts has a bug where if you have padding, the cursor will offset when trying to hover over data points.
-   */
-  className?: string;
+export type BarClickEventProps = {
+  payload: { x: string | number };
+  value: number;
+  fill: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  background: { x: number; y: number; width: number; height: number };
+  tooltipPayload: Array<any>;
+  tooltipPosition: { x: number; y: number };
 };

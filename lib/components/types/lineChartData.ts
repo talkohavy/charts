@@ -1,4 +1,13 @@
-import type { ValuePositionValues } from './common';
+import type { ActiveDotProps } from '../LineChart/logic/ActiveDot';
+import type { ValuePositionValues } from '../logic/constants';
+import type { BaseChartProps } from './common';
+import type { LineChartSettings } from './lineChartSettings';
+
+export type LineChartProps = BaseChartProps & {
+  settings?: LineChartSettings;
+  data: Array<LineSeries>;
+  onDotClick?: (data: ActiveDotProps, e: any) => void;
+};
 
 export type LineSeries = {
   name: string;

@@ -1,5 +1,4 @@
-import { LineSeries } from '../../../../lib/components/types';
-import { LineChart } from '../../../../lib/main';
+import { LineChart, type LineSeries } from '../../../../lib/main';
 
 const lines: Array<LineSeries> = [
   {

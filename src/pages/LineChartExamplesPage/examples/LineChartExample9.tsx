@@ -1,6 +1,4 @@
-import { COLORS } from '../../../../lib/components/logic/constants';
-import { LineSeries, ValuePositions } from '../../../../lib/components/types';
-import { LineChart } from '../../../../lib/main';
+import { LineChart, COLORS, ValuePositions, type LineSeries } from '../../../../lib/main';
 
 const lines: Array<LineSeries> = [
   {

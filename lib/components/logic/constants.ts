@@ -33,3 +33,11 @@ export const COLORS = [
   '#8BC34A',
   '#FF5252',
 ];
+
+export const ValuePositions = {
+  Above: 'above',
+  Center: 'center',
+  Below: 'below',
+} as const;
+
+export type ValuePositionValues = (typeof ValuePositions)[keyof typeof ValuePositions];

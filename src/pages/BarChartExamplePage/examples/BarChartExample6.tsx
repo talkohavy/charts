@@ -1,5 +1,4 @@
-import { BarSeries } from '../../../../lib/components/types';
-import { BarChart } from '../../../../lib/main';
+import { BarChart, type BarSeries } from '../../../../lib/main';
 
 const bars: Array<BarSeries> = [
   {

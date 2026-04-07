@@ -1,5 +1,4 @@
-import { BarSeries } from '../../../../lib/components/types';
-import { BarChart } from '../../../../lib/main';
+import { BarChart, type BarSeries } from '../../../../lib/main';
 
 const bars: Array<BarSeries> = [
   {
@@ -27,7 +26,7 @@ export default function BarChartExample9() {
         <BarChart
           data={bars}
           settings={{ legend: { show: true } }}
-          style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif', border: '1px solid black' }}
+          // style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif', border: '1px solid black' }}
         />
       </div>
     </div>

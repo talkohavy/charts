@@ -1,5 +1,4 @@
-import { LineSeries } from '../../../../lib/components/types';
-import { LineChart } from '../../../../lib/main';
+import { LineChart, type LineSeries } from '../../../../lib/main';
 
 const lines: Array<LineSeries> = [
   {
@@ -27,7 +26,7 @@ export default function LineChartExample1() {
 
       <div className='size-full max-h-md max-w-lg'>
         <LineChart
-          settings={{ grid: { show: true }, yAxis: { label: 'hello' } }}
+          settings={{ grid: { show: true, color: 'green' }, yAxis: { label: 'hello' } }}
           data={lines}
           className='border border-black'
         />

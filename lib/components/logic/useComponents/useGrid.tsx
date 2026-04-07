@@ -1,12 +1,7 @@
 import { CartesianGrid } from 'recharts';
+import type { ResolvedGridSettings } from '../../types/resolvedBarChartSettings';
 
-type UseGridProps = {
-  gridSettings: any;
-};
-
-export function useGrid(props: UseGridProps) {
-  const { gridSettings } = props;
-
+export function useGrid(gridSettings: ResolvedGridSettings) {
   if (!gridSettings.show) return null;
 
   return <CartesianGrid {...gridSettings.props} />;

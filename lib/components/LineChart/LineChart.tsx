@@ -30,7 +30,8 @@ export default function LineChart(props: LineChartProps) {
     onBrushChange,
   } = useLineChartLogic(props);
 
-  const grid = useGrid({ gridSettings: chartSettings.grid });
+  const grid = useGrid(chartSettings.grid);
+
   const { xAxis, yAxis } = useLineChartAxes({
     xAxisSettings: chartSettings.xAxis,
     yAxisSettings: chartSettings.yAxis,

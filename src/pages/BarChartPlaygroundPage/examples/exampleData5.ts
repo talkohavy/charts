@@ -1,5 +1,4 @@
-import { COLORS } from '../../../../lib/components/logic/constants';
-import { BarSeries } from '../../../../lib/components/types';
+import { COLORS, type BarSeries } from '../../../../lib/main';
 
 // Example 5: 1 very long line, with 1 null in the middle & 2 missing values
 export const example5: Array<BarSeries> = [

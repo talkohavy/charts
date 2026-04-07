@@ -1,4 +1,4 @@
-import { BarSeries } from '../../../../lib/components/types';
+import type { BarSeries } from '../../../../lib/main';
 
 // Example 3: 1 line with 1 singled out dot
 export const example3: Array<BarSeries> = [
