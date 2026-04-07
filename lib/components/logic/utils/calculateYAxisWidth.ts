@@ -1,4 +1,4 @@
-import { getNiceTickValues } from 'recharts-scale';
+import { getNiceTickValues } from 'recharts';
 
 type GetTickValuesProps = {
   maxYValue: number;
