@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 2.0.2
+
+### Patch Changes
+
+- Remove type module.
+
 ## 2.0.1
 
 ### Patch Changes
