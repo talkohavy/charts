@@ -1,7 +1,8 @@
 import type { GeneralSettings } from './baseChartSettings';
 import type { CustomTickFormatterFunc, RechartsTickFormatterFunc } from './common';
 import type { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent';
-import type { AxisDomain, AxisInterval, LayoutType, ScaleType } from 'recharts/types/util/types';
+import type { LabelPosition } from 'recharts/types/component/Label';
+import type { AxisDomain, AxisInterval, CartesianLayout, ScaleType } from 'recharts/types/util/types';
 
 type TypeValues = 'category' | 'number' | undefined;
 
@@ -63,7 +64,7 @@ export type GridProps = {
 };
 
 export type LegendProps = {
-  layout: LayoutType;
+  layout: CartesianLayout;
   verticalAlign: VerticalAlignmentType;
   align: HorizontalAlignmentType;
   iconSize: number;
@@ -88,7 +89,7 @@ export type XAxisProps = {
   label: {
     value: string;
     angle: number;
-    position: string;
+    position: LabelPosition;
     dy: number;
     dx: number;
     fill: string | undefined;
@@ -127,7 +128,7 @@ export type YAxisProps = {
   label: {
     value: any;
     angle: number;
-    position: string;
+    position: LabelPosition;
     fontSize: number | undefined;
     fill: string;
     style: any;
