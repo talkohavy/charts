@@ -4,9 +4,10 @@ import { DEFAULT_Y_TICK_COUNT, TICK_DASH_WIDTH } from '../constants';
 import { calculateLongestNiceTickWidth } from '../utils/calculateLongestNiceTickWidth';
 import { getTickValues } from '../utils/calculateYAxisWidth';
 import { useMaxYValue } from './useMaxYValue';
-import { useWidthOfLongestXTickLabel } from './useWidthOfLongestXTickLabel';
+import { useWidthOfLongestTickLabel } from './useWidthOfLongestTickLabel';
 
 type UseYAxisWidthProps = {
+  seriesNames: string[];
   data: Array<LineSeries | BarSeries>;
   settingsToMerge?: BaseChartSettings;
   layout: 'horizontal' | 'vertical';
@@ -15,14 +16,15 @@ type UseYAxisWidthProps = {
 };
 
 export function useYAxisWidth(props: UseYAxisWidthProps) {
-  const { data, transformedDataForRecharts, xAxisType, settingsToMerge, layout } = props;
+  const { seriesNames, data, transformedDataForRecharts, xAxisType, settingsToMerge, layout } = props;
 
   const { maxYValue } = useMaxYValue({ data });
 
-  const { widthOfLongestXTickLabel } = useWidthOfLongestXTickLabel({
+  const { widthOfLongestTickLabel } = useWidthOfLongestTickLabel({
+    keys: seriesNames,
     settingsToMerge,
     transformedDataForRecharts,
-    xAxisType,
+    axisType: xAxisType,
   });
 
   const yAxisWidth = useMemo(() => {
@@ -45,7 +47,7 @@ export function useYAxisWidth(props: UseYAxisWidthProps) {
         fontFamily,
       });
     } else {
-      longestTickLength = widthOfLongestXTickLabel;
+      longestTickLength = widthOfLongestTickLabel;
     }
 
     const yAxisWidth = longestTickLength + TICK_DASH_WIDTH + (yLabel ? 10 : 5);
@@ -61,7 +63,7 @@ export function useYAxisWidth(props: UseYAxisWidthProps) {
     settingsToMerge?.yAxis?.tickCount,
     settingsToMerge?.yAxis?.customTicks,
     layout,
-    widthOfLongestXTickLabel,
+    widthOfLongestTickLabel,
   ]);
 
   return { yAxisWidth };

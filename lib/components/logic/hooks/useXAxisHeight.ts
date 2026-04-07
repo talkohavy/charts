@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { BaseChartSettings } from '../../types';
 import { getXAxisHeight } from '../utils/getXAxisHeight';
-import { useWidthOfLongestXTickLabel } from './useWidthOfLongestXTickLabel';
+import { useWidthOfLongestTickLabel } from './useWidthOfLongestTickLabel';
 
 type UseXAxisHeightProps = {
   settingsToMerge?: BaseChartSettings;
@@ -14,24 +14,25 @@ export function useXAxisHeight(props: UseXAxisHeightProps) {
 
   const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
 
-  const { widthOfLongestXTickLabel } = useWidthOfLongestXTickLabel({
+  const { widthOfLongestTickLabel } = useWidthOfLongestTickLabel({
+    keys: ['x'],
     settingsToMerge,
     transformedDataForRecharts,
-    xAxisType,
+    axisType: xAxisType,
   });
 
   const xAxisHeight = useMemo(
     () =>
       getXAxisHeight({
         tickAngle: -positiveXTickRotateAngle,
-        maxTextWidth: widthOfLongestXTickLabel,
+        maxTextWidth: widthOfLongestTickLabel,
         isLegendVisible: !!settingsToMerge?.legend?.show,
         isSliderVisible: !!settingsToMerge?.zoomSlider?.show,
         isXLabelVisible: !!settingsToMerge?.xAxis?.label,
       }),
     [
       positiveXTickRotateAngle,
-      widthOfLongestXTickLabel,
+      widthOfLongestTickLabel,
       settingsToMerge?.legend?.show,
       settingsToMerge?.zoomSlider?.show,
       settingsToMerge?.xAxis?.label,
