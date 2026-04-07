@@ -7,7 +7,7 @@ type GetTextWidthProps = {
 };
 
 export function getTextWidth(props: GetTextWidthProps) {
-  const { text, fontSize = 16, fontFamily = 'Hiragino Sans GB' } = props;
+  const { text, fontSize = 16, fontFamily = 'sans-serif' } = props;
 
   const context = canvas.getContext('2d')!;
   context.font = `${fontSize}px ${fontFamily}`;
