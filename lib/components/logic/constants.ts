@@ -41,3 +41,18 @@ export const ValuePositions = {
 } as const;
 
 export type ValuePositionValues = (typeof ValuePositions)[keyof typeof ValuePositions];
+
+export const ThemeColors = {
+  LineColor: '--tk-custom-line-chart-line-color',
+  GridLinesColor: '--tk-custom-line-chart-grid-color',
+  XAxisLineColor: '--tk-custom-line-chart-x-axis-line-color',
+  XAxisTickLabelColor: '--tk-custom-line-chart-x-axis-tick-label-color',
+  XAxisLabelColor: '--tk-custom-line-chart-x-axis-label-color',
+  YAxisLineColor: '--tk-custom-line-chart-y-axis-line-color',
+  YAxisTickLabelColor: '--tk-custom-line-chart-y-axis-tick-label-color',
+  YAxisLabelColor: '--tk-custom-line-chart-y-axis-label-color',
+  ValueColor: '--tk-custom-line-chart-value-color',
+  TooltipBorderColor: '--tk-custom-line-chart-tooltip-border-color',
+  TooltipBackgroundColor: '--tk-custom-line-chart-tooltip-background-color',
+  ReferenceLineColor: '--tk-custom-line-chart-reference-line-color',
+} as const;

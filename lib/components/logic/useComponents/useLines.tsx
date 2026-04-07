@@ -3,7 +3,7 @@ import type { LineSeries } from '../../types';
 import type { ResolvedLinesSettings } from '../../types';
 import ActiveDot, { type ActiveDotProps } from '../../LineChart/logic/ActiveDot';
 import NonActiveDot from '../../LineChart/logic/NonActiveDot';
-import { DASHED_LINE } from '../constants';
+import { DASHED_LINE, ThemeColors } from '../constants';
 
 type UseLinesProps = {
   data: Array<LineSeries>;
@@ -18,13 +18,13 @@ type UseLinesProps = {
 export function useLines(props: UseLinesProps) {
   const { data, linesSettings, generalSettings, visibleLines, onDotClick, isLegendHovered, isLineHovered } = props;
 
-  return data.map((line) => {
+  return data.map((line, index) => {
     const { name, color, data, lineWidth, curveType, isDashed, dots, showValues: showLineValues, hide } = line;
 
     const lineProps: any = {
       hide,
       dataKey: name,
-      stroke: color ?? 'black',
+      stroke: color ?? `var(${ThemeColors.LineColor}-${index})`,
       strokeWidth: lineWidth ?? 1,
       type: curveType ?? 'linear',
       r: dots?.r ?? 3, // <--- 3 is recharts default!

@@ -48,7 +48,7 @@ export type ResolvedXAxisSettings = {
 };
 
 export type ResolvedYAxisSettings = {
-  props: any;
+  props: YAxisProps;
   verticalProps: any;
   horizontalProps: any;
 };
@@ -91,6 +91,7 @@ export type XAxisProps = {
     position: string;
     dy: number;
     dx: number;
+    fill: string | undefined;
   };
   color: string | undefined;
   fontSize: number | undefined;
@@ -119,4 +120,32 @@ export type XAxisVerticalProps = {
 export type XAxisHorizontalProps = {
   type: TypeValues;
   tickFormatter: RechartsTickFormatterFunc;
+};
+
+export type YAxisProps = {
+  hide: boolean;
+  label: {
+    value: any;
+    angle: number;
+    position: string;
+    fontSize: number | undefined;
+    fill: string;
+    style: any;
+  };
+  stroke: string;
+  fontSize: number | undefined;
+  fontFamily: string | undefined;
+  tick: {
+    fill: string;
+  };
+  tickSize: number;
+  ticks: number[] | undefined;
+  axisLine: boolean;
+  tickLine: boolean;
+  unit: string;
+  domain: AxisDomain | undefined;
+  width: number;
+  tickFormatter: CustomTickFormatterFunc;
+  padding: { top?: number; right?: number; bottom?: number; left?: number };
+  includeHidden: boolean;
 };

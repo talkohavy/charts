@@ -24,9 +24,6 @@ export type XAxisSettings = {
    * @default true
    */
   showTickLine?: boolean;
-  /**
-   * @default '#666'
-   */
   axisLineColor?: string;
   /**
    * @default true
@@ -38,11 +35,8 @@ export type XAxisSettings = {
   domain?: AxisDomain;
   customTicks?: Array<number>;
   label?: string;
-  /**
-   * The color of the tick's value.
-   * @default '#666'
-   */
-  tickColor?: string;
+  labelColor?: string;
+  tickLabelColor?: string;
   tickSuffix?: string;
   /**
    * The angle of the tick's value.
@@ -87,7 +81,8 @@ export type YAxisSettings = {
   tickSize?: number;
   label?: string;
   labelFontSize?: number;
-  tickColor?: string;
+  labelColor?: string;
+  tickLabelColor?: string;
   tickSuffix?: string;
   tickFontSize?: number;
   tickFontFamily?: string;

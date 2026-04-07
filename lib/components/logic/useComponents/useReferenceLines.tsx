@@ -1,6 +1,7 @@
 import { ReferenceLine } from 'recharts';
 import type { ReferenceLine as IReferenceLine } from '../../types';
 import type { ResolvedReferenceLinesSettings } from '../../types';
+import { ThemeColors } from '../constants';
 
 type UseReferenceLinesProps = {
   data?: IReferenceLine[];
@@ -17,7 +18,7 @@ export function useReferenceLines(props: UseReferenceLinesProps) {
       x,
       y,
       label,
-      stroke: lineColor ?? '#666',
+      stroke: lineColor ?? `var(${ThemeColors.ReferenceLineColor})`,
       strokeWidth: lineWidth ?? 1,
     };
 

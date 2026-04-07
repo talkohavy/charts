@@ -1,7 +1,7 @@
 import type { TooltipProps } from 'recharts';
 import clsx from 'clsx';
 import type { CustomTickFormatterFunc } from '../../types';
-import { CLASSES } from '../constants';
+import { CLASSES, ThemeColors } from '../constants';
 import { formatLabel } from '../utils/formatters';
 import styles from './CustomTooltip.module.scss';
 
@@ -18,7 +18,13 @@ export default function CustomTooltip(props: CustomTooltipProps) {
     const formattedXLabel = xValueFormatter(label);
 
     return (
-      <div className={clsx(CLASSES.tooltip, styles.customTooltip)}>
+      <div
+        className={clsx(CLASSES.tooltip, styles.customTooltip)}
+        style={{
+          borderColor: `var(${ThemeColors.TooltipBorderColor})`,
+          backgroundColor: `var(${ThemeColors.TooltipBackgroundColor})`,
+        }}
+      >
         <p className={styles.customTooltipHeader}>{formattedXLabel}</p>
 
         <ul className={styles.customTooltipItemsList}>

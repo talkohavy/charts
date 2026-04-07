@@ -1,6 +1,6 @@
 import type { DotProps } from 'recharts';
 import type { LineSeriesDataItem } from '../../../types';
-import { ValuePositions, type ValuePositionValues } from '../../../logic/constants';
+import { ThemeColors, ValuePositions, type ValuePositionValues } from '../../../logic/constants';
 import { formatLabel } from '../../../logic/utils/formatters';
 
 const VALUE_POSITION: Record<ValuePositionValues, (radius: number) => number> = {
@@ -27,7 +27,7 @@ export default function NonActiveDot(props: ActiveDotProps) {
     {}) as LineSeriesDataItem;
 
   const { dot, value } = dataItem;
-  const { show: showDotValue, color, customValue } = value ?? {};
+  const { show: showDotValue, color = `var(${ThemeColors.ValueColor})`, customValue } = value ?? {};
 
   const isValueVisible = showDotValue ?? showLineValues ?? showChartValues;
   const isDotVisible = !hideDots || dot;

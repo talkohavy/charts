@@ -8,7 +8,7 @@ import type {
   ResolvedLineChartSettings,
   ResolvedSharedChartSettings,
 } from '../../types';
-import { BRUSH_HEIGHT, TICK_DASH_WIDTH } from '../constants';
+import { BRUSH_HEIGHT, ThemeColors, TICK_DASH_WIDTH } from '../constants';
 import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
 import { FORMATTERS, formatLabel } from './formatters';
 import { getLegendHeight } from './getLegendHeight';
@@ -106,16 +106,17 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
             showLegend,
             showZoomSlider: settings?.zoomSlider?.show ?? false,
           }),
+          fill: settings?.xAxis?.labelColor ?? `var(${ThemeColors.XAxisLabelColor})`,
           dx: -yAxisWidth / 2,
         },
-        color: settings?.xAxis?.tickColor, // <--- this is the color of the tick's value!
+        color: settings?.xAxis?.tickLabelColor ?? `var(${ThemeColors.XAxisTickLabelColor})`, // <--- this is the color of the tick's value!
         fontSize: settings?.xAxis?.tickFontSize,
         fontFamily: settings?.xAxis?.tickFontFamily,
         ticks: settings?.xAxis?.customTicks,
         tickLine: settings?.xAxis?.showTickLine ?? true,
         tickFormatter: (settings?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType]) as RechartsTickFormatterFunc, // <--- only passes the string value as an argument.
         axisLine: settings?.xAxis?.showAxisLine ?? true,
-        stroke: settings?.xAxis?.axisLineColor, // <--- this is the color of the xAxis line itself!
+        stroke: settings?.xAxis?.axisLineColor ?? `var(${ThemeColors.XAxisLineColor})`, // <--- this is the color of the xAxis line itself!
         domain: (settings?.xAxis?.domain ?? ['auto', 'auto']) as AxisDomain,
         allowDataOverflow: false,
         angle: settings?.xAxis?.tickAngle ? -Math.abs(settings?.xAxis?.tickAngle) : 0,
@@ -152,13 +153,14 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
           angle: -90,
           position: 'left',
           fontSize: settings?.yAxis?.labelFontSize,
+          fill: settings?.yAxis?.labelColor ?? `var(${ThemeColors.YAxisLabelColor})`,
           style: { textAnchor: 'middle' },
         },
-        stroke: settings?.yAxis?.axisLineColor,
+        stroke: settings?.yAxis?.axisLineColor ?? `var(${ThemeColors.YAxisLineColor})`,
         fontSize: settings?.yAxis?.tickFontSize,
         fontFamily: settings?.yAxis?.tickFontFamily,
         tick: {
-          fill: settings?.yAxis?.tickColor,
+          fill: settings?.yAxis?.tickLabelColor ?? `var(${ThemeColors.YAxisTickLabelColor})`,
         },
         tickSize: settings?.yAxis?.tickSize ?? TICK_DASH_WIDTH,
         ticks: settings?.yAxis?.customTicks,
@@ -167,7 +169,7 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
         unit: settings?.yAxis?.tickSuffix ?? '',
         domain: settings?.yAxis?.domain,
         width: yAxisWidth,
-        tickFormatter: (settings?.yAxis?.tickFormatter ?? formatLabel) as CustomTickFormatterFunc,
+        tickFormatter: settings?.yAxis?.tickFormatter ?? (formatLabel as CustomTickFormatterFunc),
         padding: { top: 18 },
         includeHidden: true, // <--- when having multiple lines, and playing around clicking the legend items, animations look so much better with this as `true`.
         // dataKey: 'y'// <--- do NOT put dataKey on y axis of BarChart or LineChart! We are going to use the `name` of each Bars set.
@@ -184,7 +186,7 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
     grid: {
       show: !!showGrid,
       props: {
-        stroke: settings?.grid?.color,
+        stroke: settings?.grid?.color ?? `var(${ThemeColors.GridLinesColor})`,
         strokeWidth: 0.5,
         horizontal: typeof showGrid === 'boolean' ? showGrid : !!showGrid.horizontal,
         vertical: typeof showGrid === 'boolean' ? showGrid : !!showGrid.vertical,

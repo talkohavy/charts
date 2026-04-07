@@ -1,9 +1,10 @@
 import { XAxis, YAxis } from 'recharts';
+import type { ResolvedXAxisSettings, ResolvedYAxisSettings } from '../../types';
 import CustomizedAxisTick from '../CustomAxisTick';
 
 type UseLineChartAxesProps = {
-  xAxisSettings: any;
-  yAxisSettings: any;
+  xAxisSettings: ResolvedXAxisSettings;
+  yAxisSettings: ResolvedYAxisSettings;
   xAxisType: 'number' | 'category' | 'datetime';
 };
 
