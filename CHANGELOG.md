@@ -1,5 +1,11 @@
 # @talkohavy/charts
 
+## 2.0.0
+
+### Major Changes
+
+- Upgraded `recharts`, from v2 to v3.
+
 ## 1.5.1
 
 ### Patch Changes
