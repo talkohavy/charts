@@ -9,6 +9,7 @@ export function useSeriesNameExtractor(data: Array<LineSeries | BarSeries>) {
 
   const seriesNames = useMemo(() => {
     return data.map(({ name }) => name);
+    // eslint-disable-next-line
   }, [uniqueKey]);
 
   return seriesNames;

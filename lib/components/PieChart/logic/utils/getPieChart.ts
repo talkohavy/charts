@@ -1,6 +1,6 @@
-import type { PieChartDrawData, PieSlice } from '../../types';
 import { COLORS } from '../../../logic/constants';
 import { getSliceData } from './getSliceData';
+import type { PieChartDrawData, PieSlice } from '../../types';
 
 type GetPieChartProps = {
   data: Array<PieSlice>;

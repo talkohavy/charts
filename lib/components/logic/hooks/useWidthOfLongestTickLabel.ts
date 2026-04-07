@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import type { BaseChartSettings, CustomTickFormatterFunc } from '../../types';
 import { FORMATTERS } from '../utils/formatters';
 import { getWidthOfLongestLabel } from '../utils/getWidthOfLongestLabel';
+import type { BaseChartSettings, CustomTickFormatterFunc } from '../../types';
 
 type UseWidthOfLongestTickLabelProps = {
   keys: string[];
@@ -22,6 +22,7 @@ export function useWidthOfLongestTickLabel(props: UseWidthOfLongestTickLabelProp
         fontFamily: settingsToMerge?.xAxis?.tickFontFamily,
         tickSuffix: settingsToMerge?.xAxis?.tickSuffix,
       }),
+    // eslint-disable-next-line
     [
       transformedDataForRecharts,
       settingsToMerge?.xAxis?.tickFormatter,

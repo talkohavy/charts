@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import type { LineChartProps } from '../../types';
 import { AxisTypes, ChartLayouts } from '../../logic/constants';
 import { useBrushLogic } from '../../logic/hooks/useBrushLogic';
 import { useLegendLogic } from '../../logic/hooks/useLegendLogic';
@@ -8,6 +7,7 @@ import { useXAxisHeight } from '../../logic/hooks/useXAxisHeight';
 import { useYAxisWidth } from '../../logic/hooks/useYAxisWidth';
 import { getLineChartMergedChartSettings } from '../../logic/utils/getMergedChartSettings';
 import { runValidationsOnAllSeries } from '../../logic/utils/runValidationsOnAllSeries';
+import type { LineChartProps } from '../../types';
 
 export function useLineChartLogic(props: LineChartProps) {
   const { type: xAxisType = AxisTypes.Category, data, settings: settingsToMerge } = props;

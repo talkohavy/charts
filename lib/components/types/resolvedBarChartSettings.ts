@@ -1,5 +1,5 @@
-import type { StackOffsetType } from 'recharts/types/util/types';
 import type { ResolvedSharedChartSettings } from './resolvedSharedChartSettings';
+import type { StackOffsetType } from 'recharts/types/util/types';
 
 export type ResolvedBarChartSettings = ResolvedSharedChartSettings & {
   barChartBase: ResolvedBarChartBaseSettings;

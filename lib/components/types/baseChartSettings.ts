@@ -1,5 +1,5 @@
-import type { AxisDomain } from 'recharts/types/util/types';
 import type { CustomTickFormatterFunc } from './common';
+import type { AxisDomain } from 'recharts/types/util/types';
 
 export type GeneralSettings = {
   /**

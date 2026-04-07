@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import clsx from 'clsx';
-import type { PieChartDrawData, PieChartSettings, PieSlice } from './types';
 import ActiveShape from './logic/ActiveShape';
 import { CLASSES, PIE_CHART } from './logic/constants';
 import PieChartLegend from './logic/Legend';
@@ -9,6 +8,7 @@ import PieSliceComponent from './logic/PieSlice';
 import PieTooltip from './logic/PieTooltip';
 import { getFontSizeFrom, getMergedPieChartSettings, getPieChart } from './logic/utils';
 import styles from './PieChart.module.scss';
+import type { PieChartDrawData, PieChartSettings, PieSlice } from './types';
 
 type PieChart = {
   data: Array<PieSlice>;

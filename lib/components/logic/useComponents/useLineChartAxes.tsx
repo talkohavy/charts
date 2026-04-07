@@ -1,6 +1,6 @@
 import { XAxis, YAxis } from 'recharts';
-import type { ResolvedXAxisSettings, ResolvedYAxisSettings } from '../../types';
 import CustomizedAxisTick from '../CustomAxisTick';
+import type { ResolvedXAxisSettings, ResolvedYAxisSettings } from '../../types';
 
 type UseLineChartAxesProps = {
   xAxisSettings: ResolvedXAxisSettings;

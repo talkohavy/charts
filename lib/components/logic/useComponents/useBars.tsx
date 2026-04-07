@@ -1,7 +1,7 @@
 import { Bar, Cell, LabelList } from 'recharts';
-import type { BarClickEventProps, BarSeries, GeneralSettings, ResolvedBarsSettings } from '../../types';
 import { ACTIVE_BAR_COLOR, DEFAULT_BAR_COLOR } from '../../BarChart/logic/constants';
 import CustomizedLabel from '../CustomizedLabel';
+import type { BarClickEventProps, BarSeries, GeneralSettings, ResolvedBarsSettings } from '../../types';
 
 type UseBarsProps = {
   data: Array<BarSeries>;

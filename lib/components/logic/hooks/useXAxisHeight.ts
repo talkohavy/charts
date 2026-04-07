@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import type { BaseChartSettings } from '../../types';
 import { getXAxisHeight } from '../utils/getXAxisHeight';
 import { useWidthOfLongestTickLabel } from './useWidthOfLongestTickLabel';
+import type { BaseChartSettings } from '../../types';
 
 type UseXAxisHeightProps = {
   settingsToMerge?: BaseChartSettings;

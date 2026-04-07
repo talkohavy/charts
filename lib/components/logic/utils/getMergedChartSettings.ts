@@ -1,4 +1,7 @@
-import type { AxisDomain } from 'recharts/types/util/types';
+import { BRUSH_HEIGHT, ThemeColors, TICK_DASH_WIDTH } from '../constants';
+import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
+import { FORMATTERS, formatLabel } from './formatters';
+import { getLegendHeight } from './getLegendHeight';
 import type {
   BarChartSettings,
   CustomTickFormatterFunc,
@@ -8,10 +11,7 @@ import type {
   ResolvedLineChartSettings,
   ResolvedSharedChartSettings,
 } from '../../types';
-import { BRUSH_HEIGHT, ThemeColors, TICK_DASH_WIDTH } from '../constants';
-import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
-import { FORMATTERS, formatLabel } from './formatters';
-import { getLegendHeight } from './getLegendHeight';
+import type { AxisDomain } from 'recharts/types/util/types';
 
 type GetMergedChartSettingsProps = {
   chartType: 'LineChart' | 'BarChart';

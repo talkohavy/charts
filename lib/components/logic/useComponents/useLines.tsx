@@ -1,9 +1,8 @@
 import { Line } from 'recharts';
-import type { LineSeries } from '../../types';
-import type { ResolvedLinesSettings } from '../../types';
 import ActiveDot, { type ActiveDotProps } from '../../LineChart/logic/ActiveDot';
 import NonActiveDot from '../../LineChart/logic/NonActiveDot';
 import { DASHED_LINE, ThemeColors } from '../constants';
+import type { LineSeries, ResolvedLinesSettings } from '../../types';
 
 type UseLinesProps = {
   data: Array<LineSeries>;

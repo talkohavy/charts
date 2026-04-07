@@ -1,5 +1,5 @@
-import type { PieChartDrawData } from '../../types';
 import styles from './Legend.module.scss';
+import type { PieChartDrawData } from '../../types';
 
 type LegendProps = {
   pieChartData: Array<PieChartDrawData>;

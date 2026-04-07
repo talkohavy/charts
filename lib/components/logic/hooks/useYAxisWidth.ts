@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
-import type { BarSeries, BaseChartSettings, LineSeries } from '../../types';
 import { ChartLayouts, type ChartLayoutValues, DEFAULT_Y_TICK_COUNT, TICK_DASH_WIDTH } from '../constants';
 import { calculateLongestNiceTickWidth } from '../utils/calculateLongestNiceTickWidth';
 import { getTickValues } from '../utils/calculateYAxisWidth';
 import { useMaxYValue } from './useMaxYValue';
+import type { BarSeries, BaseChartSettings, LineSeries } from '../../types';
 
 type UseYAxisWidthProps = {
   data: Array<LineSeries | BarSeries>;
@@ -43,7 +43,6 @@ export function useYAxisWidth(props: UseYAxisWidthProps) {
 
     return yAxisWidth;
   }, [
-    data,
     maxYValue,
     settingsToMerge?.yAxis?.label,
     settingsToMerge?.yAxis?.tickSuffix,

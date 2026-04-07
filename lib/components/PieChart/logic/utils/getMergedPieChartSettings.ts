@@ -1,5 +1,5 @@
-import type { PieChartSettings } from '../../types';
 import { formatLabel, FORMATTERS } from '../../../logic/utils/formatters';
+import type { PieChartSettings } from '../../types';
 
 const defaultYValueFormatter = (num: number) => {
   if (num >= 1000000) {

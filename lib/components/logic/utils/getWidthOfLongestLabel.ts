@@ -1,5 +1,5 @@
-import type { CustomTickFormatterFunc } from '../../types';
 import { getTextWidth } from './getTextWidth';
+import type { CustomTickFormatterFunc } from '../../types';
 
 type GetWidthOfLongestLabeProps = {
   keys: string[];

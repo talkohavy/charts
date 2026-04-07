@@ -1,6 +1,6 @@
 import { Bar, BarChart as BarChartBase, Brush } from 'recharts';
-import type { BarSeries } from '../../types';
 import { CLASSES as GLOBAL_CLASSES } from '../constants';
+import type { BarSeries } from '../../types';
 
 type UseBarChartBrushProps = {
   brushSettings: any;

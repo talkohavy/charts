@@ -1,7 +1,7 @@
-import type { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent';
-import type { AxisDomain, AxisInterval, LayoutType, ScaleType } from 'recharts/types/util/types';
 import type { GeneralSettings } from './baseChartSettings';
 import type { CustomTickFormatterFunc, RechartsTickFormatterFunc } from './common';
+import type { HorizontalAlignmentType, VerticalAlignmentType } from 'recharts/types/component/DefaultLegendContent';
+import type { AxisDomain, AxisInterval, LayoutType, ScaleType } from 'recharts/types/util/types';
 
 type TypeValues = 'category' | 'number' | undefined;
 
