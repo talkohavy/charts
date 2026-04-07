@@ -10,7 +10,7 @@
     "clean": "rm -rf node_modules",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "tsc": "tsc -p tsconfig.package.json",
+    "tsc": "tsc -p tsconfig.package.json --noEmit",
     "tsc:app": "tsc -p tsconfig.app.json",
     "format-check": "prettier . --check --config .prettierrc.mjs --ignore-path .prettierignore",
     "format": "prettier . --write --log-level silent --config .prettierrc.json --ignore-path .prettierignore",
