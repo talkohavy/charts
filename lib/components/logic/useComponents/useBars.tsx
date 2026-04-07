@@ -1,11 +1,12 @@
 import { Bar, Cell, LabelList } from 'recharts';
-import type { BarClickEventProps, BarSeries } from '../../types';
+import type { BarClickEventProps, BarSeries, GeneralSettings, ResolvedBarsSettings } from '../../types';
 import { ACTIVE_BAR_COLOR, DEFAULT_BAR_COLOR } from '../../BarChart/logic/constants';
 import CustomizedLabel from '../CustomizedLabel';
 
 type UseBarsProps = {
   data: Array<BarSeries>;
-  barsSettings: any;
+  generalSettings: GeneralSettings;
+  barsSettings: ResolvedBarsSettings;
   visibleBars: Record<string, boolean>;
   onClickBar: ((props: BarClickEventProps & { name: string; barTypeIndex: number }) => void) | undefined;
   activeBarId?: string;
@@ -14,7 +15,16 @@ type UseBarsProps = {
 };
 
 export function useBars(props: UseBarsProps) {
-  const { data, barsSettings, visibleBars, onClickBar, activeBarId, isLegendHovered, isBarTypeHovered } = props;
+  const {
+    data,
+    barsSettings,
+    generalSettings,
+    visibleBars,
+    onClickBar,
+    activeBarId,
+    isLegendHovered,
+    isBarTypeHovered,
+  } = props;
 
   return data.map(({ name, data, unit, color, barBorderColor, stackId }, index) => {
     const barColorInLegend = color ?? DEFAULT_BAR_COLOR;
@@ -31,7 +41,7 @@ export function useBars(props: UseBarsProps) {
 
     return (
       <Bar key={`${name}-${index}`} {...barsSettings.props} {...barProps}>
-        {barsSettings.general.showValues && (
+        {generalSettings.showValues && (
           <LabelList dataKey={name} fontSize={11} position={stackId ? 'center' : 'top'} content={CustomizedLabel} />
         )}
 

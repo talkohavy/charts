@@ -42,13 +42,18 @@ export default function BarChart(props: BarChartProps) {
     yAxisSettings: chartSettings.yAxis,
     barsLayout,
   });
-  const tooltip = useTooltip({ tooltipSettings: chartSettings.tooltip });
+
+  const grid = useGrid(chartSettings.grid);
+
+  const tooltip = useTooltip(chartSettings.tooltip);
+
   const legend = useLegend({
     legendSettings: chartSettings.legend,
     onLegendClick,
     onLegendMouseEnter,
     onLegendMouseLeave,
   });
+
   const brush = useBarChartBrush({
     brushSettings: chartSettings.zoomSlider,
     startIndex,
@@ -57,9 +62,12 @@ export default function BarChart(props: BarChartProps) {
     transformedDataForRecharts,
     data,
   });
+
   const referenceLines = useReferenceLines({ data: referenceLinesData, settings: chartSettings.referenceLines });
+
   const bars = useBars({
     data,
+    generalSettings: chartSettings.general,
     barsSettings: chartSettings.bars,
     visibleBars,
     onClickBar,
@@ -67,7 +75,6 @@ export default function BarChart(props: BarChartProps) {
     isLegendHovered,
     isBarTypeHovered,
   });
-  const grid = useGrid({ gridSettings: chartSettings.grid });
 
   return (
     <ResponsiveContainer width='100%' height='100%'>

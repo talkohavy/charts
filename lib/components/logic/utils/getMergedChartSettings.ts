@@ -1,9 +1,10 @@
-import type { AxisDomain, StackOffsetType } from 'recharts/types/util/types';
+import type { AxisDomain } from 'recharts/types/util/types';
 import type {
   BarChartSettings,
   CustomTickFormatterFunc,
   LineChartSettings,
   RechartsTickFormatterFunc,
+  ResolvedBarChartSettings,
   ResolvedLineChartSettings,
   ResolvedSharedChartSettings,
 } from '../../types';
@@ -21,7 +22,7 @@ type GetMergedChartSettingsProps = {
   xAxisType: 'category' | 'number' | 'datetime';
 };
 
-export function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps) {
+export function getBarChartMergedChartSettings(props: GetMergedChartSettingsProps): ResolvedBarChartSettings {
   const sharedSettings = getSharedMergedChartSettings(props);
 
   const settingsToMerge = props.settings as BarChartSettings;
@@ -37,7 +38,7 @@ export function getBarChartMergedChartSettings(props: GetMergedChartSettingsProp
           bottom: hasBottomGap ? 30 : 10,
           right: 10, // <--- needed for last tick label to not be cut off
         },
-        stackOffset: 'sign' as StackOffsetType, // <--- sign knows how to deal with negative values, while default stackOffset just hides them (doesn't show them).
+        stackOffset: 'sign', // <--- sign knows how to deal with negative values, while default stackOffset just hides them (doesn't show them).
         // reverseStackOrder // <--- default is false. When true, stacked items will be rendered right to left. By default, stacked items are rendered left to right. Render direction affects SVG layering, not x position.
         // barCategoryGap='10%' // <--- gap between bars. Hard to make this generic. The default seems to do a pretty good job.
       },
