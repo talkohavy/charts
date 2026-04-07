@@ -74,7 +74,7 @@ export type LegendProps = {
 export type TooltipProps = {
   ySuffix: string;
   xValueFormatter: CustomTickFormatterFunc;
-  nameFormatter: (name: string) => string | undefined;
+  nameFormatter: CustomTickFormatterFunc;
 };
 
 export type ZoomSliderProps = {

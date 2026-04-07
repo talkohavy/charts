@@ -38,7 +38,7 @@ export default function LineChart(props: LineChartProps) {
     xAxisType,
   });
 
-  const tooltip = useTooltip({ tooltipSettings: chartSettings.tooltip });
+  const tooltip = useTooltip(chartSettings.tooltip);
 
   const legend = useLegend({
     legendSettings: chartSettings.legend,
