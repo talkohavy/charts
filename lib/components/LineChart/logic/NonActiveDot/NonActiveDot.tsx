@@ -15,7 +15,7 @@ type ActiveDotProps = DotProps & {
   data: Array<LineSeriesDataItem>;
   showChartValues: boolean;
   showLineValues: boolean;
-  hideDots: boolean;
+  hideDots: boolean | undefined;
 };
 
 export default function NonActiveDot(props: ActiveDotProps) {

@@ -1,4 +1,5 @@
 import type { ReferenceLine } from './referenceLine';
+import type { DataKey } from 'recharts/types/util/types';
 
 /**
  * @description
@@ -55,3 +56,7 @@ export type RechartsTickFormatterFunc = (value: any, index: number) => string;
 
 export type XAsNumber = { x: number };
 export type XAsString = { x: string };
+
+export type Payload = {
+  dataKey?: DataKey<any>;
+};

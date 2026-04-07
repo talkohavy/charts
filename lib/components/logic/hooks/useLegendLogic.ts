@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { getNamesObject } from '../utils/getNamesObject';
-import type { BarSeries, LineSeries } from '../../types';
-import type { Payload } from 'recharts/types/component/DefaultLegendContent';
-import type { DataKey } from 'recharts/types/util/types';
+import type { BarSeries, LineSeries, Payload } from '../../types';
 
 type UseLegendLogicProps = {
   data: Array<LineSeries | BarSeries>;
@@ -15,7 +13,7 @@ export function useLegendLogic(props: UseLegendLogicProps) {
   const [isSeriesHovered, setIsSeriesHovered] = useState(() => getNamesObject(data));
   const [visibleSeries, setVisibleSeries] = useState(() => getNamesObject(data, true));
 
-  const onLegendMouseEnter = (payload: Payload & { dataKey?: DataKey<any> }) => {
+  const onLegendMouseEnter = (payload: Payload) => {
     const seriesName = payload.dataKey as string;
 
     if (!visibleSeries[seriesName]) return;
@@ -24,7 +22,7 @@ export function useLegendLogic(props: UseLegendLogicProps) {
     setIsSeriesHovered((prevState) => ({ ...prevState, [seriesName]: true }));
   };
 
-  const onLegendMouseLeave = (payload: Payload & { dataKey?: DataKey<any> }) => {
+  const onLegendMouseLeave = (payload: Payload) => {
     const seriesName = payload.dataKey as string;
 
     if (!visibleSeries[seriesName]) return;
@@ -34,7 +32,7 @@ export function useLegendLogic(props: UseLegendLogicProps) {
     setIsSeriesHovered((prevState) => ({ ...prevState, [seriesName]: false }));
   };
 
-  const onLegendClick = (payload: Payload & { dataKey?: DataKey<any> }) => {
+  const onLegendClick = (payload: Payload) => {
     const seriesName = payload.dataKey as string;
 
     if (visibleSeries[seriesName]) setIsLegendHovered(false);

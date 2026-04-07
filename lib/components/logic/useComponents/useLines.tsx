@@ -18,7 +18,7 @@ export function useLines(props: UseLinesProps) {
   const { data, linesSettings, generalSettings, visibleLines, onDotClick, isLegendHovered, isLineHovered } = props;
 
   return data.map((line, index) => {
-    const { name, color, data, lineWidth, curveType, isDashed, dots, showValues: showLineValues, hide } = line;
+    const { name, color, data, lineWidth, curveType, isDashed, dots, showValues: showLineValues = false, hide } = line;
 
     const lineProps: any = {
       hide,

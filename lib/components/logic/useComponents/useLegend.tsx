@@ -1,13 +1,11 @@
 import { Legend } from 'recharts';
-import type { ResolvedLegendSettings } from '../../types';
-import type { Payload } from 'recharts/types/component/DefaultLegendContent';
-import type { DataKey } from 'recharts/types/util/types';
+import type { Payload, ResolvedLegendSettings } from '../../types';
 
 type UseLegendProps = {
   legendSettings: ResolvedLegendSettings;
-  onLegendClick: (payload: Payload & { dataKey?: DataKey<any> }) => void;
-  onLegendMouseEnter: (payload: Payload & { dataKey?: DataKey<any> }) => void;
-  onLegendMouseLeave: (payload: Payload & { dataKey?: DataKey<any> }) => void;
+  onLegendClick: (payload: Payload) => void;
+  onLegendMouseEnter: (payload: Payload) => void;
+  onLegendMouseLeave: (payload: Payload) => void;
 };
 
 export function useLegend(props: UseLegendProps) {
