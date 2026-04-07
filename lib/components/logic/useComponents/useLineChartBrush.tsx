@@ -1,9 +1,10 @@
 import { Brush, Line, LineChart as LineChartBase } from 'recharts';
 import type { LineSeries } from '../../types';
+import type { ResolvedZoomSliderSettings } from '../../types/resolvedBarChartSettings';
 import { DASHED_LINE, CLASSES as GLOBAL_CLASSES } from '../constants';
 
 type UseLineChartBrushProps = {
-  brushSettings: any;
+  brushSettings: ResolvedZoomSliderSettings;
   startIndex: React.RefObject<number | undefined>;
   endIndex: React.RefObject<number | undefined>;
   onBrushChange: (brushProps: { startIndex?: number; endIndex?: number }) => void;
