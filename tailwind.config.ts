@@ -1,8 +1,8 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from 'tailwindcss';
+
+const tailwindConfig: Config = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   // safelist: [{ pattern: /^(bg-|border-|text-)/, variants: ['hover', 'active'] }, 'bg-red-200'],
-  darkMode: ['class', '[data-theme="dark"]'], // <--- from tests I made on Storybook, this array doesn't work. Only the data-theme="dark" affects the result, and the class does nothing. At first I thought may there's an AND behavior, but no, just the data attributes affects it. The class is rendered useless in this array form.
   theme: {
     screens: { sm: '480px', md: '768px', lg: '976px', xl: '1440px' },
     extend: {
@@ -211,19 +211,6 @@ module.exports = {
       borderRadius: {
         '4xl': '2rem', // use like so: rounded-4xl
       },
-      boxShadow: {
-        '2xs': '0 0 1px 1px rgba(0, 0, 0, 0.1)',
-        xs: '0 0 2px 2px rgba(0, 0, 0, 0.1)',
-        sm: '0 0 4px 4px rgba(0, 0, 0, 0.1)',
-        md: '0 0 6px 6px rgba(0, 0, 0, 0.1)',
-        base: '0 0 8px 8px rgba(0, 0, 0, 0.1)',
-        lg: '0 0 10px 10px rgba(0, 0, 0, 0.1)',
-        'dark-xs': '0 0 2px 2px rgba(255,255,255, 0.1)',
-        'dark-sm': '0 0 4px 4px rgba(255,255,255, 0.1)',
-        'dark-md': '0 0 6px 6px rgba(255,255,255, 0.1)',
-        'dark-base': '0 0 8px 8px rgba(255,255,255, 0.1)',
-        'dark-lg': '0 0 10px 10px rgba(255,255,255, 0.1)',
-      },
       saturate: {
         10: '.1',
         20: '.2',
@@ -284,12 +271,12 @@ module.exports = {
       },
       keyframes: {
         slideUp: {
-          from: { opacity: 0, transform: 'translateY(10px)' },
-          to: { opacity: 1, transform: 'translateY(0)' },
+          from: { opacity: '0', transform: 'translateY(10px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
         },
         slideDown: {
-          from: { opacity: 0, transform: 'translateY(-10px)' },
-          to: { opacity: 1, transform: 'translateY(0)' },
+          from: { opacity: '0', transform: 'translateY(-10px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
         },
         spin: {
           '0%': { transform: 'rotate(0deg)' },
@@ -306,18 +293,18 @@ module.exports = {
           },
         },
         shake: {
-          '0%': { left: 0 },
-          '1%': { left: -3 },
-          '2%': { left: 5 },
-          '3%': { left: -8 },
-          '4%': { left: 8 },
-          '5%': { left: -5 },
-          '6%': { left: 3 },
-          '7%': { left: 0 },
+          '0%': { left: '0' },
+          '1%': { left: '-3px' },
+          '2%': { left: '5px' },
+          '3%': { left: '-8px' },
+          '4%': { left: '8px' },
+          '5%': { left: '-5px' },
+          '6%': { left: '3px' },
+          '7%': { left: '0' },
         },
         appear: {
-          '0%': { opacity: 0 },
-          '100%': { opacity: 1 },
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
       },
       lineClamp: {
@@ -327,12 +314,7 @@ module.exports = {
       },
     },
   },
-  corePlugins: {
-    aspectRatio: false, // disable the aspectRatio core plugin to avoid conflicts with the native aspect-ratio utilities included in Tailwind CSS v3.0
-  },
-  variants: {
-    animation: ({ after }) => after(['motion-safe', 'motion-reduce']),
-    transitionProperty: ({ after }) => after(['motion-reduce']),
-  },
   plugins: [],
 };
+
+export default tailwindConfig;
