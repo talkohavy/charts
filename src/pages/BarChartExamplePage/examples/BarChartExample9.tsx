@@ -1,4 +1,5 @@
 import { BarChart, type BarSeries } from '../../../../lib/main';
+import ExampleCard from '../../../components/ExampleCard';
 
 const bars: Array<BarSeries> = [
   {
@@ -17,7 +18,7 @@ const bars: Array<BarSeries> = [
 
 export default function BarChartExample9() {
   return (
-    <div className='flex h-lg w-full max-w-xl grow flex-col items-start justify-start gap-6 border p-6'>
+    <ExampleCard>
       <div className='text-xl font-bold'>• Example 9:</div>
 
       <p>Tooltip values show unit suffix.</p>
@@ -29,6 +30,6 @@ export default function BarChartExample9() {
           // style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif', border: '1px solid black' }}
         />
       </div>
-    </div>
+    </ExampleCard>
   );
 }

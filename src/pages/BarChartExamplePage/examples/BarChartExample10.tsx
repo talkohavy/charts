@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BarChart, type BarSeries } from '../../../../lib/main';
+import ExampleCard from '../../../components/ExampleCard';
 
 const bars: Array<BarSeries> = [
   {
@@ -20,7 +21,7 @@ export default function BarChartExample10() {
   const [showYAxis, setShowYAxis] = useState(true);
 
   return (
-    <div className='flex h-lg w-full max-w-xl grow flex-col items-start justify-start gap-6 border p-6'>
+    <ExampleCard>
       <div className='text-xl font-bold'>• Example 10:</div>
 
       <p>Ability to show/hide Axises.</p>
@@ -53,6 +54,6 @@ export default function BarChartExample10() {
           {showXAxis ? 'Hide' : 'Show'} XAxis
         </button>
       </div>
-    </div>
+    </ExampleCard>
   );
 }

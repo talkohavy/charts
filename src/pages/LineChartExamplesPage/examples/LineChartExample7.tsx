@@ -1,4 +1,5 @@
 import { LineChart, COLORS, type LineSeries } from '../../../../lib/main';
+import ExampleCard from '../../../components/ExampleCard';
 
 const lines: Array<LineSeries> = [
   {
@@ -19,7 +20,7 @@ const lines: Array<LineSeries> = [
 
 export default function LineChartExample7() {
   return (
-    <div className='flex h-xl w-full max-w-xl grow flex-col items-start justify-start gap-6 border p-6'>
+    <ExampleCard>
       <div className='text-xl font-bold'>• Example 7:</div>
 
       <p>A Line chart with 1 singled out point</p>
@@ -27,6 +28,6 @@ export default function LineChartExample7() {
       <div className='size-full max-h-md max-w-lg'>
         <LineChart data={lines} settings={{ grid: { show: true } }} className='border border-black' />
       </div>
-    </div>
+    </ExampleCard>
   );
 }

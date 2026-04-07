@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BarChart, type BarSeries } from '../../../../lib/main';
+import ExampleCard from '../../../components/ExampleCard';
 
 const bars: Array<BarSeries> = [
   {
@@ -37,7 +38,7 @@ export default function BarChartExample13() {
   const [activeBarId, setActiveBarId] = useState('');
 
   return (
-    <div className='flex h-lg w-full max-w-xl grow flex-col items-start justify-start gap-6 border p-6'>
+    <ExampleCard>
       <div className='text-xl font-bold'>• Example 13:</div>
 
       <p>BarChart with onClick event.</p>
@@ -55,6 +56,6 @@ export default function BarChartExample13() {
           style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif', border: '1px solid black' }}
         />
       </div>
-    </div>
+    </ExampleCard>
   );
 }

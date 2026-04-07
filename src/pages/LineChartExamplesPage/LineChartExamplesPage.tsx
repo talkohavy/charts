@@ -16,7 +16,7 @@ export default function HomePage() {
     <div className='flex size-full flex-col items-start justify-start gap-10 overflow-auto p-6'>
       <h1 className='self-center text-3xl font-bold'>LineChart Examples</h1>
 
-      <div className='size-full space-y-10'>
+      <div className='flex flex-col gap-6 size-full'>
         <LineChartExample1 />
         <LineChartExample2 />
         <LineChartExample3 />

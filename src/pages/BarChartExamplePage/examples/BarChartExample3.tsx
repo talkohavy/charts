@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { BarChart, COLORS, type BarSeries } from '../../../../lib/main';
+import ExampleCard from '../../../components/ExampleCard';
 
 const barsRaw: Array<BarSeries> = [
   {
@@ -38,7 +39,7 @@ export default function BarChartExample3() {
   );
 
   return (
-    <div className='flex h-96 w-full max-w-xl grow flex-col items-start justify-start gap-6 border p-6'>
+    <ExampleCard>
       <div className='text-xl font-bold'>• Example 3:</div>
 
       <p>Multiple colorful BarCharts</p>
@@ -50,6 +51,6 @@ export default function BarChartExample3() {
           style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif', border: '1px solid black' }}
         />
       </div>
-    </div>
+    </ExampleCard>
   );
 }

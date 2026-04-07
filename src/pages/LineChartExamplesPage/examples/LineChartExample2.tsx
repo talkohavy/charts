@@ -1,4 +1,5 @@
 import { LineChart, COLORS, type LineSeries } from '../../../../lib/main';
+import ExampleCard from '../../../components/ExampleCard';
 
 const lines: Array<LineSeries> = [
   {
@@ -19,7 +20,7 @@ const lines: Array<LineSeries> = [
 
 export default function LineChartExample2() {
   return (
-    <div className='mb-6 flex h-96 w-full max-w-xl grow flex-col items-start justify-start gap-6 border p-6'>
+    <ExampleCard>
       <div className='text-xl font-bold'>• Example 2:</div>
 
       <p>A simple Line chart x & y labels</p>
@@ -35,6 +36,6 @@ export default function LineChartExample2() {
           className='border border-black'
         />
       </div>
-    </div>
+    </ExampleCard>
   );
 }
