@@ -142,7 +142,6 @@
   --tk-custom-line-chart-line-color-10: #00c49f;
   --tk-custom-line-chart-grid-color: #000;
   --tk-custom-line-chart-x-axis-line-color: #000;
-  --tk-custom-line-chart-x-axis-tick-line-color: #000;
   --tk-custom-line-chart-x-axis-tick-label-color: #000;
   --tk-custom-line-chart-x-axis-label-color: #343434;
   --tk-custom-line-chart-y-axis-line-color: #000;
@@ -160,7 +159,6 @@ html[data-theme='dark'] {
   --tk-custom-line-chart-line-color-0: #fff;
   --tk-custom-line-chart-grid-color: #fff;
   --tk-custom-line-chart-x-axis-line-color: #fff;
-  --tk-custom-line-chart-x-axis-tick-line-color: red;
   --tk-custom-line-chart-x-axis-tick-label-color: #888686;
   --tk-custom-line-chart-x-axis-label-color: #d1d1d1;
   --tk-custom-line-chart-y-axis-line-color: #fff;
