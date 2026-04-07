@@ -1,5 +1,12 @@
 # @talkohavy/charts
 
+## 2.0.3
+
+### Patch Changes
+
+- Removed dependency: `recharts-scale`. It is now exported from `recharts`.
+- Added `recharts` as an external module. It is now not bundled as part of the package.
+
 ## 2.0.2
 
 ### Patch Changes
