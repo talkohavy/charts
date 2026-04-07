@@ -6,11 +6,10 @@ import { useWidthOfLongestTickLabel } from './useWidthOfLongestTickLabel';
 type UseXAxisHeightProps = {
   settingsToMerge?: BaseChartSettings;
   transformedDataForRecharts: Array<{ x: number | string }>;
-  xAxisType: 'category' | 'number' | 'datetime';
 };
 
 export function useXAxisHeight(props: UseXAxisHeightProps) {
-  const { settingsToMerge, transformedDataForRecharts, xAxisType } = props;
+  const { settingsToMerge, transformedDataForRecharts } = props;
 
   const positiveXTickRotateAngle = Math.abs(settingsToMerge?.xAxis?.tickAngle ?? 0);
 
@@ -18,7 +17,6 @@ export function useXAxisHeight(props: UseXAxisHeightProps) {
     keys: ['x'],
     settingsToMerge,
     transformedDataForRecharts,
-    axisType: xAxisType,
   });
 
   const xAxisHeight = useMemo(

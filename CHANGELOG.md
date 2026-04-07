@@ -1,5 +1,17 @@
 # @talkohavy/charts
 
+## 1.5.0
+
+### Minor Changes
+
+- Export chart-related types from package.
+- LineChart & BarChart now Support Color Palette Theme.
+
+### Patch Changes
+
+- BUGFIX: useWidthOfLongestTickLabel, when running on y values, is now calculated by ALL series names (y_1, y_2, ..., y_n).
+- `useYAxisWidth` was made faster and smarter.
+
 ## 1.4.8
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import type { LineChartProps } from '../../types';
-import { ChartLayouts } from '../../logic/constants';
+import { AxisTypes, ChartLayouts } from '../../logic/constants';
 import { useBrushLogic } from '../../logic/hooks/useBrushLogic';
 import { useLegendLogic } from '../../logic/hooks/useLegendLogic';
 import { useTransformedDataForRecharts } from '../../logic/hooks/useTransformedDataForRecharts';
@@ -10,13 +10,13 @@ import { getLineChartMergedChartSettings } from '../../logic/utils/getMergedChar
 import { runValidationsOnAllSeries } from '../../logic/utils/runValidationsOnAllSeries';
 
 export function useLineChartLogic(props: LineChartProps) {
-  const { type: xAxisType = 'category', data, settings: settingsToMerge } = props;
+  const { type: xAxisType = AxisTypes.Category, data, settings: settingsToMerge } = props;
 
   useMemo(() => runValidationsOnAllSeries(data), [data]);
 
   const { transformedDataForRecharts } = useTransformedDataForRecharts({ data });
 
-  const { xAxisHeight } = useXAxisHeight({ settingsToMerge, transformedDataForRecharts, xAxisType });
+  const { xAxisHeight } = useXAxisHeight({ settingsToMerge, transformedDataForRecharts });
 
   const { yAxisWidth } = useYAxisWidth({
     data,

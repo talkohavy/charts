@@ -15,7 +15,7 @@ export function useBarChartLogic(props: BarChartProps) {
 
   const { transformedDataForRecharts } = useTransformedDataForRecharts({ data });
 
-  const { xAxisHeight } = useXAxisHeight({ settingsToMerge, transformedDataForRecharts, xAxisType });
+  const { xAxisHeight } = useXAxisHeight({ settingsToMerge, transformedDataForRecharts });
 
   const { yAxisWidth } = useYAxisWidth({
     data,

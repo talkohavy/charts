@@ -51,6 +51,14 @@ export const ChartLayouts = {
 
 export type ChartLayoutValues = (typeof ChartLayouts)[keyof typeof ChartLayouts];
 
+export const AxisTypes = {
+  Category: 'category',
+  Number: 'number',
+  Datetime: 'datetime',
+} as const;
+
+export type AxisTypeValues = (typeof AxisTypes)[keyof typeof AxisTypes];
+
 export const ThemeColors = {
   LineColor: '--tk-custom-line-chart-line-color',
   GridLinesColor: '--tk-custom-line-chart-grid-color',
