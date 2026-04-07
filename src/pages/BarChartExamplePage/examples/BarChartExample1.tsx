@@ -28,8 +28,8 @@ export default function BarChartExample1() {
           settings={{
             yAxis: { label: 'Amount in Liters' },
             xAxis: { label: 'Countries' },
-            legend: { show: true },
           }}
+          className='border'
           style={{ fontFamily: 'Hiragino Sans GB,Arial,sans-serif', border: '1px solid black' }}
         />
       </div>

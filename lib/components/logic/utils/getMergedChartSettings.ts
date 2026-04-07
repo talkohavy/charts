@@ -88,7 +88,7 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
   const showGrid = settings?.grid?.show ?? true;
   const showLegend = settings?.legend?.show ?? chartType === 'BarChart';
   const showTooltip = settings?.tooltip?.show ?? true;
-  const legendHeight = getLegendHeight({ showLegend, xAxisLabel: settings?.xAxis?.label, chartType });
+  const legendHeight = getLegendHeight({ showLegend, xAxisLabel: settings?.xAxis?.label });
   const formatter = settings?.legend?.nameFormatter ?? ((name) => formatLabel(name, 14))!;
 
   return {
