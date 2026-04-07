@@ -1,12 +1,13 @@
 import { Line } from 'recharts';
 import type { LineSeries } from '../../types';
+import type { ResolvedLinesSettings } from '../../types';
 import ActiveDot, { type ActiveDotProps } from '../../LineChart/logic/ActiveDot';
 import NonActiveDot from '../../LineChart/logic/NonActiveDot';
 import { DASHED_LINE } from '../constants';
 
 type UseLinesProps = {
   data: Array<LineSeries>;
-  linesSettings: any;
+  linesSettings: ResolvedLinesSettings;
   generalSettings: any;
   visibleLines: Record<string, boolean>;
   onDotClick?: (data: ActiveDotProps, e: any) => void;

@@ -4,6 +4,7 @@ import type {
   CustomTickFormatterFunc,
   LineChartSettings,
   RechartsTickFormatterFunc,
+  ResolvedLineChartSettings,
   ResolvedSharedChartSettings,
 } from '../../types';
 import { BRUSH_HEIGHT, TICK_DASH_WIDTH } from '../constants';
@@ -53,7 +54,7 @@ export function getBarChartMergedChartSettings(props: GetMergedChartSettingsProp
   };
 }
 
-export function getLineChartMergedChartSettings(props: GetMergedChartSettingsProps) {
+export function getLineChartMergedChartSettings(props: GetMergedChartSettingsProps): ResolvedLineChartSettings {
   const sharedSettings = getSharedMergedChartSettings(props);
 
   const settingsToMerge = props.settings as LineChartSettings;

@@ -7,3 +7,4 @@ export type * from './referenceLine';
 export type * from './baseChartSettings';
 export type * from './resolvedSharedChartSettings';
 export type * from './resolvedBarChartSettings';
+export type * from './resolvedLineChartSettings';
