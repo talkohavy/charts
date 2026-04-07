@@ -1,7 +1,7 @@
 import type { Payload } from 'recharts/types/component/DefaultLegendContent';
 import type { DataKey } from 'recharts/types/util/types';
 import { Legend } from 'recharts';
-import type { ResolvedLegendSettings } from '../../types/resolvedBarChartSettings';
+import type { ResolvedLegendSettings } from '../../types';
 
 type UseLegendProps = {
   legendSettings: ResolvedLegendSettings;

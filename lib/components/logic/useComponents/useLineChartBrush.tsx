@@ -1,6 +1,6 @@
 import { Brush, Line, LineChart as LineChartBase } from 'recharts';
 import type { LineSeries } from '../../types';
-import type { ResolvedZoomSliderSettings } from '../../types/resolvedBarChartSettings';
+import type { ResolvedZoomSliderSettings } from '../../types';
 import { DASHED_LINE, CLASSES as GLOBAL_CLASSES } from '../constants';
 
 type UseLineChartBrushProps = {

@@ -1,6 +1,6 @@
 import { ReferenceLine } from 'recharts';
 import type { ReferenceLine as IReferenceLine } from '../../types';
-import type { ResolvedReferenceLinesSettings } from '../../types/resolvedBarChartSettings';
+import type { ResolvedReferenceLinesSettings } from '../../types';
 
 type UseReferenceLinesProps = {
   data?: IReferenceLine[];

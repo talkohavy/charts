@@ -1,5 +1,5 @@
 import { Tooltip } from 'recharts';
-import type { ResolvedTooltipSettings } from '../../types/resolvedBarChartSettings';
+import type { ResolvedTooltipSettings } from '../../types';
 import CustomTooltip from '../CustomTooltip';
 
 export function useTooltip(tooltipSettings: ResolvedTooltipSettings) {

@@ -4,8 +4,8 @@ import type {
   CustomTickFormatterFunc,
   LineChartSettings,
   RechartsTickFormatterFunc,
+  ResolvedSharedChartSettings,
 } from '../../types';
-import type { ResolvedSharedChartSettings } from '../../types/resolvedBarChartSettings';
 import { BRUSH_HEIGHT, TICK_DASH_WIDTH } from '../constants';
 import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
 import { FORMATTERS, formatLabel } from './formatters';
