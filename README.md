@@ -14,7 +14,19 @@ On the List:
 
 The charts are styled using [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) (variables).
 
-Default values are **automatically injected** when you import the package — no manual CSS import is required. You can override any variable in your own stylesheet to customize the look.
+### Importing the stylesheet
+
+Import the provided stylesheet once in your app's entry point to apply the default values:
+
+```js
+import '@talkohavy/charts/variables.css';
+```
+
+Or from a CSS file:
+
+```css
+@import '@talkohavy/charts/variables.css';
+```
 
 ### Overriding Variables
 
