@@ -54,7 +54,7 @@ export type ResolvedYAxisSettings = {
 };
 
 export type GridProps = {
-  stroke: string;
+  stroke: string | undefined;
   strokeWidth: number;
   horizontal: boolean;
   vertical: boolean;
@@ -78,7 +78,6 @@ export type TooltipProps = {
 };
 
 export type ZoomSliderProps = {
-  stroke: string;
   height: number;
 };
 
@@ -93,14 +92,14 @@ export type XAxisProps = {
     dy: number;
     dx: number;
   };
-  color: string;
+  color: string | undefined;
   fontSize: number | undefined;
   fontFamily: string | undefined;
   ticks: number[] | undefined;
   tickLine: boolean;
   tickFormatter: RechartsTickFormatterFunc;
   axisLine: boolean;
-  stroke: string;
+  stroke: string | undefined;
   domain: AxisDomain;
   allowDataOverflow: boolean;
   angle: number;

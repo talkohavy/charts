@@ -12,7 +12,6 @@ import { BRUSH_HEIGHT, TICK_DASH_WIDTH } from '../constants';
 import { calculateXAxisLabelPositioning } from './calculateXAxisLabelPositioning';
 import { FORMATTERS, formatLabel } from './formatters';
 import { getLegendHeight } from './getLegendHeight';
-import { readCSSVar } from './readCSSVar';
 
 type GetMergedChartSettingsProps = {
   chartType: 'LineChart' | 'BarChart';
@@ -109,14 +108,14 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
           }),
           dx: -yAxisWidth / 2,
         },
-        color: settings?.xAxis?.tickColor ?? readCSSVar('--charts-x-tick-color', '#333'), // <--- this is the color of the tick's value!
+        color: settings?.xAxis?.tickColor, // <--- this is the color of the tick's value!
         fontSize: settings?.xAxis?.tickFontSize,
         fontFamily: settings?.xAxis?.tickFontFamily,
         ticks: settings?.xAxis?.customTicks,
         tickLine: settings?.xAxis?.showTickLine ?? true,
         tickFormatter: (settings?.xAxis?.tickFormatter ?? FORMATTERS[xAxisType]) as RechartsTickFormatterFunc, // <--- only passes the string value as an argument.
         axisLine: settings?.xAxis?.showAxisLine ?? true,
-        stroke: settings?.xAxis?.axisLineColor ?? readCSSVar('--charts-x-axis-line-color', '#666'), // <--- this is the color of the xAxis line itself!
+        stroke: settings?.xAxis?.axisLineColor, // <--- this is the color of the xAxis line itself!
         domain: (settings?.xAxis?.domain ?? ['auto', 'auto']) as AxisDomain,
         allowDataOverflow: false,
         angle: settings?.xAxis?.tickAngle ? -Math.abs(settings?.xAxis?.tickAngle) : 0,
@@ -155,11 +154,11 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
           fontSize: settings?.yAxis?.labelFontSize,
           style: { textAnchor: 'middle' },
         },
-        stroke: settings?.yAxis?.axisLineColor ?? readCSSVar('--charts-y-axis-line-color', '#666'),
+        stroke: settings?.yAxis?.axisLineColor,
         fontSize: settings?.yAxis?.tickFontSize,
         fontFamily: settings?.yAxis?.tickFontFamily,
         tick: {
-          fill: settings?.yAxis?.tickColor ?? readCSSVar('--charts-y-tick-color', '#666'),
+          fill: settings?.yAxis?.tickColor,
         },
         tickSize: settings?.yAxis?.tickSize ?? TICK_DASH_WIDTH,
         ticks: settings?.yAxis?.customTicks,
@@ -185,7 +184,7 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
     grid: {
       show: !!showGrid,
       props: {
-        stroke: settings?.grid?.color ?? readCSSVar('--charts-grid-color', '#ddd'),
+        stroke: settings?.grid?.color,
         strokeWidth: 0.5,
         horizontal: typeof showGrid === 'boolean' ? showGrid : !!showGrid.horizontal,
         vertical: typeof showGrid === 'boolean' ? showGrid : !!showGrid.vertical,
@@ -220,7 +219,6 @@ export function getSharedMergedChartSettings(props: GetMergedChartSettingsProps)
       show: Boolean(settings?.zoomSlider?.show),
       showPreviewInSlider: Boolean(settings?.zoomSlider?.showPreviewInSlider),
       props: {
-        stroke: readCSSVar('--charts-zoom-slider-color', '#4b5af1'),
         height: BRUSH_HEIGHT,
         // gap: 1 // <--- Default to 1. `gap` is the refresh rate. 1 is smoothest.
         // travellerWidth: 6
